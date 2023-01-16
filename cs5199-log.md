@@ -9,11 +9,16 @@
 
 ideas:
 - 1. Distance / Search Algorithms 
-    - Star Algorithms (A*, B*, D*, E*)
+    - Star Algorithms (A*, B*, D*, F*)
     - Shortest path
-        - bellman ford
-        - dijkstra
-        - 
-- 2.  
+        - Bellman-Ford algorithm
+        - Dijkstra algorithm
+        - Floyd-Warshall algorithm
+        - Johnson algorithm
+- 2. Minimum Spanning Tree
+        - Borůvka's algorithm
+        - Kruskal's algorithm 
+        - Prim's algorithm
+        - Reverse-delete algorithm
 - 3. Hamiltonicity and Related Problems
 - 4. Topological Sort 
