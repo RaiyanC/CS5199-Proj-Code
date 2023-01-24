@@ -1,3 +1,4 @@
+# https://bradfieldcs.com/algos/graphs/prims-spanning-tree-algorithm/
 Prims := function(digraph, weights)
 local adj_list, v, e, w, mst, visited, i, queue, cost, from, to, node, neighbour, next_vertex, total;
 

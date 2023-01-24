@@ -1,3 +1,4 @@
+# https://www.programiz.com/dsa/kruskal-algorithm
 Kruskals := function(digraph, weights)
 local mst, i, e, u, v, w, x, y, number_of_vertices, edge_list, parent, rank, node, total;
 

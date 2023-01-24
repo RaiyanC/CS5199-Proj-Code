@@ -1,3 +1,4 @@
+# https://www.programiz.com/dsa/prim-algorithm
 Prims := function(digraph, weights)
 local number_of_vertices, curr_vertex, selected, min, x, y, i, j, adj_matrix, v, e, w, mst, total;
 
