@@ -20,7 +20,7 @@ AddSet(visited, 1);
 
 queue := BinaryHeap({x, y} -> x[1] > y[1]);
 
-# add start vertices to heap
+# Add neighbours of first vertex to heap
 w := 1;
 for e in OutNeighbors(digraph)[1] do
     Push(queue, [weights[1][w], 1, e]);
