@@ -1,14 +1,17 @@
 # https://www.programiz.com/dsa/kruskal-algorithm
 Kruskals := function(digraph, weights)
-local mst, i, e, u, v, w, x, y, number_of_vertices, edge_list, parent, rank, node, total;
+local mst, i, e, u, v, w, x, y, number_of_vertices, out_neighbours, idx, edge_list, parent, rank, node, total;
 
 number_of_vertices := DigraphNrVertices(digraph);
 edge_list := [];
-for v in DigraphVertices(digraph) do
-    w := 1;
-    for e in OutNeighbors(digraph)[v] do
-        Add(edge_list, [weights[v][w], v, e]);
-        w := w + 1;
+for u in DigraphVertices(digraph) do
+    out_neighbours := OutNeighbors(digraph)[u];
+    for idx in [1..Size(out_neighbours)] do
+        v := out_neighbours[idx]; # the out neighbour
+        w := weights[u][idx]; # the weight to the out neighbour
+
+        Add(edge_list, [w, u, v]);
+        Add(edge_list, [w, v, u]);
     od;
 od;
 
