@@ -102,7 +102,7 @@ Prims := function(digraph, weights)
                 edges := neighbour[2];
                 
                 for edge_idx in [1..Size(edges)] do
-                    w := adj[v][next_vertex][edge_idx];;
+                    w := edges[edge_idx];;
 
                     if not next_vertex in visited then
                         Push(queue, [w, v, next_vertex]);
