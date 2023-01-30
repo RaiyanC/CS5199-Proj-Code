@@ -1,7 +1,7 @@
-CreateGraph := function(number_of_vertices)
+CreateGraph := function(number_of_vertices, probability)
     local random_graph, weights, used_weights, digraph_vertices, number_of_edges, random_weight, out_neighbours, u, idx, v;
 
-    random_graph := RandomDigraph(IsConnectedDigraph, number_of_vertices, 0.5);
+    random_graph := RandomDigraph(IsConnectedDigraph, number_of_vertices, probability);
     digraph_vertices := DigraphVertices(random_graph);
     number_of_edges := DigraphNrEdges(random_graph) + 1;
 
