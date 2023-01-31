@@ -8,56 +8,15 @@ distance, number_of_vertices;
     digraph_vertices := DigraphVertices(digraph);
     
     # Create an adjacancy map for the edges with their associated weight
-
-    # loop through out neighbours, and add in neighbours to adj list
-    # as we don't loop through the adj list, we can add an extra in neighbour simultaneously
     adj := HashMap();
     for u in digraph_vertices do
-
-        # if u had no outneighbours, then its map never gets created
-        # therefore we make sure every visited vertex has its own map
-        # even if its empty, as it may have in neighbours and may need 
-        # to be added to
-        if not u in adj then 
-            adj[u] := HashMap();
-        fi;
-
+        adj[u] := HashMap();
         out_neighbours := OutNeighbors(digraph)[u];
         for idx in [1..Size(out_neighbours)] do
             v := out_neighbours[idx]; # the out neighbour
             w := weights[u][idx]; # the weight to the out neighbour
 
-            # Adding an edge for the current direction
-
-            # if out neighbour isnt a vertex already, then create an
-            # empty list. 
-            if not v in adj[u] then
-                adj[u][v] := [];
-            fi;
-            
-            # add, the new vertex with the weight {u: v:[w]}.
-            # we cannot simply overwrite the value of the key as the same key will have
-            # different values and when the second edge gets added, the first one will get
-            # overwritten
-            Add(adj[u][v], w);
-            
-
-            # Adding a new edge in the reverse direction
-            
-            # as we are adding the reverse nodes in, if the reverse has yet to be visited
-            # create a hashmap for it
-            if not v in adj then
-                adj[v] := HashMap();
-            fi;
-
-            # make a new list for the u node in the neighbour
-            if not u in adj[v] then
-                adj[v][u] := [];
-            fi;
-            
-            # add the reverse edge
-            Add(adj[v][u], w);
-
+            adj[u][v] := w;
         od;
 
     od;
@@ -100,21 +59,19 @@ distance, number_of_vertices;
 
         for neighbour in KeyValueIterator(adj[u]) do
             v := neighbour[1];
-            edges := neighbour[2];
+            w := neighbour[2];
 
-            for edge_idx in [1..Size(edges)] do
-                    w := edges[edge_idx];
 
-                    distance := curr_dist + w;
+            distance := curr_dist + w;
 
-                    if distance < distances[v] then
-                        distances[v] := distance;
+            if distance < distances[v] then
+                distances[v] := distance;
 
-                        if not visited[v] then
-                            Push(queue, [distance, v]);
-                        fi;
-                    fi;
-                od; 
+                if not visited[v] then
+                    Push(queue, [distance, v]);
+                fi;
+            fi;
+            
             
         od;
 
