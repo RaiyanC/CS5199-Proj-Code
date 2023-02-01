@@ -70,11 +70,8 @@ distance, number_of_vertices;
                 if not visited[v] then
                     Push(queue, [distance, v]);
                 fi;
-            fi;
-            
-            
+            fi; 
         od;
-
     od;
 
 
