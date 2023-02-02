@@ -1,15 +1,20 @@
 # https://bradfieldcs.com/algos/graphs/prims-spanning-tree-algorithm/
 Prims := function(digraph, weights)
-    local adj, digraph_vertices,e,u,v,edges, edge_idx, idx, out_neighbours, w, mst, visited, i, queue, cost, node, neighbour, next_vertex, total, edges_in_mst, number_of_vertices;
+    local adj, digraph_vertices,e,u,v,edges, outs, ins, edge_idx, idx, out_neighbours, in_neighbours, w, mst, visited, i, queue, cost, node, neighbour, next_vertex, total, edges_in_mst, number_of_vertices;
 
     digraph_vertices := DigraphVertices(digraph);
+    outs := OutNeighbors(digraph);
+    ins := InNeighbors(digraph);
     
     # Create an adjacancy map for the edges with their associated weight
 
     # loop through out neighbours, and add in neighbours to adj list
     # as we don't loop through the adj list, we can add an extra in neighbour simultaneously
-    adj := HashMap();
+    adj := HashMap(Size(digraph_vertices));
+    
     for u in digraph_vertices do
+        out_neighbours := outs[u];
+        in_neighbours := ins[u];
 
         # if u had no outneighbours, then its map never gets created
         # therefore we make sure every visited vertex has its own map
@@ -19,7 +24,8 @@ Prims := function(digraph, weights)
             adj[u] := HashMap();
         fi;
 
-        out_neighbours := OutNeighbors(digraph)[u];
+        
+
         for idx in [1..Size(out_neighbours)] do
             v := out_neighbours[idx]; # the out neighbour
             w := weights[u][idx]; # the weight to the out neighbour
@@ -29,7 +35,8 @@ Prims := function(digraph, weights)
             # if out neighbour isnt a vertex already, then create an
             # empty list. 
             if not v in adj[u] then
-                adj[u][v] := [];
+                # u: v: [number of out + in neighbours]
+                adj[u][v] := EmptyPlist(Size(out_neighbours) + Size(in_neighbours));
             fi;
             
             # add, the new vertex with the weight {u: v:[w]}.
@@ -54,12 +61,13 @@ Prims := function(digraph, weights)
             
             # add the reverse edge
             Add(adj[v][u], w);
-
+        od;
     od;
 
     mst := HashMap();
-    visited := HashSet();
-    AddSet(visited, 1);
+
+    visited := BlistList(digraph_vertices, []);
+    visited[1] := true;
 
     queue := BinaryHeap({x, y} -> x[1] > y[1]);
 
@@ -84,8 +92,9 @@ Prims := function(digraph, weights)
         u := node[2];
         v := node[3];
 
-        if not v in visited then
-            AddSet(visited, v);
+        if not visited[v] then
+            visited[v] := true;
+            
 
             if not u in mst then
                 mst[u] := [];
@@ -107,7 +116,7 @@ Prims := function(digraph, weights)
                 for edge_idx in [1..Size(edges)] do
                     w := edges[edge_idx];;
 
-                    if not next_vertex in visited then
+                    if not visited[next_vertex] then
                         Push(queue, [w, v, next_vertex]);
                     fi;
                 od; 
@@ -118,4 +127,4 @@ Prims := function(digraph, weights)
     od;
 
     return [total, mst];
-    end;
+end;
