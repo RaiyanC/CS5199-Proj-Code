@@ -28,10 +28,7 @@ distance, number_of_vertices;
     od;
 
     distances[source] := 0;
-    visited := [];
-    for vertex in digraph_vertices do
-        Add(visited, false);
-    od;
+    visited := BlistList(digraph_vertices, []);
 
 
     # make binary heap by priority of index 1 of each element (the cost to get to the node)
