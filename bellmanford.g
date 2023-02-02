@@ -1,3 +1,4 @@
+# https://github.com/arnab132/Bellman-Ford-Algorithm-Python/blob/main/bellman_ford.py
 Bellman := function(digraph, weights, source)
     local edge_list, digraph_vertices, distances, u, out_neighbours, idx, v, w, _, edge;
 
@@ -13,12 +14,12 @@ Bellman := function(digraph, weights, source)
         od;
     od;
 
+    # Print(edge_list, "\n");
 
     distances := [];
     for _ in digraph_vertices do
         Add(distances, infinity);
     od;
-
     distances[source] := 0;
 
     # relax all edges: update weight with smallest edges
@@ -29,21 +30,21 @@ Bellman := function(digraph, weights, source)
             v := edge[3];
 
             if distances[u] <> infinity and distances[u] + w < distances[v] then
-                distances[v] := distances[u] + v;
+                distances[v] := distances[u] + w;
             fi;
         od;
     od;
 
     # check for negative cycles
-    # for edge in edge_list do
-    #     w := edge[1];
-    #     u := edge[2];
-    #     v := edge[3];
+    for edge in edge_list do
+        w := edge[1];
+        u := edge[2];
+        v := edge[3];
 
-    #     if distances[u] <> infinity and distances[u] + w < distances[v] then
-    #         return fail;
-    #     fi;
-    # od;
+        if distances[u] <> infinity and distances[u] + w < distances[v] then
+            return fail;
+        fi;
+    od;
 
     return distances;
 end;
