@@ -1,6 +1,6 @@
 # https://github.com/arnab132/Bellman-Ford-Algorithm-Python/blob/main/bellman_ford.py
 Bellman := function(digraph, weights, source)
-    local edge_list, digraph_vertices, distances, u, out_neighbours, idx, v, w, _, edge;
+    local edge_list, digraph_vertices, distances, u, out_neighbours, idx, v, w, _, path, vertex, edge;
 
     digraph_vertices := DigraphVertices(digraph);
     edge_list := [];
@@ -14,13 +14,17 @@ Bellman := function(digraph, weights, source)
         od;
     od;
 
-    # Print(edge_list, "\n");
 
-    distances := [];
-    for _ in digraph_vertices do
-        Add(distances, infinity);
+    distances := [digraph_vertices];
+    path := [digraph_vertices];
+   
+    for vertex in digraph_vertices do
+        distances[vertex] := infinity;
+        path[vertex] := [];
     od;
+    
     distances[source] := 0;
+    Add(path[source], source);
 
     # relax all edges: update weight with smallest edges
     for _ in digraph_vertices do
@@ -31,6 +35,11 @@ Bellman := function(digraph, weights, source)
 
             if distances[u] <> infinity and distances[u] + w < distances[v] then
                 distances[v] := distances[u] + w;
+
+                # if distance is smaller, copy the path to u and add v to it.
+                # if path from x -> y is minimal. path to y is path to x + the edge to y
+                path[v] := ShallowCopy(path[u]);
+                Add(path[v], v);
             fi;
         od;
     od;
@@ -46,5 +55,5 @@ Bellman := function(digraph, weights, source)
         fi;
     od;
 
-    return distances;
+    return [distances, path];
 end;
