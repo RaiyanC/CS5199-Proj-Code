@@ -3,7 +3,7 @@ Dijkstra := function(digraph, weights, source)
 local adj, digraph_vertices,e,u,v,edges, vertex, distances, 
 edge_idx, idx, out_neighbours, w, mst, visited, i, queue, cost, 
 node, curr_node, curr_dist, neighbour, next_vertex, total, edges_in_mst,
-distance, number_of_vertices;
+distance, number_of_vertices, other_vertex, path;
 
     digraph_vertices := DigraphVertices(digraph);
     
@@ -22,12 +22,18 @@ distance, number_of_vertices;
     od;
 
 
-    distances := [];
+    distances := [digraph_vertices];
+    path := [digraph_vertices];
+   
     for vertex in digraph_vertices do
-        Add(distances, infinity);
+        distances[vertex] := infinity;
+        path[vertex] := [];
     od;
 
+    
+
     distances[source] := 0;
+    Add(path[source], source);
     visited := BlistList(digraph_vertices, []);
 
 
@@ -38,15 +44,9 @@ distance, number_of_vertices;
 
     while not IsEmpty(queue) do
         node := Pop(queue);
+
         curr_dist := node[1];
         u := node[2];
-
-        # nodes may be added multiple times, we only want to process
-        # a vertex the first time we remove it from the queue.
-        # could also use a visited set.
-        # if curr_dist > distances[u] then
-        #     continue;
-        # fi;
 
         if visited[u] then
             continue;
@@ -58,11 +58,16 @@ distance, number_of_vertices;
             v := neighbour[1];
             w := neighbour[2];
 
-
             distance := curr_dist + w;
 
             if distance < distances[v] then
                 distances[v] := distance;
+                
+                # if distance is smaller, copy the path to u and add v to it.
+                # if path from x -> y is minimal. path to y is path to x + the edge to y
+                path[v] := ShallowCopy(path[u]);
+                Add(path[v], v);
+
 
                 if not visited[v] then
                     Push(queue, [distance, v]);
@@ -72,5 +77,5 @@ distance, number_of_vertices;
     od;
 
 
-    return distances;
+    return [distances, path];
 end;
