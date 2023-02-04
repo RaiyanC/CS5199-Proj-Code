@@ -1,0 +1,576 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="1200" height="182" onload="init(evt)" viewBox="0 0 1200 182" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!-- Flame graph stack visualization. See https://github.com/brendangregg/FlameGraph for latest version, and http://www.brendangregg.com/flamegraphs.html for examples. -->
+<!-- NOTES:  -->
+<defs>
+	<linearGradient id="background" y1="0" y2="1" x1="0" x2="0" >
+		<stop stop-color="#eeeeee" offset="5%" />
+		<stop stop-color="#eeeeb0" offset="95%" />
+	</linearGradient>
+</defs>
+<style type="text/css">
+	text { font-family:Verdana; font-size:12px; fill:rgb(0,0,0); }
+	#search, #ignorecase { opacity:0.1; cursor:pointer; }
+	#search:hover, #search.show, #ignorecase:hover, #ignorecase.show { opacity:1; }
+	#subtitle { text-anchor:middle; font-color:rgb(160,160,160); }
+	#title { text-anchor:middle; font-size:17px}
+	#unzoom { cursor:pointer; }
+	#frames > *:hover { stroke:black; stroke-width:0.5; cursor:pointer; }
+	.hide { display:none; }
+	.parent { opacity:0.5; }
+</style>
+<script type="text/ecmascript">
+<![CDATA[
+	"use strict";
+	var details, searchbtn, unzoombtn, matchedtxt, svg, searching, currentSearchTerm, ignorecase, ignorecaseBtn;
+	function init(evt) {
+		details = document.getElementById("details").firstChild;
+		searchbtn = document.getElementById("search");
+		ignorecaseBtn = document.getElementById("ignorecase");
+		unzoombtn = document.getElementById("unzoom");
+		matchedtxt = document.getElementById("matched");
+		svg = document.getElementsByTagName("svg")[0];
+		searching = 0;
+		currentSearchTerm = null;
+	}
+
+	window.addEventListener("click", function(e) {
+		var target = find_group(e.target);
+		if (target) {
+			if (target.nodeName == "a") {
+				if (e.ctrlKey === false) return;
+				e.preventDefault();
+			}
+			if (target.classList.contains("parent")) unzoom();
+			zoom(target);
+		}
+		else if (e.target.id == "unzoom") unzoom();
+		else if (e.target.id == "search") search_prompt();
+		else if (e.target.id == "ignorecase") toggle_ignorecase();
+	}, false)
+
+	// mouse-over for info
+	// show
+	window.addEventListener("mouseover", function(e) {
+		var target = find_group(e.target);
+		if (target) details.nodeValue = "Function: " + g_to_text(target);
+	}, false)
+
+	// clear
+	window.addEventListener("mouseout", function(e) {
+		var target = find_group(e.target);
+		if (target) details.nodeValue = ' ';
+	}, false)
+
+	// ctrl-F for search
+	window.addEventListener("keydown",function (e) {
+		if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) {
+			e.preventDefault();
+			search_prompt();
+		}
+	}, false)
+
+	// ctrl-I to toggle case-sensitive search
+	window.addEventListener("keydown",function (e) {
+		if (e.ctrlKey && e.keyCode === 73) {
+			e.preventDefault();
+			toggle_ignorecase();
+		}
+	}, false)
+
+	// functions
+	function find_child(node, selector) {
+		var children = node.querySelectorAll(selector);
+		if (children.length) return children[0];
+		return;
+	}
+	function find_group(node) {
+		var parent = node.parentElement;
+		if (!parent) return;
+		if (parent.id == "frames") return node;
+		return find_group(parent);
+	}
+	function orig_save(e, attr, val) {
+		if (e.attributes["_orig_" + attr] != undefined) return;
+		if (e.attributes[attr] == undefined) return;
+		if (val == undefined) val = e.attributes[attr].value;
+		e.setAttribute("_orig_" + attr, val);
+	}
+	function orig_load(e, attr) {
+		if (e.attributes["_orig_"+attr] == undefined) return;
+		e.attributes[attr].value = e.attributes["_orig_" + attr].value;
+		e.removeAttribute("_orig_"+attr);
+	}
+	function g_to_text(e) {
+		var text = find_child(e, "title").firstChild.nodeValue;
+		return (text)
+	}
+	function g_to_func(e) {
+		var func = g_to_text(e);
+		// if there's any manipulation we want to do to the function
+		// name before it's searched, do it here before returning.
+		return (func);
+	}
+	function update_text(e) {
+		var r = find_child(e, "rect");
+		var t = find_child(e, "text");
+		var w = parseFloat(r.attributes.width.value) -3;
+		var txt = find_child(e, "title").textContent.replace(/\([^(]*\)$/,"");
+		t.attributes.x.value = parseFloat(r.attributes.x.value) + 3;
+
+		// Smaller than this size won't fit anything
+		if (w < 2 * 12 * 0.59) {
+			t.textContent = "";
+			return;
+		}
+
+		t.textContent = txt;
+		// Fit in full text width
+		if (/^ *$/.test(txt) || t.getSubStringLength(0, txt.length) < w)
+			return;
+
+		for (var x = txt.length - 2; x > 0; x--) {
+			if (t.getSubStringLength(0, x + 2) <= w) {
+				t.textContent = txt.substring(0, x) + "..";
+				return;
+			}
+		}
+		t.textContent = "";
+	}
+
+	// zoom
+	function zoom_reset(e) {
+		if (e.attributes != undefined) {
+			orig_load(e, "x");
+			orig_load(e, "width");
+		}
+		if (e.childNodes == undefined) return;
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_reset(c[i]);
+		}
+	}
+	function zoom_child(e, x, ratio) {
+		if (e.attributes != undefined) {
+			if (e.attributes.x != undefined) {
+				orig_save(e, "x");
+				e.attributes.x.value = (parseFloat(e.attributes.x.value) - x - 10) * ratio + 10;
+				if (e.tagName == "text")
+					e.attributes.x.value = find_child(e.parentNode, "rect[x]").attributes.x.value + 3;
+			}
+			if (e.attributes.width != undefined) {
+				orig_save(e, "width");
+				e.attributes.width.value = parseFloat(e.attributes.width.value) * ratio;
+			}
+		}
+
+		if (e.childNodes == undefined) return;
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_child(c[i], x - 10, ratio);
+		}
+	}
+	function zoom_parent(e) {
+		if (e.attributes) {
+			if (e.attributes.x != undefined) {
+				orig_save(e, "x");
+				e.attributes.x.value = 10;
+			}
+			if (e.attributes.width != undefined) {
+				orig_save(e, "width");
+				e.attributes.width.value = parseInt(svg.width.baseVal.value) - (10 * 2);
+			}
+		}
+		if (e.childNodes == undefined) return;
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_parent(c[i]);
+		}
+	}
+	function zoom(node) {
+		var attr = find_child(node, "rect").attributes;
+		var width = parseFloat(attr.width.value);
+		var xmin = parseFloat(attr.x.value);
+		var xmax = parseFloat(xmin + width);
+		var ymin = parseFloat(attr.y.value);
+		var ratio = (svg.width.baseVal.value - 2 * 10) / width;
+
+		// XXX: Workaround for JavaScript float issues (fix me)
+		var fudge = 0.0001;
+
+		unzoombtn.classList.remove("hide");
+
+		var el = document.getElementById("frames").children;
+		for (var i = 0; i < el.length; i++) {
+			var e = el[i];
+			var a = find_child(e, "rect").attributes;
+			var ex = parseFloat(a.x.value);
+			var ew = parseFloat(a.width.value);
+			var upstack;
+			// Is it an ancestor
+			if (0 == 0) {
+				upstack = parseFloat(a.y.value) > ymin;
+			} else {
+				upstack = parseFloat(a.y.value) < ymin;
+			}
+			if (upstack) {
+				// Direct ancestor
+				if (ex <= xmin && (ex+ew+fudge) >= xmax) {
+					e.classList.add("parent");
+					zoom_parent(e);
+					update_text(e);
+				}
+				// not in current path
+				else
+					e.classList.add("hide");
+			}
+			// Children maybe
+			else {
+				// no common path
+				if (ex < xmin || ex + fudge >= xmax) {
+					e.classList.add("hide");
+				}
+				else {
+					zoom_child(e, xmin, ratio);
+					update_text(e);
+				}
+			}
+		}
+		search();
+	}
+	function unzoom() {
+		unzoombtn.classList.add("hide");
+		var el = document.getElementById("frames").children;
+		for(var i = 0; i < el.length; i++) {
+			el[i].classList.remove("parent");
+			el[i].classList.remove("hide");
+			zoom_reset(el[i]);
+			update_text(el[i]);
+		}
+		search();
+	}
+
+	// search
+	function toggle_ignorecase() {
+		ignorecase = !ignorecase;
+		if (ignorecase) {
+			ignorecaseBtn.classList.add("show");
+		} else {
+			ignorecaseBtn.classList.remove("show");
+		}
+		reset_search();
+		search();
+	}
+	function reset_search() {
+		var el = document.querySelectorAll("#frames rect");
+		for (var i = 0; i < el.length; i++) {
+			orig_load(el[i], "fill")
+		}
+	}
+	function search_prompt() {
+		if (!searching) {
+			var term = prompt("Enter a search term (regexp " +
+			    "allowed, eg: ^ext4_)"
+			    + (ignorecase ? ", ignoring case" : "")
+			    + "\nPress Ctrl-i to toggle case sensitivity", "");
+			if (term != null) {
+				currentSearchTerm = term;
+				search();
+			}
+		} else {
+			reset_search();
+			searching = 0;
+			currentSearchTerm = null;
+			searchbtn.classList.remove("show");
+			searchbtn.firstChild.nodeValue = "Search"
+			matchedtxt.classList.add("hide");
+			matchedtxt.firstChild.nodeValue = ""
+		}
+	}
+	function search(term) {
+		if (currentSearchTerm === null) return;
+		var term = currentSearchTerm;
+
+		var re = new RegExp(term, ignorecase ? 'i' : '');
+		var el = document.getElementById("frames").children;
+		var matches = new Object();
+		var maxwidth = 0;
+		for (var i = 0; i < el.length; i++) {
+			var e = el[i];
+			var func = g_to_func(e);
+			var rect = find_child(e, "rect");
+			if (func == null || rect == null)
+				continue;
+
+			// Save max width. Only works as we have a root frame
+			var w = parseFloat(rect.attributes.width.value);
+			if (w > maxwidth)
+				maxwidth = w;
+
+			if (func.match(re)) {
+				// highlight
+				var x = parseFloat(rect.attributes.x.value);
+				orig_save(rect, "fill");
+				rect.attributes.fill.value = "rgb(230,0,230)";
+
+				// remember matches
+				if (matches[x] == undefined) {
+					matches[x] = w;
+				} else {
+					if (w > matches[x]) {
+						// overwrite with parent
+						matches[x] = w;
+					}
+				}
+				searching = 1;
+			}
+		}
+		if (!searching)
+			return;
+
+		searchbtn.classList.add("show");
+		searchbtn.firstChild.nodeValue = "Reset Search";
+
+		// calculate percent matched, excluding vertical overlap
+		var count = 0;
+		var lastx = -1;
+		var lastw = 0;
+		var keys = Array();
+		for (k in matches) {
+			if (matches.hasOwnProperty(k))
+				keys.push(k);
+		}
+		// sort the matched frames by their x location
+		// ascending, then width descending
+		keys.sort(function(a, b){
+			return a - b;
+		});
+		// Step through frames saving only the biggest bottom-up frames
+		// thanks to the sort order. This relies on the tree property
+		// where children are always smaller than their parents.
+		var fudge = 0.0001;	// JavaScript floating point
+		for (var k in keys) {
+			var x = parseFloat(keys[k]);
+			var w = matches[keys[k]];
+			if (x >= lastx + lastw - fudge) {
+				count += w;
+				lastx = x;
+				lastw = w;
+			}
+		}
+		// display matched percent
+		matchedtxt.classList.remove("hide");
+		var pct = 100 * count / maxwidth;
+		if (pct != 100) pct = pct.toFixed(1)
+		matchedtxt.firstChild.nodeValue = "Matched: " + pct + "%";
+	}
+]]>
+</script>
+<rect x="0.0" y="0" width="1200.0" height="182.0" fill="url(#background)"  />
+<text id="title" x="600.00" y="24" >Flame Graph</text>
+<text id="details" x="10.00" y="165" > </text>
+<text id="unzoom" x="10.00" y="24" class="hide">Reset Zoom</text>
+<text id="search" x="1090.00" y="24" >Search</text>
+<text id="ignorecase" x="1174.00" y="24" >ic</text>
+<text id="matched" x="1090.00" y="165" > </text>
+<g id="frames">
+<g >
+<title>String for a (finite) list@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/list.gi:295 (159 samples, 4.21%)</title><rect x="1082.2" y="69" width="49.7" height="15.0" fill="rgb(208,1,31)" rx="2" ry="2" />
+<text  x="1085.16" y="79.5" >Strin..</text>
+</g>
+<g >
+<title>IteratorByFunctions@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/coll.gi:920 (17 samples, 0.45%)</title><rect x="113.8" y="69" width="5.3" height="15.0" fill="rgb(221,182,22)" rx="2" ry="2" />
+<text  x="116.78" y="79.5" ></text>
+</g>
+<g >
+<title>IteratorByFunctions@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/coll.gi:920 (3 samples, 0.08%)</title><rect x="1074.7" y="37" width="0.9" height="15.0" fill="rgb(211,50,30)" rx="2" ry="2" />
+<text  x="1077.66" y="47.5" ></text>
+</g>
+<g >
+<title>String for an integer@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/cyclotom.g:997 (2 samples, 0.05%)</title><rect x="1138.7" y="69" width="0.7" height="15.0" fill="rgb(254,94,1)" rx="2" ry="2" />
+<text  x="1141.74" y="79.5" ></text>
+</g>
+<g >
+<title>String for an integer@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/cyclotom.g:997 (5 samples, 0.13%)</title><rect x="1125.3" y="37" width="1.6" height="15.0" fill="rgb(250,164,15)" rx="2" ry="2" />
+<text  x="1128.30" y="47.5" ></text>
+</g>
+<g >
+<title>PrintObj default method delegating to PrintString@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/object.gi:164 (215 samples, 5.70%)</title><rect x="1067.8" y="101" width="67.2" height="15.0" fill="rgb(245,0,17)" rx="2" ry="2" />
+<text  x="1070.78" y="111.5" >PrintOb..</text>
+</g>
+<g >
+<title>all (3,775 samples, 100%)</title><rect x="10.0" y="133" width="1180.0" height="15.0" fill="rgb(221,109,4)" rx="2" ry="2" />
+<text  x="13.00" y="143.5" ></text>
+</g>
+<g >
+<title>IsEmpty for a binary heap in plain representation@/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/binaryheap.gi:94 (6 samples, 0.16%)</title><rect x="106.0" y="101" width="1.8" height="15.0" fill="rgb(215,156,0)" rx="2" ry="2" />
+<text  x="108.96" y="111.5" ></text>
+</g>
+<g >
+<title>ViewObj method@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/teaching.g:775 (126 samples, 3.34%)</title><rect x="1142.5" y="101" width="39.4" height="15.0" fill="rgb(216,192,8)" rx="2" ry="2" />
+<text  x="1145.49" y="111.5" >Vie..</text>
+</g>
+<g >
+<title>Prims@../prim_v2.g:2 (3,349 samples, 88.72%)</title><rect x="10.6" y="117" width="1046.9" height="15.0" fill="rgb(248,36,42)" rx="2" ry="2" />
+<text  x="13.63" y="127.5" >Prims@../prim_v2.g:2</text>
+</g>
+<g >
+<title>KeyValueIterator for a hash set@/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/hashmap.gi:227 (51 samples, 1.35%)</title><rect x="107.8" y="101" width="16.0" height="15.0" fill="rgb(214,73,37)" rx="2" ry="2" />
+<text  x="110.84" y="111.5" ></text>
+</g>
+<g >
+<title>String method@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/teaching.g:798 (2 samples, 0.05%)</title><rect x="1139.4" y="69" width="0.6" height="15.0" fill="rgb(246,214,31)" rx="2" ry="2" />
+<text  x="1142.36" y="79.5" ></text>
+</g>
+<g >
+<title>nameless@/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/hashmap.gi:208 (6 samples, 0.16%)</title><rect x="1133.1" y="69" width="1.9" height="15.0" fill="rgb(253,179,54)" rx="2" ry="2" />
+<text  x="1136.11" y="79.5" ></text>
+</g>
+<g >
+<title>nameless@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/session.g:52 (18 samples, 0.48%)</title><rect x="1184.4" y="117" width="5.6" height="15.0" fill="rgb(216,154,30)" rx="2" ry="2" />
+<text  x="1187.37" y="127.5" ></text>
+</g>
+<g >
+<title>String method@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/teaching.g:798 (4 samples, 0.11%)</title><rect x="1131.9" y="69" width="1.2" height="15.0" fill="rgb(224,104,28)" rx="2" ry="2" />
+<text  x="1134.86" y="79.5" ></text>
+</g>
+<g >
+<title>Size method@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/coll.gi:178 (216 samples, 5.72%)</title><rect x="958.1" y="101" width="67.5" height="15.0" fill="rgb(225,139,23)" rx="2" ry="2" />
+<text  x="961.06" y="111.5" >Size me..</text>
+</g>
+<g >
+<title>String for a (finite) list@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/list.gi:295 (33 samples, 0.87%)</title><rect x="1117.8" y="53" width="10.3" height="15.0" fill="rgb(229,101,11)" rx="2" ry="2" />
+<text  x="1120.79" y="63.5" ></text>
+</g>
+<g >
+<title>PrintString for hashmaps@/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/hashmap.gi:59 (206 samples, 5.46%)</title><rect x="1070.6" y="85" width="64.4" height="15.0" fill="rgb(211,203,22)" rx="2" ry="2" />
+<text  x="1073.59" y="95.5" >PrintSt..</text>
+</g>
+<g >
+<title>ViewObj default method trying ViewString@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/object.gi:419 (16 samples, 0.42%)</title><rect x="1057.5" y="117" width="5.0" height="15.0" fill="rgb(221,175,4)" rx="2" ry="2" />
+<text  x="1060.46" y="127.5" ></text>
+</g>
+<g >
+<title>nameless@/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/hashmap.gi:208 (35 samples, 0.93%)</title><rect x="1046.5" y="101" width="11.0" height="15.0" fill="rgb(225,181,23)" rx="2" ry="2" />
+<text  x="1049.52" y="111.5" ></text>
+</g>
+<g >
+<title>UserPreference@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/userpref.g:339 (5 samples, 0.13%)</title><rect x="1140.0" y="69" width="1.5" height="15.0" fill="rgb(223,226,44)" rx="2" ry="2" />
+<text  x="1142.99" y="79.5" ></text>
+</g>
+<g >
+<title>MakeIterator_HashMap@/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/hashmap.gi:198 (7 samples, 0.19%)</title><rect x="1074.0" y="53" width="2.2" height="15.0" fill="rgb(253,122,44)" rx="2" ry="2" />
+<text  x="1077.03" y="63.5" ></text>
+</g>
+<g >
+<title>PositionBound for a list@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/list.gi:1756 (2 samples, 0.05%)</title><rect x="1075.6" y="37" width="0.6" height="15.0" fill="rgb(214,106,36)" rx="2" ry="2" />
+<text  x="1078.59" y="47.5" ></text>
+</g>
+<g >
+<title>String for a boolean@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/boolean.g:76 (2 samples, 0.05%)</title><rect x="1061.2" y="101" width="0.6" height="15.0" fill="rgb(240,58,36)" rx="2" ry="2" />
+<text  x="1064.22" y="111.5" ></text>
+</g>
+<g >
+<title>NextIterator_HashMap@/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/hashmap.gi:170 (19 samples, 0.50%)</title><rect x="1076.2" y="69" width="6.0" height="15.0" fill="rgb(222,102,42)" rx="2" ry="2" />
+<text  x="1079.22" y="79.5" ></text>
+</g>
+<g >
+<title>nameless@../prim_v2.g:72 (8 samples, 0.21%)</title><rect x="1044.0" y="101" width="2.5" height="15.0" fill="rgb(224,89,23)" rx="2" ry="2" />
+<text  x="1047.02" y="111.5" ></text>
+</g>
+<g >
+<title>Pop for a binary heap in plain representation@/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/binaryheap.gi:61 (47 samples, 1.25%)</title><rect x="943.4" y="101" width="14.7" height="15.0" fill="rgb(247,6,31)" rx="2" ry="2" />
+<text  x="946.37" y="111.5" ></text>
+</g>
+<g >
+<title>IsEmptyString@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/string.g:295 (2 samples, 0.05%)</title><rect x="1117.2" y="53" width="0.6" height="15.0" fill="rgb(241,140,42)" rx="2" ry="2" />
+<text  x="1120.17" y="63.5" ></text>
+</g>
+<g >
+<title>in for a hash map and a key@/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/hashmap.gi:117 (44 samples, 1.17%)</title><rect x="1030.3" y="101" width="13.7" height="15.0" fill="rgb(223,81,48)" rx="2" ry="2" />
+<text  x="1033.27" y="111.5" ></text>
+</g>
+<g >
+<title>String method@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/teaching.g:798 (2 samples, 0.05%)</title><rect x="1061.8" y="101" width="0.7" height="15.0" fill="rgb(246,12,29)" rx="2" ry="2" />
+<text  x="1064.84" y="111.5" ></text>
+</g>
+<g >
+<title>PositionBound for a list@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/list.gi:1756 (15 samples, 0.40%)</title><rect x="119.1" y="69" width="4.7" height="15.0" fill="rgb(252,108,51)" rx="2" ry="2" />
+<text  x="122.09" y="79.5" ></text>
+</g>
+<g >
+<title>MakeIterator_HashMap@/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/hashmap.gi:198 (47 samples, 1.25%)</title><rect x="109.1" y="85" width="14.7" height="15.0" fill="rgb(253,77,17)" rx="2" ry="2" />
+<text  x="112.09" y="95.5" ></text>
+</g>
+<g >
+<title>NextIterator_HashMap@/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/hashmap.gi:170 (2,622 samples, 69.46%)</title><rect x="123.8" y="101" width="819.6" height="15.0" fill="rgb(237,203,39)" rx="2" ry="2" />
+<text  x="126.78" y="111.5" >NextIterator_HashMap@/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/hashmap.gi:170</text>
+</g>
+<g >
+<title>DigraphVertices for a digraph@/home/mrc7/.gap/pkg/digraphs-1.6.1/gap/attr.gi:615 (2 samples, 0.05%)</title><rect x="87.8" y="101" width="0.7" height="15.0" fill="rgb(205,35,53)" rx="2" ry="2" />
+<text  x="90.83" y="111.5" ></text>
+</g>
+<g >
+<title>String method@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/teaching.g:798 (8 samples, 0.21%)</title><rect x="1129.4" y="53" width="2.5" height="15.0" fill="rgb(224,64,12)" rx="2" ry="2" />
+<text  x="1132.36" y="63.5" ></text>
+</g>
+<g >
+<title>TYPE_LIST_HOM@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/list.g:297 (15 samples, 0.40%)</title><rect x="1025.6" y="101" width="4.7" height="15.0" fill="rgb(232,171,16)" rx="2" ry="2" />
+<text  x="1028.58" y="111.5" ></text>
+</g>
+<g >
+<title>BinaryHeap@/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/binaryheap.gi:26 (5 samples, 0.13%)</title><rect x="86.3" y="101" width="1.5" height="15.0" fill="rgb(214,188,13)" rx="2" ry="2" />
+<text  x="89.27" y="111.5" ></text>
+</g>
+<g >
+<title>Concatenation@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/list.gi:2076 (4 samples, 0.11%)</title><rect x="1072.5" y="69" width="1.2" height="15.0" fill="rgb(254,48,1)" rx="2" ry="2" />
+<text  x="1075.47" y="79.5" ></text>
+</g>
+<g >
+<title>String for an integer@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/cyclotom.g:997 (4 samples, 0.11%)</title><rect x="1128.1" y="53" width="1.3" height="15.0" fill="rgb(208,96,43)" rx="2" ry="2" />
+<text  x="1131.11" y="63.5" ></text>
+</g>
+<g >
+<title>InNeighbours for a digraph@/home/mrc7/.gap/pkg/digraphs-1.6.1/gap/attr.gi:650 (3 samples, 0.08%)</title><rect x="105.0" y="101" width="1.0" height="15.0" fill="rgb(242,32,53)" rx="2" ry="2" />
+<text  x="108.03" y="111.5" ></text>
+</g>
+<g >
+<title>ViewObj default method trying ViewString@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/object.gi:419 (24 samples, 0.64%)</title><rect x="1135.0" y="101" width="7.5" height="15.0" fill="rgb(239,112,22)" rx="2" ry="2" />
+<text  x="1137.99" y="111.5" ></text>
+</g>
+<g >
+<title>IsEmptyString@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/string.g:295 (2 samples, 0.05%)</title><rect x="1124.7" y="37" width="0.6" height="15.0" fill="rgb(233,111,43)" rx="2" ry="2" />
+<text  x="1127.67" y="47.5" ></text>
+</g>
+<g >
+<title>nameless@../prim_v2.g:72 (7 samples, 0.19%)</title><rect x="955.9" y="85" width="2.2" height="15.0" fill="rgb(245,2,35)" rx="2" ry="2" />
+<text  x="958.88" y="95.5" ></text>
+</g>
+<g >
+<title>String method@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/teaching.g:798 (4 samples, 0.11%)</title><rect x="1126.9" y="37" width="1.2" height="15.0" fill="rgb(208,182,42)" rx="2" ry="2" />
+<text  x="1129.86" y="47.5" ></text>
+</g>
+<g >
+<title>KeyValueIterator for a hash set@/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/hashmap.gi:227 (8 samples, 0.21%)</title><rect x="1073.7" y="69" width="2.5" height="15.0" fill="rgb(249,163,8)" rx="2" ry="2" />
+<text  x="1076.72" y="79.5" ></text>
+</g>
+<g >
+<title>ViewObj method@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/teaching.g:775 (8 samples, 0.21%)</title><rect x="1181.9" y="117" width="2.5" height="15.0" fill="rgb(216,128,21)" rx="2" ry="2" />
+<text  x="1184.87" y="127.5" ></text>
+</g>
+<g >
+<title>ViewString for integer@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/integer.gi:1760 (12 samples, 0.32%)</title><rect x="1137.8" y="85" width="3.7" height="15.0" fill="rgb(249,13,52)" rx="2" ry="2" />
+<text  x="1140.80" y="95.5" ></text>
+</g>
+<g >
+<title>ViewObj for a finite list@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/list.gi:3863 (382 samples, 10.12%)</title><rect x="1062.5" y="117" width="119.4" height="15.0" fill="rgb(254,226,52)" rx="2" ry="2" />
+<text  x="1065.47" y="127.5" >ViewObj for a ..</text>
+</g>
+<g >
+<title>ViewString generic default method@/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/object.gi:446 (3 samples, 0.08%)</title><rect x="1141.5" y="85" width="1.0" height="15.0" fill="rgb(207,207,42)" rx="2" ry="2" />
+<text  x="1144.55" y="95.5" ></text>
+</g>
+<g >
+<title>HashMap@/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/hashmap.gi:19 (53 samples, 1.40%)</title><rect x="88.5" y="101" width="16.5" height="15.0" fill="rgb(221,20,20)" rx="2" ry="2" />
+<text  x="91.46" y="111.5" ></text>
+</g>
+</g>
+</svg>

@@ -1,0 +1,74 @@
+<!DOCTYPE html><script src="sorttable.js"></script><html>
+<head><title>
+</title></head>
+<body>
+<style>
+table { border-collapse: collapse }
+tr:nth-child(odd)  { background-color: #EEE; }
+tr:nth-child(even)  { background-color: #FFF; }
+tr:nth-child(odd).exec  { background-color: #0F0; }
+tr:nth-child(even).exec  { background-color: #3F3; }
+tr:nth-child(odd).missed  { background-color: #F00; }
+tr:nth-child(even).missed  { background-color: #F33; }
+td, th {
+    border: 1px solid #98bf21;
+    padding: 3px 7px 2px 7px;
+}
+th {
+    font-size: 1.1em;
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    background-color: #A7C942;
+    color: #ffffff;
+}
+table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
+    content: " \25B4\25BE"
+}
+
+/* HSV gradient made using http://www.perbang.dk/rgbgradient/ */
+td.coverage00 { background-color: #FF0000; }
+td.coverage10 { background-color: #F83100; }
+td.coverage20 { background-color: #F25F00; }
+td.coverage30 { background-color: #EB8B00; }
+td.coverage40 { background-color: #E5B500; }
+td.coverage50 { background-color: #DFDC00; }
+td.coverage60 { background-color: #B0D800; }
+td.coverage70 { background-color: #81D200; }
+td.coverage80 { background-color: #55CB00; }
+td.coverage90 { background-color: #2CC500; }
+td.coverage100 { background-color: #04BF00; }</style><table class="sortable">
+<thead><tr><th>Func</th><th>Execs</th><th>Time</th><th>Time+Childs</th>
+</tr></thead>
+<tbody>
+<tr><td><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_binaryheap.gi.html#line26">BinaryHeap</a> </td><td>1</td><td>8</td><td>8</td></tr>
+<tr><td><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_list.gi.html#line2076">Concatenation</a> </td><td>1</td><td>8</td><td>8</td></tr>
+<tr><td><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line19">HashMap</a> </td><td>1</td><td>39</td><td>39</td></tr>
+<tr><td><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_binaryheap.gi.html#line94">IsEmpty for a binary heap in plain representation</a> </td><td>1</td><td>8</td><td>8</td></tr>
+<tr><td><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_string.g.html#line295">IsEmptyString</a> </td><td>2</td><td>11</td><td>11</td></tr>
+<tr><td><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_coll.gi.html#line920">IteratorByFunctions</a> </td><td>2</td><td>47</td><td>47</td></tr>
+<tr><td><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line227">KeyValueIterator for a hash set</a> </td><td>2</td><td>5</td><td>101</td></tr>
+<tr><td><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line198">MakeIterator_HashMap</a> </td><td>2</td><td>28</td><td>96</td></tr>
+<tr><td><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line170">NextIterator_HashMap</a> </td><td>2</td><td>158</td><td>158</td></tr>
+<tr><td><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_binaryheap.gi.html#line61">Pop for a binary heap in plain representation</a> </td><td>1</td><td>30</td><td>36</td></tr>
+<tr><td><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_list.gi.html#line1756">PositionBound for a list</a> </td><td>2</td><td>21</td><td>21</td></tr>
+<tr><td><a href=".._prims_v2_for_testing.g.html#line2">Prims</a> </td><td>1</td><td>176</td><td>109161</td></tr>
+<tr><td><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_object.gi.html#line164">PrintObj default method delegating to PrintString</a> </td><td>1</td><td>5</td><td>219</td></tr>
+<tr><td><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line59">PrintString for hashmaps</a> </td><td>1</td><td>8</td><td>214</td></tr>
+<tr><td><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_coll.gi.html#line178">Size method</a> </td><td>1</td><td>48</td><td>48</td></tr>
+<tr><td><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_list.gi.html#line295">String for a (finite) list</a> </td><td>2</td><td>85</td><td>142</td></tr>
+<tr><td><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_boolean.g.html#line76">String for a boolean</a> </td><td>1</td><td>3</td><td>3</td></tr>
+<tr><td><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_cyclotom.g.html#line997">String for an integer</a> </td><td>3</td><td>19</td><td>19</td></tr>
+<tr><td><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_teaching.g.html#line798">String method</a> </td><td>5</td><td>41</td><td>41</td></tr>
+<tr><td><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_newprofile.g.html#line135">UnprofileLineByLine</a> </td><td>1</td><td>2</td><td>2</td></tr>
+<tr><td><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_userpref.g.html#line339">UserPreference</a> </td><td>1</td><td>5</td><td>5</td></tr>
+<tr><td><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_object.gi.html#line419">ViewObj default method trying ViewString</a> </td><td>2</td><td>223</td><td>241</td></tr>
+<tr><td><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_list.gi.html#line3863">ViewObj for a finite list</a> </td><td>1</td><td>19</td><td>472</td></tr>
+<tr><td><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_teaching.g.html#line775">ViewObj method</a> </td><td>2</td><td>12</td><td>12</td></tr>
+<tr><td><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_integer.gi.html#line1760">ViewString for integer</a> </td><td>1</td><td>3</td><td>11</td></tr>
+<tr><td><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_object.gi.html#line446">ViewString generic default method</a> </td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line117">in for a hash map and a key</a> </td><td>1</td><td>19</td><td>19</td></tr>
+<tr><td><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_session.g.html#line52">/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/session.g:52</a> </td><td>1</td><td>19</td><td>19</td></tr>
+<tr><td><a href=".._prims_v2_for_testing.g.html#line57">../prims_v2_for_testing.g:57</a> </td><td>2</td><td>13</td><td>13</td></tr>
+<tr><td><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line208">/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/hashmap.gi:208</a> </td><td>2</td><td>108609</td><td>108609</td></tr>
+</tbody></table></body></html>

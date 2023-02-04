@@ -1,0 +1,254 @@
+<!DOCTYPE html><script src="sorttable.js"></script><html>
+<head><title>
+</title></head>
+<body>
+<style>
+table { border-collapse: collapse }
+tr:nth-child(odd)  { background-color: #EEE; }
+tr:nth-child(even)  { background-color: #FFF; }
+tr:nth-child(odd).exec  { background-color: #0F0; }
+tr:nth-child(even).exec  { background-color: #3F3; }
+tr:nth-child(odd).missed  { background-color: #F00; }
+tr:nth-child(even).missed  { background-color: #F33; }
+td, th {
+    border: 1px solid #98bf21;
+    padding: 3px 7px 2px 7px;
+}
+th {
+    font-size: 1.1em;
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    background-color: #A7C942;
+    color: #ffffff;
+}
+table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
+    content: " \25B4\25BE"
+}
+
+/* HSV gradient made using http://www.perbang.dk/rgbgradient/ */
+td.coverage00 { background-color: #FF0000; }
+td.coverage10 { background-color: #F83100; }
+td.coverage20 { background-color: #F25F00; }
+td.coverage30 { background-color: #EB8B00; }
+td.coverage40 { background-color: #E5B500; }
+td.coverage50 { background-color: #DFDC00; }
+td.coverage60 { background-color: #B0D800; }
+td.coverage70 { background-color: #81D200; }
+td.coverage80 { background-color: #55CB00; }
+td.coverage90 { background-color: #2CC500; }
+td.coverage100 { background-color: #04BF00; }
+td:nth-child(1) { text-align: right; }
+td:nth-child(2) { text-align: right; }
+td:nth-child(3) { text-align: right; }
+td:nth-child(4) { text-align: right; }
+</style><p>This file was read by GAP before profiling was actived, so lines which were not read but not executed are not marked.</p><table class="sortable">
+<thead><tr><th>Line</th><th>Execs</th><th>Time</th><th>Time+Childs</th><th>Code</th><th>Called Functions</th><th>Called From</th>
+</tr></thead>
+<tbody>
+<tr class='ignore'><td><a name="line1"></a>1</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line2"></a>2</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;Datastructures:&nbsp;GAP&nbsp;package&nbsp;providing&nbsp;common&nbsp;datastructures.
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line3"></a>3</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line4"></a>4</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;Copyright&nbsp;(C)&nbsp;2015-2017&nbsp;&nbsp;The&nbsp;datastructures&nbsp;team.
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line5"></a>5</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;For&nbsp;list&nbsp;of&nbsp;the&nbsp;team&nbsp;members,&nbsp;please&nbsp;refer&nbsp;to&nbsp;the&nbsp;COPYRIGHT&nbsp;file.
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line6"></a>6</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line7"></a>7</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;This&nbsp;package&nbsp;is&nbsp;licensed&nbsp;under&nbsp;the&nbsp;GPL&nbsp;2&nbsp;or&nbsp;later,&nbsp;please&nbsp;refer
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line8"></a>8</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;to&nbsp;the&nbsp;COPYRIGHT.md&nbsp;and&nbsp;LICENSE&nbsp;files&nbsp;for&nbsp;details.
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line9"></a>9</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line10"></a>10</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line11"></a>11</td><td></td><td></td><td></td><td><span><tt>#&nbsp;This&nbsp;file&nbsp;contains&nbsp;a&nbsp;GAP&nbsp;implementation&nbsp;of&nbsp;a&nbsp;binary&nbsp;max-heap.
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line12"></a>12</td><td></td><td></td><td></td><td><span><tt>#
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line13"></a>13</td><td></td><td></td><td></td><td><span><tt>#&nbsp;Some&nbsp;hints&nbsp;for&nbsp;writing&nbsp;efficient&nbsp;binary&nbsp;heap&nbsp;implementations:
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line14"></a>14</td><td></td><td></td><td></td><td><span><tt>#&nbsp;&lt;https://stackoverflow.com/questions/6531543>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line15"></a>15</td><td></td><td></td><td></td><td><span><tt>#
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line16"></a>16</td><td></td><td></td><td></td><td><span><tt>#&nbsp;Note&nbsp;that&nbsp;while&nbsp;there&nbsp;are&nbsp;other&nbsp;heap&nbsp;datastructures&nbsp;which&nbsp;in
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line17"></a>17</td><td></td><td></td><td></td><td><span><tt>#&nbsp;theory&nbsp;have&nbsp;better&nbsp;asymptotical&nbsp;behavior&nbsp;than&nbsp;binary&nbsp;heaps,&nbsp;in
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line18"></a>18</td><td></td><td></td><td></td><td><span><tt>#&nbsp;real-world&nbsp;applications,&nbsp;a&nbsp;well-tunes&nbsp;binary&nbsp;heap&nbsp;often
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line19"></a>19</td><td></td><td></td><td></td><td><span><tt>#&nbsp;outperforms&nbsp;other&nbsp;heap&nbsp;implementations&nbsp;anyway,&nbsp;due&nbsp;to&nbsp;its
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line20"></a>20</td><td></td><td></td><td></td><td><span><tt>#&nbsp;simplicity,&nbsp;low&nbsp;constant&nbsp;(in&nbsp;O-notation)&nbsp;and&nbsp;cache&nbsp;friendliness.
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line21"></a>21</td><td></td><td></td><td></td><td><span><tt>#
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line22"></a>22</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line23"></a>23</td><td></td><td></td><td></td><td><span><tt>#!&nbsp;@Chapter&nbsp;Heaps
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line24"></a>24</td><td></td><td></td><td></td><td><span><tt>#!&nbsp;@Section&nbsp;Binary&nbsp;Heaps
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line25"></a>25</td><td></td><td></td><td></td><td><span><tt>InstallGlobalFunction(BinaryHeap,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line26"></a>26</td><td></td><td></td><td></td><td><span><tt>function(arg...)
+</tt></span></td><td><span></span></td><td><span><a href=".._prim_v2.g.html#line72">../prim_v2.g:72</a> </span></td></tr>
+<tr class='ignore'><td><a name="line27"></a>27</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;local&nbsp;isLess,&nbsp;data,&nbsp;heap,&nbsp;x;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line28"></a>28</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line29"></a>29</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;isLess&nbsp;:=&nbsp;\&lt;;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line30"></a>30</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;:=&nbsp;[];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line31"></a>31</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line32"></a>32</td><td>1</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;Length(arg)&nbsp;=&nbsp;1&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line33"></a>33</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;IsFunction(arg[1])&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line34"></a>34</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isLess&nbsp;:=&nbsp;arg[1];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line35"></a>35</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line36"></a>36</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;:=&nbsp;arg[1];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line37"></a>37</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line38"></a>38</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;elif&nbsp;Length(arg)&nbsp;=&nbsp;2&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line39"></a>39</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isLess&nbsp;:=&nbsp;arg[1];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line40"></a>40</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;:=&nbsp;arg[2];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line41"></a>41</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;elif&nbsp;Length(arg)&nbsp;>&nbsp;2&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line42"></a>42</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error("Wrong&nbsp;number&nbsp;of&nbsp;arguments");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line43"></a>43</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line44"></a>44</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line45"></a>45</td><td>1</td><td>2</td><td>2</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;heap&nbsp;:=&nbsp;Objectify(&nbsp;BinaryHeapType,&nbsp;[&nbsp;isLess,&nbsp;[]&nbsp;]&nbsp;);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line46"></a>46</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line47"></a>47</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;x&nbsp;in&nbsp;data&nbsp;do
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line48"></a>48</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DS_BinaryHeap_Insert(heap,&nbsp;x);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line49"></a>49</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line50"></a>50</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;heap;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line51"></a>51</td><td></td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line52"></a>52</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line53"></a>53</td><td></td><td></td><td></td><td><span><tt>InstallMethod(Push,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line54"></a>54</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;"for&nbsp;a&nbsp;binary&nbsp;heap&nbsp;in&nbsp;plain&nbsp;representation",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line55"></a>55</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;[IsBinaryHeapFlatRep,&nbsp;IsObject],
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line56"></a>56</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;DS_BinaryHeap_Insert);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line57"></a>57</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line58"></a>58</td><td></td><td></td><td></td><td><span><tt>InstallMethod(Pop,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line59"></a>59</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;"for&nbsp;a&nbsp;binary&nbsp;heap&nbsp;in&nbsp;plain&nbsp;representation",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line60"></a>60</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;[IsBinaryHeapFlatRep],
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line61"></a>61</td><td></td><td></td><td></td><td><span><tt>function(heap)
+</tt></span></td><td><span></span></td><td><span><a href=".._prim_v2.g.html#line90">../prim_v2.g:90</a> </span></td></tr>
+<tr class='ignore'><td><a name="line62"></a>62</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;local&nbsp;val,&nbsp;data;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line63"></a>63</td><td>16</td><td>3</td><td>3</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;:=&nbsp;heap![2];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line64"></a>64</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line65"></a>65</td><td>16</td><td>5</td><td>5</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;Length(data)&nbsp;=&nbsp;0&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line66"></a>66</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;fail;&nbsp;#&nbsp;alternative:&nbsp;error
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line67"></a>67</td><td>16</td><td>2</td><td>2</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;elif&nbsp;Length(data)&nbsp;=&nbsp;1&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line68"></a>68</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;Remove(data);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line69"></a>69</td><td>16</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line70"></a>70</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line71"></a>71</td><td>15</td><td>5</td><td>5</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;val&nbsp;:=&nbsp;data[1];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line72"></a>72</td><td>15</td><td>7</td><td>7</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;DS_BinaryHeap_ReplaceMax(heap,&nbsp;Remove(data));
+</tt></span></td><td><span><a href=".._prim_v2.g.html#line72">../prim_v2.g:72</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line73"></a>73</td><td>15</td><td>8</td><td>8</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;val;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line74"></a>74</td><td></td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line75"></a>75</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line76"></a>76</td><td></td><td></td><td></td><td><span><tt>InstallMethod(Peek,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line77"></a>77</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;"for&nbsp;a&nbsp;binary&nbsp;heap&nbsp;in&nbsp;plain&nbsp;representation",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line78"></a>78</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;[IsBinaryHeapFlatRep],
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line79"></a>79</td><td></td><td></td><td></td><td><span><tt>function(heap)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line80"></a>80</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;Length(heap![2])&nbsp;=&nbsp;0&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line81"></a>81</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;fail;&nbsp;#&nbsp;alternative:&nbsp;error
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line82"></a>82</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line83"></a>83</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;heap![2][1];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line84"></a>84</td><td></td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line85"></a>85</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line86"></a>86</td><td></td><td></td><td></td><td><span><tt>InstallOtherMethod(Size,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line87"></a>87</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;"for&nbsp;a&nbsp;binary&nbsp;heap&nbsp;in&nbsp;plain&nbsp;representation",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line88"></a>88</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;[IsBinaryHeapFlatRep],
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line89"></a>89</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;heap&nbsp;->&nbsp;Length(heap![2]));
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line90"></a>90</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line91"></a>91</td><td></td><td></td><td></td><td><span><tt>InstallOtherMethod(IsEmpty,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line92"></a>92</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;"for&nbsp;a&nbsp;binary&nbsp;heap&nbsp;in&nbsp;plain&nbsp;representation",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line93"></a>93</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;[IsBinaryHeapFlatRep],
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line94"></a>94</td><td>17</td><td>15</td><td>15</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;heap&nbsp;->&nbsp;Length(heap![2])&nbsp;=&nbsp;0);
+</tt></span></td><td><span></span></td><td><span><a href=".._prim_v2.g.html#line89">../prim_v2.g:89</a> </span></td></tr>
+<tr class='ignore'><td><a name="line95"></a>95</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line96"></a>96</td><td></td><td></td><td></td><td><span><tt>InstallMethod(ViewString,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line97"></a>97</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;"for&nbsp;a&nbsp;binary&nbsp;heap&nbsp;in&nbsp;flat&nbsp;representation",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line98"></a>98</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;[IsBinaryHeapFlatRep],
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line99"></a>99</td><td></td><td></td><td></td><td><span><tt>function(heap)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line100"></a>100</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;STRINGIFY("&lt;binary&nbsp;heap&nbsp;with&nbsp;",&nbsp;Length(heap![2]),&nbsp;"&nbsp;entries>");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line101"></a>101</td><td></td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line102"></a>102</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+</tbody>
+</table></body></html>
