@@ -1,7 +1,7 @@
 Floyd := function(digraph, weight)
     local adj_matrix, digraph_vertices, nr_vertices, e,u,v,edges, outs, ins, 
     edge_idx, idx, out_neighbours, in_neighbours, w, mst, 
-    visited, i, queue, cost, node, neighbour, next_vertex, total, 
+    visited, i, j, k, queue, cost, node, neighbour, next_vertex, total, 
     edges_in_mst, number_of_vertices, distances;
 
     digraph_vertices := DigraphVertices(digraph);
@@ -18,22 +18,38 @@ Floyd := function(digraph, weight)
             v := out_neighbours[idx]; # the out neighbour
             w := weights[u][idx]; # the weight to the out neighbour
 
-            
             # fill adjacancy matrix
             adj_matrix[u][v] := w;
         od;
     od;
 
-    # fill distances with inf
+    # Create distances adj matrix
     distances := EmptyPlist(nr_vertices);
     for u in digraph_vertices do
         distances[u] := EmptyPlist(nr_vertices);
         for v in digraph_vertices do
             distances[u][v] := infinity;
 
-            if adj_matrix[u][v] 
+            if u = v then
+                distances[u][v] := 0;
+            elif IsBound(adj_matrix[u][v]) then
+                distances[u][v] := adj_matrix[u][v];
+            fi;
         od;
     od;
-             
-    return adj_matrix;
+    
+
+    for k in [1..nr_vertices] do
+        for i in [1..nr_vertices] do
+            for j in [1..nr_vertices] do
+                if distances[i][k] < infinity and distances[k][j] < infinity then
+                    if distances[i][k] + distances[k][j] < distances[i][j] then
+                        distances[i][j] := distances[i][k] + distances[k][j];
+                    fi;
+                fi;
+            od;
+        od;
+    od;
+    
+    return distances;
 end;
