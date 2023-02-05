@@ -1,4 +1,4 @@
-Floyd := function(digraph, weight)
+Floyd := function(digraph, weights)
     local adj_matrix, digraph_vertices, nr_vertices, e,u,v,edges, outs, ins, 
     edge_idx, idx, out_neighbours, in_neighbours, w, mst, 
     visited, i, j, k, queue, cost, node, neighbour, next_vertex, total, 
@@ -18,8 +18,14 @@ Floyd := function(digraph, weight)
             v := out_neighbours[idx]; # the out neighbour
             w := weights[u][idx]; # the weight to the out neighbour
 
-            # fill adjacancy matrix
-            adj_matrix[u][v] := w;
+            # only put min edge in
+            if IsBound(adj_matrix[u][v]) then
+                if w < adj_matrix[u][v] then
+                    adj_matrix[u][v] := w;
+                fi;
+            else 
+                adj_matrix[u][v] := w;
+            fi;
         od;
     od;
 
