@@ -16,15 +16,9 @@ Prims := function(digraph, weights)
         out_neighbours := outs[u];
         in_neighbours := ins[u];
 
-        # if u had no outneighbours, then its map never gets created
-        # therefore we make sure every visited vertex has its own map
-        # even if its empty, as it may have in neighbours and may need 
-        # to be added to
         if not u in adj then 
             adj[u] := HashMap();
         fi;
-
-        
 
         for idx in [1..Size(out_neighbours)] do
             v := out_neighbours[idx]; # the out neighbour
@@ -32,37 +26,27 @@ Prims := function(digraph, weights)
 
             # Adding an edge for the current direction
 
-            # if out neighbour isnt a vertex already, then create an
-            # empty list. 
-            if not v in adj[u] then
-                # u: v: [number of out + in neighbours]
-                adj[u][v] := EmptyPlist(Size(out_neighbours) + Size(in_neighbours));
-            fi;
-            
-            # add, the new vertex with the weight {u: v:[w]}.
-            # we cannot simply overwrite the value of the key as the same key will have
-            # different values and when the second edge gets added, the first one will get
-            # overwritten
-            Add(adj[u][v], w);
-            
+            # check if there is an edge
+            if v in adj[u] then
+                # if edge already exists, update minimum for both directions
+                if w < adj[u][v] then
+                    adj[u][v] := w; 
+                    adj[v][u] := w; # reverse edge
+                fi;
+            else 
+                # if edge doesn't exist already, set it as the weight
+                adj[u][v] := w;
 
-            # Adding a new edge in the reverse direction
-            
-            # as we are adding the reverse nodes in, if the reverse has yet to be visited
-            # create a hashmap for it
-            if not v in adj then
-                adj[v] := HashMap();
-            fi;
+                if not v in adj then
+                    adj[v] := HashMap();
+                fi;
 
-            # make a new list for the u node in the neighbour
-            if not u in adj[v] then
-                adj[v][u] := [];
+                adj[v][u] := w; # reverse edge
             fi;
-            
-            # add the reverse edge
-            Add(adj[v][u], w);
         od;
     od;
+
+    Print(adj, "\n");
 
     mst := HashMap();
 
@@ -74,13 +58,9 @@ Prims := function(digraph, weights)
     # Add neighbours of first vertex to heap
     for neighbour in KeyValueIterator(adj[1]) do
         v := neighbour[1];
-        edges := neighbour[2];
+        w := neighbour[2];
 
-        # push all the edges outgoing from edge 1. 
-        for edge_idx in [1..Size(edges)] do
-            w := adj[1][v][edge_idx];
-            Push(queue, [w, 1, v]);
-        od; 
+        Push(queue, [w, 1, v]);
     od;
 
     total := 0;
@@ -111,17 +91,11 @@ Prims := function(digraph, weights)
 
             for neighbour in KeyValueIterator(adj[v]) do
                 next_vertex := neighbour[1];
-                edges := neighbour[2];
-                
-                for edge_idx in [1..Size(edges)] do
-                    w := edges[edge_idx];;
-
-                    if not visited[next_vertex] then
-                        Push(queue, [w, v, next_vertex]);
-                    fi;
-                od; 
-
-                
+                w := neighbour[2];
+ 
+                if not visited[next_vertex] then
+                    Push(queue, [w, v, next_vertex]);
+                fi;
             od;
         fi;
     od;
