@@ -34,6 +34,8 @@ distance, number_of_vertices, other_vertex, path;
 
     distances[source] := 0;
     Add(path[source], source);
+
+    
     visited := BlistList(digraph_vertices, []);
 
 

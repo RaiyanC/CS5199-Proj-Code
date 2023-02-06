@@ -18,7 +18,7 @@ Floyd := function(digraph, weights)
             v := out_neighbours[idx]; # the out neighbour
             w := weights[u][idx]; # the weight to the out neighbour
 
-            # only put min edge in
+            # only put min edge in if multiple edges exists
             if IsBound(adj_matrix[u][v]) then
                 if w < adj_matrix[u][v] then
                     adj_matrix[u][v] := w;

@@ -23,3 +23,12 @@ g := Digraph([[2,3,4],[1,3,4],[1,2,4,5,6],[1,2,3,5],[3,4,6],[3,5]]);
 w := [[2,5,1], [2,3,2], [5,3,3,1,5], [1,2,3,1], [1,1,1], [5,1]];
 
 
+Read("../dijkstra.g"); Dijkstra(g, w, 1); 
+
+
+# to profile
+- after copying the graphs and weights
+Read("../prim_v2.g");
+ProfileLineByLine("../prims_v2_profile1.gz"); Prims(test_gr, weights); UnprofileLineByLine();
+LoadPackage("profiling");
+OutputAnnotatedCodeCoverageFiles("../prims_v2_profile1.gz", "../prims_v2_profile1_outdir");
