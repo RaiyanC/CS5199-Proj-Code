@@ -45,9 +45,7 @@ Prims := function(digraph, weights)
             fi;
         od;
     od;
-
-    Print(adj, "\n");
-
+    
     mst := HashMap();
 
     visited := BlistList(digraph_vertices, []);
