@@ -1,9 +1,9 @@
 # https://bradfieldcs.com/algos/graphs/dijkstras-algorithm/
 Dijkstra := function(digraph, weights, source)
 local adj, digraph_vertices,e,u,v,edges, vertex, distances, 
-edge_idx, idx, out_neighbours, w, mst, visited, i, queue, cost, 
-node, curr_node, curr_dist, neighbour, next_vertex, total, edges_in_mst,
-distance, number_of_vertices, other_vertex, path;
+edge_idx, idx, out_neighbours, w, visited, i, queue, cost, 
+node, curr_node, curr_dist, neighbour, total, edges_in_mst,
+distance, number_of_vertices, other_vertex, path, parents, edge_info;
 
     digraph_vertices := DigraphVertices(digraph);
     
@@ -16,25 +16,30 @@ distance, number_of_vertices, other_vertex, path;
             v := out_neighbours[idx]; # the out neighbour
             w := weights[u][idx]; # the weight to the out neighbour
 
-            adj[u][v] := w;
+            # an edge to v already exists
+            if v in adj[u] then
+                # check if edge weight is less than curr weight, and keep track of edge idx
+                if w < adj[u][v][1] then
+                    adj[u][v] := [w, idx];
+                fi;
+            else # edge doesn't exist already, so add it
+                adj[u][v] := [w, idx];
+            fi;
         od;
 
     od;
 
-
     distances := [digraph_vertices];
-    path := [digraph_vertices];
+    parents := [digraph_vertices];
+    edges := [];
    
     for vertex in digraph_vertices do
         distances[vertex] := infinity;
-        path[vertex] := [];
     od;
 
-    
-
     distances[source] := 0;
-    Add(path[source], source);
-
+    parents[source] := -1;
+    edges[source] := -1;
     
     visited := BlistList(digraph_vertices, []);
 
@@ -58,18 +63,17 @@ distance, number_of_vertices, other_vertex, path;
 
         for neighbour in KeyValueIterator(adj[u]) do
             v := neighbour[1];
-            w := neighbour[2];
+            edge_info := neighbour[2];
+            w := edge_info[1];
+            idx := edge_info[2];
 
             distance := curr_dist + w;
 
             if distance < distances[v] then
                 distances[v] := distance;
                 
-                # if distance is smaller, copy the path to u and add v to it.
-                # if path from x -> y is minimal. path to y is path to x + the edge to y
-                path[v] := ShallowCopy(path[u]);
-                Add(path[v], v);
-
+                parents[v] := u;
+                edges[v] := idx;
 
                 if not visited[v] then
                     Push(queue, [distance, v]);
@@ -79,5 +83,5 @@ distance, number_of_vertices, other_vertex, path;
     od;
 
 
-    return [distances, path];
+    return rec(distances:=distances, parents:=parents, edges:=edges);
 end;
