@@ -31,7 +31,7 @@ distance, number_of_vertices, other_vertex, path, parents, edge_info;
 
     distances := [digraph_vertices];
     parents := [digraph_vertices];
-    edges := [];
+    edges := [digraph_vertices];
    
     for vertex in digraph_vertices do
         distances[vertex] := infinity;

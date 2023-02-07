@@ -1,6 +1,8 @@
 # https://github.com/arnab132/Bellman-Ford-Algorithm-Python/blob/main/bellman_ford.py
 Bellman := function(digraph, weights, source)
-    local edge_list, digraph_vertices, distances, u, out_neighbours, idx, v, w, _, path, vertex, edge;
+    local edge_list, digraph_vertices, distances, u, 
+    out_neighbours, idx, v, w, _, path, vertex, edge, parents,
+    edge_info, edges;
 
     digraph_vertices := DigraphVertices(digraph);
     edge_list := [];
@@ -10,21 +12,22 @@ Bellman := function(digraph, weights, source)
             v := out_neighbours[idx]; # the out neighbour
             w := weights[u][idx]; # the weight to the out neighbour
 
-            Add(edge_list, [w, u, v]);
+            Add(edge_list, [w, u, v, idx]);
         od;
     od;
 
 
     distances := [digraph_vertices];
-    path := [digraph_vertices];
+    parents := [digraph_vertices];
+    edges := [digraph_vertices];
    
     for vertex in digraph_vertices do
         distances[vertex] := infinity;
-        path[vertex] := [];
     od;
     
     distances[source] := 0;
-    Add(path[source], source);
+    parents[source] := -1;
+    edges[source] := -1;
 
     # relax all edges: update weight with smallest edges
     for _ in digraph_vertices do
@@ -32,14 +35,18 @@ Bellman := function(digraph, weights, source)
             w := edge[1];
             u := edge[2];
             v := edge[3];
+            idx := edge[4];
 
             if distances[u] <> infinity and distances[u] + w < distances[v] then
                 distances[v] := distances[u] + w;
 
                 # if distance is smaller, copy the path to u and add v to it.
                 # if path from x -> y is minimal. path to y is path to x + the edge to y
-                path[v] := ShallowCopy(path[u]);
-                Add(path[v], v);
+                # path[v] := ShallowCopy(path[u]);
+                # Add(path[v], v);
+                
+                parents[v] := u;
+                edges[v] := idx;
             fi;
         od;
     od;
@@ -55,5 +62,5 @@ Bellman := function(digraph, weights, source)
         fi;
     od;
 
-    return [distances, path];
+    return rec(distances:=distances, parents:=parents, edges:=edges);
 end;
