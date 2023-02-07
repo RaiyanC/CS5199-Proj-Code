@@ -22,12 +22,9 @@ For dijkstra
 g := Digraph([[2,3,4],[1,3,4],[1,2,4,5,6],[1,2,3,5],[3,4,6],[3,5]]);
 w := [[2,5,1], [2,3,2], [5,3,3,1,5], [1,2,3,1], [1,1,1], [5,1]];
 
-
-Read("../dijkstra.g"); Dijkstra(g, w, 1); 
-
-
-# to profile
-- after copying the graphs and weights
+<!-- https://www.scaler.com/topics/data-structures/dijkstra-algorithm/ -->
+g2 := Digraph([2,3],[1,3,4,5],[1,2,5],[2,5,6],[2,3,4,6],[4,5]);
+w2 := [[4,5],[4,11,9,7],[5,11,3],[9,13,2],[7,3,13,6],[]]; copying the graphs and weights
 Read("../prim_v2.g");
 ProfileLineByLine("../prims_v2_profile1.gz"); Prims(test_gr, weights); UnprofileLineByLine();
 LoadPackage("profiling");
