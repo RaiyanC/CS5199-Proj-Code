@@ -3,9 +3,11 @@ Dijkstra := function(digraph, weights, source)
 local adj, digraph_vertices,e,u,v,edges, vertex, distances, 
 edge_idx, idx, out_neighbours, w, visited, i, queue, cost, 
 node, curr_node, curr_dist, neighbour, total, edges_in_mst,
-distance, number_of_vertices, other_vertex, path, parents, edge_info;
+distance, number_of_vertices, other_vertex, path, parents, edge_info,
+nr_vertices;
 
     digraph_vertices := DigraphVertices(digraph);
+    nr_vertices := Size(digraph_vertices);
     
     # Create an adjacancy map for the edges with their associated weight
     adj := HashMap();
@@ -29,9 +31,9 @@ distance, number_of_vertices, other_vertex, path, parents, edge_info;
 
     od;
 
-    distances := [digraph_vertices];
-    parents := [digraph_vertices];
-    edges := [digraph_vertices];
+    distances := EmptyPlist(nr_vertices);
+    parents := EmptyPlist(nr_vertices);
+    edges := EmptyPlist(nr_vertices);
    
     for vertex in digraph_vertices do
         distances[vertex] := infinity;

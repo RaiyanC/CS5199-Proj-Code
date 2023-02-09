@@ -2,7 +2,7 @@ Floyd := function(digraph, weights)
     local adj_matrix, digraph_vertices, nr_vertices, e,u,v,edges, outs, ins, 
     edge_idx, idx, out_neighbours, in_neighbours, w, mst, 
     visited, i, j, k, queue, cost, node, neighbour, next_vertex, total, 
-    edges_in_mst, number_of_vertices, distances;
+    edges_in_mst, number_of_vertices, distances, parents;
 
     digraph_vertices := DigraphVertices(digraph);
     nr_vertices := Size(digraph_vertices);
@@ -11,6 +11,10 @@ Floyd := function(digraph, weights)
 
     # Create adjacancy matrix
     adj_matrix := EmptyPlist(nr_vertices);
+    parents := EmptyPlist(nr_vertices);
+    edges := EmptyPlist(nr_vertices);
+
+
     for u in digraph_vertices do
         adj_matrix[u] := EmptyPlist(nr_vertices);
         out_neighbours := outs[u];
@@ -33,29 +37,40 @@ Floyd := function(digraph, weights)
     distances := EmptyPlist(nr_vertices);
     for u in digraph_vertices do
         distances[u] := EmptyPlist(nr_vertices);
+        parents[u] := EmptyPlist(nr_vertices);
+        edges[u] := EmptyPlist(nr_vertices);
         for v in digraph_vertices do
             distances[u][v] := infinity;
 
             if u = v then
                 distances[u][v] := 0;
+                # if the same node, then the node has no parents
+                parents[u][v] := -1;
+                edges[u][v] := -1;
             elif IsBound(adj_matrix[u][v]) then
                 distances[u][v] := adj_matrix[u][v];
+
+                # parent of u -> v is u
+                parents[u][v] := u;
             fi;
         od;
     od;
-    
+
 
     for k in [1..nr_vertices] do
-        for i in [1..nr_vertices] do
-            for j in [1..nr_vertices] do
-                if distances[i][k] < infinity and distances[k][j] < infinity then
-                    if distances[i][k] + distances[k][j] < distances[i][j] then
-                        distances[i][j] := distances[i][k] + distances[k][j];
+        for u in [1..nr_vertices] do
+            for v in [1..nr_vertices] do
+                if distances[u][k] < infinity and distances[k][v] < infinity then
+                    if distances[u][k] + distances[k][v] < distances[u][v] then
+                        distances[u][v] := distances[u][k] + distances[k][v];
+
+                        # parents of u -> v is k
+                        parents[u][v] := k;
                     fi;
                 fi;
             od;
         od;
     od;
     
-    return distances;
+    return rec(distances:=distances, parents:=parents, edges:=edges);
 end;
