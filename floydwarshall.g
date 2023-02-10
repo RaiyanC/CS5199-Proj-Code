@@ -63,9 +63,6 @@ Floyd := function(digraph, weights)
             fi;
         od;
     od;
-    # Print("adj matrix",adj_matrix, "\n\n");
-    # Print("distances", distances, "\n\n");
-    # Print("edges", edges, "\n\n");
 
     for k in [1..nr_vertices] do
         for u in [1..nr_vertices] do
@@ -77,6 +74,7 @@ Floyd := function(digraph, weights)
                         # parents of u -> v is k
                         parents[u][v] := k;
 
+                        # depending on which edge we are looking at, update the index
                         if IsBound(adj_matrix[k][v]) then
                             edges[u][v] := adj_matrix[k][v][2];
                         else 
