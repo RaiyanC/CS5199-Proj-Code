@@ -23,9 +23,33 @@ g := Digraph([[2,3,4],[1,3,4],[1,2,4,5,6],[1,2,3,5],[3,4,6],[3,5]]);
 w := [[2,5,1], [2,3,2], [5,3,3,1,5], [1,2,3,1], [1,1,1], [5,1]];
 
 <!-- https://www.scaler.com/topics/data-structures/dijkstra-algorithm/ -->
-g2 := Digraph([2,3],[1,3,4,5],[1,2,5],[2,5,6],[2,3,4,6],[4,5]);
-w2 := [[4,5],[4,11,9,7],[5,11,3],[9,13,2],[7,3,13,6],[]]; copying the graphs and weights
+g2 := Digraph([[2,3],[1,3,4,5],[1,2,5],[2,5,6],[2,3,4,6],[4,5]]);
+w2 := [[4,5],[4,11,9,7],[5,11,3],[9,13,2],[7,3,13,6],[2,6]]; 
+
+<!-- expect 
+rec( distances := [ 0, 4, 5, 13, 8, 14 ], edges := [ -1, 1, 2, 3, 3, 4 ], parents := [ -1, 1, 1, 2, 3, 5 ] ) -->
+
+copying the graphs and weights
 Read("../prim_v2.g");
 ProfileLineByLine("../prims_v2_profile1.gz"); Prims(test_gr, weights); UnprofileLineByLine();
 LoadPackage("profiling");
 OutputAnnotatedCodeCoverageFiles("../prims_v2_profile1.gz", "../prims_v2_profile1_outdir");
+
+
+
+# for testing edmond karp 
+# https://github.com/anxiaonong/Maxflow-Algorithms/blob/master/Edmonds-Karp%20Algorithm.py
+
+<!-- https://github.com/anxiaonong/Maxflow-Algorithms -->
+
+g3 := Digraph([[2,3], [3,4], [5], [5,6], [6], [6]]);
+w3 := [[3,3], [2,3], [5], [4,2], [2], [3]];
+
+
+g4 := Digraph([[2,3],[4],[2,5],[6],[4,6],[]]);
+w4 := [[11,12],[12],[1,11],[19],[7,4],[]];
+
+
+g5 := Digraph([[2,3],[4],[4],[]]);
+w5 := [[5,3], [1], [1], []];
+
