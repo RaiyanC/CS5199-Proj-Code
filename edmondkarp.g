@@ -5,7 +5,7 @@ Edmondkarp := function(digraph, weights, source, sink)
     edge_idx, idx, out_neighbours, in_neighbours, w, mst, 
     visited, i, j, k, queue, cost, node, neighbour, next_vertex, total, 
     edges_in_mst, number_of_vertices, distances, parents, flow_matrix, path,
-    flow, flow_information;
+    flow, flow_information, edge;
 
     digraph_vertices := DigraphVertices(digraph);
     nr_vertices := Size(digraph_vertices);
