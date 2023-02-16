@@ -59,22 +59,13 @@ Edmondkarp := function(digraph, weights, source, sink)
         path := BFS(adj_matrix, flow_matrix, source, sink);
     od;
     
-    flow_information := GetFlowInformation(flow_matrix);
-    return rec(flow_path:=flow_information[1], 
-    max_flow:=GetFlowSum(flow_matrix, source),
-    flows:=flow_information[2]);
-end;
-
-GetFlowSum := function(flow_matrix, source)
-    local sum, i, v, e;
-    sum := 0;
-    for v in [1..Size(flow_matrix)] do 
-        for e in [1..Size(flow_matrix[source,v])] do
-            sum := sum + flow_matrix[source][v][e];
-        od;
-    od;
-
-    return sum;
+    flow_information := GetFlowInformation(flow_matrix, source);
+    return rec(
+        parents:=flow_information[1], 
+    flows:=flow_information[2],
+    edges:=flow_information[3],
+    max_flow:=flow_information[4]
+    );
 end;
 
 GetMinFlow := function(adj_matrix, flow_matrix, path)
@@ -94,27 +85,45 @@ GetMinFlow := function(adj_matrix, flow_matrix, path)
     return min;
 end;
 
-GetFlowInformation := function(flow_matrix)
-    local flow_paths, flows, u, v, e, nr_vertices;
+GetFlowInformation := function(flow_matrix, source)
+    local parents, flows, u, v, e, nr_vertices, edges, max_flow;
 
     nr_vertices := Size(flow_matrix);
-    flow_paths := EmptyPlist(nr_vertices);
-    flows := EmptyPlist(nr_vertices);
 
+    parents := EmptyPlist(nr_vertices);
+    flows := EmptyPlist(nr_vertices);
+    edges := EmptyPlist(nr_vertices);
+    max_flow := 0;
+
+    # create empty 2D list for output
     for u in [1..nr_vertices] do
-        flow_paths[u] := [];
-        flows[u] := [];
+        Add(parents, []);
+        Add(edges, []);
+        Add(flows, []);
+    od; 
+    
+    # initialise source values
+    parents[source] := [-1];
+    flows[source] := [0];
+    edges[source] := [-1];
+    
+    for u in [1..nr_vertices] do
         for v in [1..nr_vertices] do
             for e in [1..Size(flow_matrix[u][v])] do
-                # flow exists 
-                if flow_matrix[u][v][e] > 0 then
-                    Add(flow_paths[u], [e,v]);
-                    Add(flows[u], flow_matrix[u][v][e]);
-                fi; 
+                 if flow_matrix[u][v][e] > 0 then
+                    Add(parents[v], u);
+                    Add(flows[v], flow_matrix[u][v][e]);
+                    Add(edges[v],e);
+                    if u = source then
+                        max_flow := max_flow + flow_matrix[source][v][e];
+                    fi;
+                  fi;
             od;
         od;
     od;
-    return [flow_paths, flows];
+
+
+    return [parents, flows, edges, max_flow];
 end;
 
 BFS := function(adj_matrix, flow_matrix, source, sink)
