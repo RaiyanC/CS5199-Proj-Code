@@ -20,8 +20,8 @@ Edmondkarp := function(digraph, weights, source, sink)
         adj_matrix[u] := EmptyPlist(nr_vertices);
         flow_matrix[u] := EmptyPlist(nr_vertices);
         for v in digraph_vertices do
-            adj_matrix[u][v] := 0;
-            flow_matrix[u][v] := 0;
+            adj_matrix[u][v] := [0];
+            flow_matrix[u][v] := [0];
         od;
     od;
 
@@ -31,17 +31,17 @@ Edmondkarp := function(digraph, weights, source, sink)
             v := out_neighbours[idx]; # the out neighbour
             w := weights[u][idx]; # the weight to the out neighbour
 
-            if adj_matrix[u][v] <> 0 then
-                if w < adj_matrix[u][v] then
-                    adj_matrix[u][v] := w;
-                fi;
+            # if edge already exists
+            if adj_matrix[u][v][1] <> 0 then
+                Add(adj_matrix[u][v], w); 
+                Add(flow_matrix[u][v], 0); 
+                Add(flow_matrix[v][u], 0);
             else 
-                adj_matrix[u][v] := w;
+                adj_matrix[u][v][1] := w;
             fi;
         od;
     od;
 
-    
     path := BFS(adj_matrix, flow_matrix, source, sink);
 
     while path <> -1 do
@@ -49,42 +49,43 @@ Edmondkarp := function(digraph, weights, source, sink)
 
         for edge in path do
             u := edge[1];
-            v := edge[2];
+            e := edge[2];
+            v := edge[3];
 
-            flow_matrix[u][v] := flow_matrix[u][v] + flow;
-            flow_matrix[v][u] := flow_matrix[v][u] - flow;
+            flow_matrix[u][v][e] := flow_matrix[u][v][e] + flow;
+            flow_matrix[v][u][e] := flow_matrix[v][u][e] - flow;
         od;
 
         path := BFS(adj_matrix, flow_matrix, source, sink);
     od;
     
-    
-    # return rec(flow_matrix:=GetFlowSum(flow_matrix, source, Size(adj_matrix)), 
-    # flows:=flow_matrix);
-    flow_information := GetFlowPath(flow_matrix);
+    flow_information := GetFlowInformation(flow_matrix);
     return rec(flow_path:=flow_information[1], 
-    max_flow:=GetFlowSum(flow_matrix, source, Size(adj_matrix)),
+    max_flow:=GetFlowSum(flow_matrix, source),
     flows:=flow_information[2]);
 end;
 
-GetFlowSum := function(flow_matrix, source, n)
-    local sum, i;
+GetFlowSum := function(flow_matrix, source)
+    local sum, i, v, e;
     sum := 0;
-    for i in [1..n] do 
-        sum := sum + flow_matrix[source][i];
+    for v in [1..Size(flow_matrix)] do 
+        for e in [1..Size(flow_matrix[source,v])] do
+            sum := sum + flow_matrix[source][v][e];
+        od;
     od;
 
     return sum;
 end;
 
 GetMinFlow := function(adj_matrix, flow_matrix, path)
-    local edge, u, v, min, remaining_flow;
+    local edge, u, e,v, min, remaining_flow;
     min := infinity;
     for edge in path do 
         u := edge[1];
-        v := edge[2];
+        e := edge[2];
+        v := edge[3];
 
-        remaining_flow := adj_matrix[u][v] - flow_matrix[u][v];
+        remaining_flow := adj_matrix[u][v][e] - flow_matrix[u][v][e];
         if  remaining_flow < min then
             min := remaining_flow;
         fi; 
@@ -93,8 +94,8 @@ GetMinFlow := function(adj_matrix, flow_matrix, path)
     return min;
 end;
 
-GetFlowPath := function(flow_matrix)
-    local flow_paths, flows, u, v, nr_vertices;
+GetFlowInformation := function(flow_matrix)
+    local flow_paths, flows, u, v, e, nr_vertices;
 
     nr_vertices := Size(flow_matrix);
     flow_paths := EmptyPlist(nr_vertices);
@@ -104,24 +105,27 @@ GetFlowPath := function(flow_matrix)
         flow_paths[u] := [];
         flows[u] := [];
         for v in [1..nr_vertices] do
-            # flow exists 
-            if flow_matrix[u][v] > 0 then
-                Add(flow_paths[u], v);
-                Add(flows[u], flow_matrix[u][v]);
-            fi;
+            for e in [1..Size(flow_matrix[u][v])] do
+                # flow exists 
+                if flow_matrix[u][v][e] > 0 then
+                    Add(flow_paths[u], [e,v]);
+                    Add(flows[u], flow_matrix[u][v][e]);
+                fi; 
+            od;
         od;
     od;
     return [flow_paths, flows];
 end;
 
 BFS := function(adj_matrix, flow_matrix, source, sink)
-    local queue, paths, u, v, digraph_vertices, nr_vertices;
+    local queue, paths, u, v, e, digraph_vertices, nr_vertices, edge, w, edge_idx, residual_flow,idx, visited_edges, f;
+    
     nr_vertices := Size(adj_matrix);
 
     queue := PlistDeque();
     PlistDequePushFront(queue, source);
-
-    paths := HashMap();
+    
+    paths := HashMap(); # edge to sourec, source: [edge, v]
     paths[source] := [];
 
     if source = sink then
@@ -130,20 +134,24 @@ BFS := function(adj_matrix, flow_matrix, source, sink)
 
     while not IsEmpty(queue) do
         u := PlistDequePopFront(queue);
+
         for v in [1..nr_vertices] do
-            if adj_matrix[u][v] - flow_matrix[u][v] > 0 and not v in paths then
+            # loop through edges for u -> v
+            for edge_idx in [1..Size(adj_matrix[u][v])] do
+                e := adj_matrix[u][v][edge_idx];
+                f := flow_matrix[u][v][edge_idx];
 
-                paths[v] := ShallowCopy(paths[u]);
-                Append(paths[v], [[u, v]]);
+                if e - f > 0 and not v in paths then
+                    paths[v] := ShallowCopy(paths[u]);
+                    Append(paths[v], [[u,edge_idx,v]]);
 
-
-                if v = sink then
-                    return paths[v];
+                    if v = sink then
+                        return paths[v];
+                    fi;
+                    PlistDequePushBack(queue, v);
                 fi;
-                PlistDequePushBack(queue, v);
-            fi;
+            od;
         od;
     od;
-
     return -1;
 end;    
