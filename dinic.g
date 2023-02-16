@@ -56,6 +56,7 @@ BFS := function(adj_matrix, flow_matrix, source, sink)
     PlistDequePushFront(queue, source);
 
     levels := EmptyPlist(nr_vertices);
+    
     # fill levels with zeroes
     for u in [1..nr_vertices] do
         levels[u] := 0;
@@ -81,24 +82,20 @@ DFS := function(adj_matrix, flow_matrix, u, flow)
     temp := flow;
     nr_vertices := Size(adj_matrix);
 
+    # base case, if dfs reaches end
     if u = nr_vertices then
         return flow;
     fi;
 
     for v in [1..nr_vertices] do
         if (levels[v] = levels[u] + 1) and (flow_matrix[u][v] < adj_matrix[u][v]) then
-            if adj_matrix[u][v] - flow_matrix[u][v] < temp then
-                min := adj_matrix[u][v] - flow_matrix[u][v];
-            else
-                min := temp;
-            fi;
-
-            f := DFS(adj_matrix, flow_matrix, v, min);
+            f := DFS(adj_matrix, flow_matrix, v, Minimum((adj_matrix[u][v] - flow_matrix[u][v]), temp ));
 
             flow_matrix[u][v] := flow_matrix[u][v] + f;
             flow_matrix[v][u] := flow_matrix[u][v] - f;
             temp := temp - f;
         fi;
     od;
+
     return flow - temp;
 end;

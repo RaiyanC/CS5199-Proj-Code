@@ -11,7 +11,6 @@ Kruskals := function(digraph, weights)
             w := weights[u][idx]; # the weight to the out neighbour
 
             Add(edge_list, [w, u, v]);
-            Add(edge_list, [w, v, u]);
         od;
     od;
 

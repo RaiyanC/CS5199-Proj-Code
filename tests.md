@@ -1,3 +1,10 @@
+SetUserPreference( "PackagesToLoad", ["PackageManager", "digraphs"] );
+SetUserPreference( "UseColorPrompt", true );
+SetUserPreference( "HistoryMaxLines", 1000 );
+SetUserPreference( "SaveAndRestoreHistory", true );
+SetUserPreference( "InfoDigraphs", 4 );
+SetUserPreference( "Editor", "emacs" );
+
 Digraph 1
 test_gr := Digraph([[2,3,6],[1,3],[1,2,4,5],[3,5],[3,4,6],[1,5]]); 
 weights := [[12,8,3],[12,5],[8,5,6,1],[6,9],[1,9,3],[3,3]];  
@@ -42,6 +49,8 @@ OutputAnnotatedCodeCoverageFiles("../prims_v2_profile1.gz", "../prims_v2_profile
 
 <!-- https://github.com/anxiaonong/Maxflow-Algorithms -->
 
+Read("../prim_v1.g"); Prims(test_gr, weights); 
+
 g3 := Digraph([[2,3], [3,4], [5], [5,6], [6], [6]]);
 w3 := [[3,3], [2,3], [5], [4,2], [2], [3]];
 
@@ -53,3 +62,10 @@ w4 := [[11,12],[12],[1,11],[19],[7,4],[]];
 g5 := Digraph([[2,3],[4],[4],[]]);
 w5 := [[5,3], [1], [1], []];
 
+
+// testing multiple indegree
+g6 := Digraph([[2,2], [3], []]);
+w6 := [[5, 10], [20], []];
+
+g7 := Digraph([[2,2], [3,3,3], []]);
+w7 := [[5,10], [5,10,15],[]];

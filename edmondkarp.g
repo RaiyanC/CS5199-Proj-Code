@@ -86,7 +86,7 @@ GetMinFlow := function(adj_matrix, flow_matrix, path)
 end;
 
 GetFlowInformation := function(flow_matrix, source)
-    local parents, flows, u, v, e, nr_vertices, edges, max_flow;
+    local parents, flows, u, v, e, nr_vertices, edges, max_flow, _;
 
     nr_vertices := Size(flow_matrix);
 
@@ -96,7 +96,7 @@ GetFlowInformation := function(flow_matrix, source)
     max_flow := 0;
 
     # create empty 2D list for output
-    for u in [1..nr_vertices] do
+    for _ in [1..nr_vertices] do
         Add(parents, []);
         Add(edges, []);
         Add(flows, []);

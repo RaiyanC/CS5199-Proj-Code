@@ -47,8 +47,7 @@ Prims := function(digraph, weights)
     od;
     mst := HashMap();
 
-    visited := BlistList(digraph_vertices, []);
-    visited[1] := true;
+    visited := BlistList(digraph_vertices, [1]);
 
     queue := BinaryHeap({x, y} -> x[1] > y[1]);
 
