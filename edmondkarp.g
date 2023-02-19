@@ -108,7 +108,7 @@ GetFlowInformation := function(flow_matrix, source)
     edges[source] := [-1];
     
     for u in [1..nr_vertices] do
-        for v in [1..nr_vertices] do
+        for v in KeyIterator(flow_matrix) do
             for e in [1..Size(flow_matrix[u][v])] do
                  if flow_matrix[u][v][e] > 0 then
                     Add(parents[v], u);
