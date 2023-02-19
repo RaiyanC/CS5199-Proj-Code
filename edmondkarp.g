@@ -12,16 +12,11 @@ Edmondkarp := function(digraph, weights, source, sink)
     outs := OutNeighbors(digraph);
     ins := InNeighbors(digraph);
 
-    # adj_matrix := EmptyPlist(nr_vertices);
-    # flow_matrix := EmptyPlist(nr_vertices);
-
     adj_matrix := HashMap();
     flow_matrix := HashMap();
 
     # fill adj and max flow with zeroes
     for u in digraph_vertices do
-        # adj_matrix[u] := EmptyPlist(nr_vertices);
-        # flow_matrix[u] := EmptyPlist(nr_vertices);
         adj_matrix[u] := HashMap();
         flow_matrix[u] := HashMap();
         for v in digraph_vertices do
