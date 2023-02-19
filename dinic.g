@@ -118,7 +118,7 @@ BFS := function(adj_matrix, flow_matrix, source, sink)
             for edge_idx in [1..Size(adj_matrix[u][v])] do
                 e := adj_matrix[u][v][edge_idx];
                 f := flow_matrix[u][v][edge_idx];
-                if f < e and levels[v] = 0 then
+                if e - f > 0 and levels[v] = 0 then
                     levels[v] := levels[u] + 1;
                     PlistDequePushBack(queue, v);
                 fi;
