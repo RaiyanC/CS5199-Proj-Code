@@ -12,13 +12,18 @@ Edmondkarp := function(digraph, weights, source, sink)
     outs := OutNeighbors(digraph);
     ins := InNeighbors(digraph);
 
-    adj_matrix := EmptyPlist(nr_vertices);
-    flow_matrix := EmptyPlist(nr_vertices);
+    # adj_matrix := EmptyPlist(nr_vertices);
+    # flow_matrix := EmptyPlist(nr_vertices);
+
+    adj_matrix := HashMap();
+    flow_matrix := HashMap();
 
     # fill adj and max flow with zeroes
     for u in digraph_vertices do
-        adj_matrix[u] := EmptyPlist(nr_vertices);
-        flow_matrix[u] := EmptyPlist(nr_vertices);
+        # adj_matrix[u] := EmptyPlist(nr_vertices);
+        # flow_matrix[u] := EmptyPlist(nr_vertices);
+        adj_matrix[u] := HashMap();
+        flow_matrix[u] := HashMap();
         for v in digraph_vertices do
             adj_matrix[u][v] := [0];
             flow_matrix[u][v] := [0];
@@ -144,7 +149,7 @@ BFS := function(adj_matrix, flow_matrix, source, sink)
     while not IsEmpty(queue) do
         u := PlistDequePopFront(queue);
 
-        for v in [1..nr_vertices] do
+        for v in KeyIterator(adj_matrix) do
             # loop through edges for u -> v
             for edge_idx in [1..Size(adj_matrix[u][v])] do
                 e := adj_matrix[u][v][edge_idx];
