@@ -86,42 +86,33 @@ GetMinFlow := function(adj_matrix, flow_matrix, path)
 end;
 
 GetFlowInformation := function(flow_matrix, source)
-    local parents, flows, u, v, e, nr_vertices, edges, max_flow, _, hasFlow;
+    local parents, flows, u, v, e, nr_vertices, edges, max_flow, _, i;
 
     nr_vertices := Size(flow_matrix);
 
     parents := EmptyPlist(nr_vertices);
     flows := EmptyPlist(nr_vertices);
-    edges := EmptyPlist(nr_vertices);
     max_flow := 0;
 
     # create empty 2D list for output
     for _ in [1..nr_vertices] do
         Add(parents, []);
-        Add(edges, []);
         Add(flows, []);
     od; 
     
     # initialise source values
     parents[source] := [];
     flows[source] := [];
-    edges[source] := [];
     
     # Print("\n\n\n flow matrix ", flow_matrix, "\n\n\n");
     for u in [1..nr_vertices] do
         for v in [1..nr_vertices] do
-            hasFlow := false;
             for e in [1..Size(flow_matrix[u][v])] do
                 if flow_matrix[u][v][e] > 0 then
-                    hasFlow := true;
-                    Add(flows[v], flow_matrix[u][v]);
-                fi;
-                
-                if hasFlow then
                     # add parents for each flow
                     for i in [1..Size(flow_matrix[u][v])] do
                         Add(parents[v], u);
-
+                        Add(flows[v], flow_matrix[u][v][i]);
                         if u = source then
                             max_flow := max_flow + flow_matrix[u][v][i];
                         fi;

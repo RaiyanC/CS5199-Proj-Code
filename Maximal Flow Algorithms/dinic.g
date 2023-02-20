@@ -34,6 +34,7 @@ Dinic := function(digraph, weights, source, sink)
             if adj_matrix[u][v][1] <> 0 then
                 Add(adj_matrix[u][v], w); 
                 Add(flow_matrix[u][v], 0); 
+                Add(flow_matrix[v][u], 0);
             else 
                 adj_matrix[u][v][1] := w;
             fi;
@@ -44,55 +45,55 @@ Dinic := function(digraph, weights, source, sink)
         DFS(adj_matrix, flow_matrix, source, 100000);
     od;
 
-    Print("\n\n\n flow matrix ", flow_matrix, "\n\n\n");
     flow_information := GetFlowInformation(flow_matrix, source);
     return rec(
         parents:=flow_information[1], 
     flows:=flow_information[2],
-    edges:=flow_information[3],
-    max_flow:=flow_information[4]
+    max_flow:=flow_information[3]
     );
 end;
 
 GetFlowInformation := function(flow_matrix, source)
-    local parents, flows, u, v, e, nr_vertices, edges, max_flow, _;
+    local parents, flows, u, v, e, nr_vertices, edges, max_flow, _, i;
 
     nr_vertices := Size(flow_matrix);
 
     parents := EmptyPlist(nr_vertices);
     flows := EmptyPlist(nr_vertices);
-    edges := EmptyPlist(nr_vertices);
     max_flow := 0;
 
     # create empty 2D list for output
     for _ in [1..nr_vertices] do
         Add(parents, []);
-        Add(edges, []);
         Add(flows, []);
     od; 
     
     # initialise source values
-    parents[source] := [-1];
-    flows[source] := [0];
-    edges[source] := [-1];
+    parents[source] := [];
+    flows[source] := [];
     
+    # Print("\n\n\n flow matrix ", flow_matrix, "\n\n\n");
     for u in [1..nr_vertices] do
         for v in [1..nr_vertices] do
             for e in [1..Size(flow_matrix[u][v])] do
-                 if flow_matrix[u][v][e] > 0 then
-                    Add(parents[v], u);
-                    Add(flows[v], flow_matrix[u][v][e]);
-                    Add(edges[v],e);
-                    if u = source then
-                        max_flow := max_flow + flow_matrix[source][v][e];
-                    fi;
-                  fi;
+                if flow_matrix[u][v][e] > 0 then
+                    # add parents for each flow
+                    for i in [1..Size(flow_matrix[u][v])] do
+                        Add(parents[v], u);
+                        Add(flows[v], flow_matrix[u][v][i]);
+                        if u = source then
+                            max_flow := max_flow + flow_matrix[u][v][i];
+                        fi;
+                    od;
+                    break;
+                fi;
             od;
+            
         od;
     od;
 
 
-    return [parents, flows, edges, max_flow];
+    return [parents, flows, max_flow];
 end;
 
 # this bfs holds the levels for the vertices
@@ -147,7 +148,7 @@ DFS := function(adj_matrix, flow_matrix, u, flow)
                 f := DFS(adj_matrix, flow_matrix, v, Minimum((e- fl), temp));
 
                 flow_matrix[u][v][edge_idx] := flow_matrix[u][v][edge_idx] + f;
-                flow_matrix[v][u][edge_idx] := flow_matrix[u][v][edge_idx] - f;
+                flow_matrix[v][u][edge_idx] := flow_matrix[v][u][edge_idx] - f;
 
                 temp := temp - f;
             fi;
