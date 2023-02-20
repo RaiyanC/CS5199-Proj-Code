@@ -69,3 +69,5 @@ w6 := [[5, 10], [20], []];
 
 g7 := Digraph([[2,2], [3,3,3], []]);
 w7 := [[5,10], [5,10,15],[]];
+
+<!-- https://www.quora.com/Why-does-Dinics-algorithm-work-in-O-V-2-*-E-while-Edmonds-Karp-works-in-O-V-*-E-2 -->

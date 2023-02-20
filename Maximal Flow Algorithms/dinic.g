@@ -11,13 +11,13 @@ Dinic := function(digraph, weights, source, sink)
     outs := OutNeighbors(digraph);
     ins := InNeighbors(digraph);
 
-    adj_matrix := HashMap();
-    flow_matrix := HashMap();
+    adj_matrix := EmptyPlist(nr_vertices);
+    flow_matrix := EmptyPlist(nr_vertices);
 
     # fill adj and max flow with zeroes
     for u in digraph_vertices do
-        adj_matrix[u] := HashMap();
-        flow_matrix[u] := HashMap();
+        adj_matrix[u] := EmptyPlist(nr_vertices);
+        flow_matrix[u] := EmptyPlist(nr_vertices);
         for v in digraph_vertices do
             adj_matrix[u][v] := [0];
             flow_matrix[u][v] := [0];
@@ -34,7 +34,6 @@ Dinic := function(digraph, weights, source, sink)
             if adj_matrix[u][v][1] <> 0 then
                 Add(adj_matrix[u][v], w); 
                 Add(flow_matrix[u][v], 0); 
-                Add(flow_matrix[v][u], 0);
             else 
                 adj_matrix[u][v][1] := w;
             fi;
@@ -45,6 +44,7 @@ Dinic := function(digraph, weights, source, sink)
         DFS(adj_matrix, flow_matrix, source, 100000);
     od;
 
+    Print("\n\n\n flow matrix ", flow_matrix, "\n\n\n");
     flow_information := GetFlowInformation(flow_matrix, source);
     return rec(
         parents:=flow_information[1], 
@@ -114,11 +114,11 @@ BFS := function(adj_matrix, flow_matrix, source, sink)
 
     while not IsEmpty(queue) do
         u := PlistDequePopFront(queue);
-        for v in KeyIterator(adj_matrix) do
+        for v in [1..nr_vertices] do
             for edge_idx in [1..Size(adj_matrix[u][v])] do
                 e := adj_matrix[u][v][edge_idx];
                 f := flow_matrix[u][v][edge_idx];
-                if e - f > 0 and levels[v] = 0 then
+                if f < e and levels[v] = 0 then
                     levels[v] := levels[u] + 1;
                     PlistDequePushBack(queue, v);
                 fi;
@@ -138,7 +138,7 @@ DFS := function(adj_matrix, flow_matrix, u, flow)
         return flow;
     fi;
 
-    for v in KeyIterator(adj_matrix) do
+    for v in [1..nr_vertices] do
         for edge_idx in [1..Size(adj_matrix[u][v])] do
             e := adj_matrix[u][v][edge_idx];
             fl := flow_matrix[u][v][edge_idx];

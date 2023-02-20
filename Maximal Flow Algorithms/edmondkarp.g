@@ -12,13 +12,13 @@ Edmondkarp := function(digraph, weights, source, sink)
     outs := OutNeighbors(digraph);
     ins := InNeighbors(digraph);
 
-    adj_matrix := HashMap();
-    flow_matrix := HashMap();
+    adj_matrix := EmptyPlist(nr_vertices);
+    flow_matrix := EmptyPlist(nr_vertices);
 
     # fill adj and max flow with zeroes
     for u in digraph_vertices do
-        adj_matrix[u] := HashMap();
-        flow_matrix[u] := HashMap();
+        adj_matrix[u] := EmptyPlist(nr_vertices);
+        flow_matrix[u] := EmptyPlist(nr_vertices);
         for v in digraph_vertices do
             adj_matrix[u][v] := [0];
             flow_matrix[u][v] := [0];
@@ -42,8 +42,9 @@ Edmondkarp := function(digraph, weights, source, sink)
         od;
     od;
 
+    
     path := BFS(adj_matrix, flow_matrix, source, sink);
-
+    
     while path <> -1 do
         flow := GetMinFlow(adj_matrix, flow_matrix, path);
 
@@ -58,13 +59,12 @@ Edmondkarp := function(digraph, weights, source, sink)
 
         path := BFS(adj_matrix, flow_matrix, source, sink);
     od;
-    
+    # Print("\n\n\n flow matrix ", flow_matrix, "\n\n\n");
     flow_information := GetFlowInformation(flow_matrix, source);
     return rec(
         parents:=flow_information[1], 
     flows:=flow_information[2],
-    edges:=flow_information[3],
-    max_flow:=flow_information[4]
+    max_flow:=flow_information[3]
     );
 end;
 
@@ -86,7 +86,7 @@ GetMinFlow := function(adj_matrix, flow_matrix, path)
 end;
 
 GetFlowInformation := function(flow_matrix, source)
-    local parents, flows, u, v, e, nr_vertices, edges, max_flow, _;
+    local parents, flows, u, v, e, nr_vertices, edges, max_flow, _, hasFlow;
 
     nr_vertices := Size(flow_matrix);
 
@@ -103,27 +103,38 @@ GetFlowInformation := function(flow_matrix, source)
     od; 
     
     # initialise source values
-    parents[source] := [-1];
-    flows[source] := [0];
-    edges[source] := [-1];
+    parents[source] := [];
+    flows[source] := [];
+    edges[source] := [];
     
+    # Print("\n\n\n flow matrix ", flow_matrix, "\n\n\n");
     for u in [1..nr_vertices] do
-        for v in KeyIterator(flow_matrix) do
+        for v in [1..nr_vertices] do
+            hasFlow := false;
             for e in [1..Size(flow_matrix[u][v])] do
-                 if flow_matrix[u][v][e] > 0 then
-                    Add(parents[v], u);
-                    Add(flows[v], flow_matrix[u][v][e]);
-                    Add(edges[v],e);
-                    if u = source then
-                        max_flow := max_flow + flow_matrix[source][v][e];
-                    fi;
-                  fi;
+                if flow_matrix[u][v][e] > 0 then
+                    hasFlow := true;
+                    Add(flows[v], flow_matrix[u][v]);
+                fi;
+                
+                if hasFlow then
+                    # add parents for each flow
+                    for i in [1..Size(flow_matrix[u][v])] do
+                        Add(parents[v], u);
+
+                        if u = source then
+                            max_flow := max_flow + flow_matrix[u][v][i];
+                        fi;
+                    od;
+                    break;
+                fi;
             od;
+            
         od;
     od;
 
 
-    return [parents, flows, edges, max_flow];
+    return [parents, flows, max_flow];
 end;
 
 BFS := function(adj_matrix, flow_matrix, source, sink)
@@ -144,7 +155,7 @@ BFS := function(adj_matrix, flow_matrix, source, sink)
     while not IsEmpty(queue) do
         u := PlistDequePopFront(queue);
 
-        for v in KeyIterator(adj_matrix) do
+        for v in [1..nr_vertices] do
             # loop through edges for u -> v
             for edge_idx in [1..Size(adj_matrix[u][v])] do
                 e := adj_matrix[u][v][edge_idx];
