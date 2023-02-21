@@ -1,17 +1,13 @@
-# https://bradfieldcs.com/algos/graphs/prims-spanning-tree-algorithm/
 Prims := function(digraph, weights)
-    local adj, digraph_vertices,e,u,v,edges, outs, ins, edge_idx, idx, out_neighbours, in_neighbours, w, mst, visited, i, queue, cost, node, neighbour, next_vertex, total, edges_in_mst, number_of_vertices;
+    local adj, digraph_vertices,u,v,outs, ins, idx, out_neighbours, 
+    in_neighbours, w, mst, visited, queue, cost, node, neighbour, next_vertex, total, edges_in_mst, number_of_vertices;
 
     digraph_vertices := DigraphVertices(digraph);
     outs := OutNeighbors(digraph);
     ins := InNeighbors(digraph);
     
     # Create an adjacancy map for the edges with their associated weight
-
-    # loop through out neighbours, and add in neighbours to adj list
-    # as we don't loop through the adj list, we can add an extra in neighbour simultaneously
     adj := HashMap(Size(digraph_vertices));
-    
     for u in digraph_vertices do
         out_neighbours := outs[u];
         in_neighbours := ins[u];
@@ -22,7 +18,7 @@ Prims := function(digraph, weights)
 
         for idx in [1..Size(out_neighbours)] do
             v := out_neighbours[idx]; # the out neighbour
-            w := weights[u][idx]; # the weight to the out neighbour
+            w := weights[u][idx]; # the weight of the edge to the out neighbour
 
             # Adding an edge for the current direction
 
@@ -31,7 +27,7 @@ Prims := function(digraph, weights)
                 # if edge already exists, update minimum for both directions
                 if w < adj[u][v] then
                     adj[u][v] := w; 
-                    adj[v][u] := w; # reverse edge
+                    adj[v][u] := w; # this is the reverse edge. necessary to convert from directed to directed
                 fi;
             else 
                 # if edge doesn't exist already, set it as the weight
@@ -41,14 +37,14 @@ Prims := function(digraph, weights)
                     adj[v] := HashMap();
                 fi;
 
-                adj[v][u] := w; # reverse edge
+                adj[v][u] := w; # again, adding the reverse edge
             fi;
         od;
     od;
-    mst := HashMap();
+
+    mst := HashMap(); # the minimum spanning tree
 
     visited := BlistList(digraph_vertices, [1]);
-
     queue := BinaryHeap({x, y} -> x[1] > y[1]);
 
     # Add neighbours of first vertex to heap
@@ -56,7 +52,7 @@ Prims := function(digraph, weights)
         v := neighbour[1];
         w := neighbour[2];
 
-        Push(queue, [w, 1, v]);
+        Push(queue, [w, 1, v]); # weight, u, v
     od;
 
     total := 0;

@@ -2,7 +2,7 @@
 Bellman := function(digraph, weights, source)
     local edge_list, digraph_vertices, distances, u, 
     out_neighbours, idx, v, w, _, path, vertex, edge, parents,
-    edge_info, edges;
+    edge_info, edges, d;
 
     digraph_vertices := DigraphVertices(digraph);
     edge_list := [];
@@ -60,6 +60,15 @@ Bellman := function(digraph, weights, source)
         if distances[u] <> infinity and distances[u] + w < distances[v] then
             return fail;
         fi;
+    od;
+
+    # fill lists with -1 if no path is possible
+    for i in [1..Size(distances)] do
+        d := distances[i];
+        if d = infinity then
+            parents[i] := -1;
+            edges[i] := -1;
+        fi; 
     od;
 
     return rec(distances:=distances, parents:=parents, edges:=edges);

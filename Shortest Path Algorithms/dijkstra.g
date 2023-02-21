@@ -4,7 +4,7 @@ local adj, digraph_vertices,e,u,v,edges, vertex, distances,
 edge_idx, idx, out_neighbours, w, visited, i, queue, cost, 
 node, curr_node, curr_dist, neighbour, total, edges_in_mst,
 distance, number_of_vertices, other_vertex, path, parents, edge_info,
-nr_vertices;
+nr_vertices, d;
 
     digraph_vertices := DigraphVertices(digraph);
     nr_vertices := Size(digraph_vertices);
@@ -84,6 +84,14 @@ nr_vertices;
         od;
     od;
 
+    # fill lists with -1 if no path is possible
+    for i in [1..Size(distances)] do
+        d := distances[i];
+        if d = infinity then
+            parents[i] := -1;
+            edges[i] := -1;
+        fi; 
+    od;
 
     return rec(distances:=distances, parents:=parents, edges:=edges);
 end;

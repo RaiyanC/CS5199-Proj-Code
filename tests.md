@@ -22,6 +22,8 @@ weights_three := [[9,75],[9,95,19,42],[75,95,51],[19,51,31],[42,31]];
 
 
 Read("../prim_v1.g"); Prims(test_gr, weights); 
+Read("../Minimum Spanning Tree Algorithms/prim_v2.g"); Prims(test_gr, weights); 
+
 
 
 
