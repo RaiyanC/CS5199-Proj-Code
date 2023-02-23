@@ -1,16 +1,20 @@
 # https://www.programiz.com/dsa/kruskal-algorithm
 Kruskals := function(digraph, weights)
-    local mst, i, e, u, v, w, x, y, number_of_vertices, out_neighbours, idx, edge_list, parent, rank, node, total;
+    local numberOfVertices, edgeList, u, outNeigbours, idx, v, w, mst, i, e, parent, rank, total, node, x, y;
 
-    number_of_vertices := DigraphNrVertices(digraph);
-    edge_list := [];
+    # create a list of edges containining u-v
+    # w: the weight of the edge
+    # u: the start vertex
+    # v: the finishing vertex of that edge
+    numberOfVertices := DigraphNrVertices(digraph);
+    edgeList := [];
     for u in DigraphVertices(digraph) do
-        out_neighbours := OutNeighbors(digraph)[u];
-        for idx in [1..Size(out_neighbours)] do
-            v := out_neighbours[idx]; # the out neighbour
+        outNeigbours := OutNeighbors(digraph)[u];
+        for idx in [1..Size(outNeigbours)] do
+            v := outNeigbours[idx]; # the out neighbour
             w := weights[u][idx]; # the weight to the out neighbour
 
-            Add(edge_list, [w, u, v]);
+            Add(edgeList, [w, u, v]);
         od;
     od;
 
@@ -18,19 +22,20 @@ Kruskals := function(digraph, weights)
     i := 1;
     e := 1;
 
-    StableSortBy(edge_list, x -> x[1]); # merge sort by ascending edge weight
+    # sort edge weights by their weight
+    StableSortBy(edgeList, x -> x[1]);
 
     parent := [];
     rank := [];
 
-    for v in [1..number_of_vertices] do
+    for v in [1..numberOfVertices] do
         Add(parent, v);
         Add(rank, 1);
     od;
 
     total := 0;
-    while e < (number_of_vertices) do
-        node := edge_list[i];
+    while e < (numberOfVertices) do
+        node := edgeList[i];
         w := node[1];
         u := node[2];
         v := node[3];
@@ -40,6 +45,7 @@ Kruskals := function(digraph, weights)
         x := find(parent, u);
         y := find(parent, v);
 
+        # if cycle doesn't exist
         if x <> y then
             e := e + 1;
             total := total + w;
