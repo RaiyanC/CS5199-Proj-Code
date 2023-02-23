@@ -1,8 +1,9 @@
 # https://github.com/arnab132/Bellman-Ford-Algorithm-Python/blob/main/bellman_ford.py
+# Read("../Shortest Path Algorithms/bellmanford.g"); Bellman(g,w,1);
 Bellman := function(digraph, weights, source)
     local edge_list, digraph_vertices, distances, u, 
     out_neighbours, idx, v, w, _, path, vertex, edge, parents,
-    edge_info, edges, d;
+    edge_info, edges, d, i;
 
     digraph_vertices := DigraphVertices(digraph);
     edge_list := [];

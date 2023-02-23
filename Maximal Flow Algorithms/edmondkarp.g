@@ -11,7 +11,7 @@ Edmondkarp := function(digraph, weights, source, sink)
     nr_vertices := Size(digraph_vertices);
     outs := OutNeighbors(digraph);
     ins := InNeighbors(digraph);
-
+  
     adj_matrix := EmptyPlist(nr_vertices);
     flow_matrix := EmptyPlist(nr_vertices);
 

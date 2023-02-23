@@ -40,8 +40,9 @@ nr_vertices, d;
     od;
 
     distances[source] := 0;
-    parents[source] := -1;
-    edges[source] := -1;
+    parents[source] := fail;
+    edges[source] := fail;
+
     
     visited := BlistList(digraph_vertices, []);
 
@@ -88,8 +89,9 @@ nr_vertices, d;
     for i in [1..Size(distances)] do
         d := distances[i];
         if d = infinity then
-            parents[i] := -1;
-            edges[i] := -1;
+            distances[i] := fail;
+            parents[i] := fail;
+            edges[i] := fail;
         fi; 
     od;
 

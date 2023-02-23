@@ -42,7 +42,7 @@ Dinic := function(digraph, weights, source, sink)
     od;
 
     while BFS(adj_matrix, flow_matrix, source, sink) do
-        DFS(adj_matrix, flow_matrix, source, 100000);
+        DFS(adj_matrix, flow_matrix, source, infinity);
     od;
 
     flow_information := GetFlowInformation(flow_matrix, source);
@@ -154,6 +154,10 @@ DFS := function(adj_matrix, flow_matrix, u, flow)
             fi;
         od;
     od;
+
+    if temp = infinity then
+      return infinity;
+    fi;
 
     return flow - temp;
 end;
