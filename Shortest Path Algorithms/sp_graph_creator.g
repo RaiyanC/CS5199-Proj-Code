@@ -3,6 +3,10 @@ CreateRandomSPGraph := function(number_of_vertices, probability)
     number_of_edges, random_weights, out_neighbours, u, idx, random_weight_idx;
 
     random_graph := RandomDigraph(IsConnectedDigraph, number_of_vertices, probability); # random connected digraph
+
+    Read("../test_creating_connected_graph.g");
+
+    random_graph := CreateSCG(IsConnectedDigraph, number_of_vertices, probability);
     digraph_vertices := DigraphVertices(random_graph); 
     number_of_edges := DigraphNrEdges(random_graph) + 1; 
 

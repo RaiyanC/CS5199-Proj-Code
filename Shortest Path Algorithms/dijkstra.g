@@ -1,26 +1,23 @@
-# https://bradfieldcs.com/algos/graphs/dijkstras-algorithm/
 Dijkstra := function(digraph, weights, source)
-local adj, digraph_vertices,e,u,v,edges, vertex, distances, 
-edge_idx, idx, out_neighbours, w, visited, i, queue, cost, 
-node, curr_node, curr_dist, neighbour, total, edges_in_mst,
-distance, number_of_vertices, other_vertex, path, parents, edge_info,
-nr_vertices, d;
+local digraphVertices, nrVertices, adj, u, outNeighbours, idx, v, w, 
+distances, parents, edges, vertex, visited, queue, node, currDist, neighbour,
+edgeInfo, distance, i, d;
 
-    digraph_vertices := DigraphVertices(digraph);
-    nr_vertices := Size(digraph_vertices);
+    digraphVertices := DigraphVertices(digraph);
+    nrVertices := Size(digraphVertices);
     
     # Create an adjacancy map for the edges with their associated weight
     adj := HashMap();
-    for u in digraph_vertices do
+    for u in digraphVertices do
         adj[u] := HashMap();
-        out_neighbours := OutNeighbors(digraph)[u];
-        for idx in [1..Size(out_neighbours)] do
-            v := out_neighbours[idx]; # the out neighbour
+        outNeighbours := OutNeighbors(digraph)[u];
+        for idx in [1..Size(outNeighbours)] do
+            v := outNeighbours[idx]; # the out neighbour
             w := weights[u][idx]; # the weight to the out neighbour
 
             # an edge to v already exists
             if v in adj[u] then
-                # check if edge weight is less than curr weight, and keep track of edge idx
+                # check if edge weight is less than current weight, and keep track of edge idx
                 if w < adj[u][v][1] then
                     adj[u][v] := [w, idx];
                 fi;
@@ -31,11 +28,11 @@ nr_vertices, d;
 
     od;
 
-    distances := EmptyPlist(nr_vertices);
-    parents := EmptyPlist(nr_vertices);
-    edges := EmptyPlist(nr_vertices);
+    distances := EmptyPlist(nrVertices);
+    parents := EmptyPlist(nrVertices);
+    edges := EmptyPlist(nrVertices);
    
-    for vertex in digraph_vertices do
+    for vertex in digraphVertices do
         distances[vertex] := infinity;
     od;
 
@@ -44,7 +41,7 @@ nr_vertices, d;
     edges[source] := fail;
 
     
-    visited := BlistList(digraph_vertices, []);
+    visited := BlistList(digraphVertices, []);
 
 
     # make binary heap by priority of index 1 of each element (the cost to get to the node)
@@ -55,7 +52,7 @@ nr_vertices, d;
     while not IsEmpty(queue) do
         node := Pop(queue);
 
-        curr_dist := node[1];
+        currDist := node[1];
         u := node[2];
 
         if visited[u] then
@@ -66,11 +63,11 @@ nr_vertices, d;
 
         for neighbour in KeyValueIterator(adj[u]) do
             v := neighbour[1];
-            edge_info := neighbour[2];
-            w := edge_info[1];
-            idx := edge_info[2];
+            edgeInfo := neighbour[2];
+            w := edgeInfo[1];
+            idx := edgeInfo[2];
 
-            distance := curr_dist + w;
+            distance := currDist + w;
 
             if distance < distances[v] then
                 distances[v] := distance;

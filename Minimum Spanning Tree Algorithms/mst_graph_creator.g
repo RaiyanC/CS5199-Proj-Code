@@ -12,7 +12,7 @@ CreateRandomMSTGraph := function(number_of_vertices, probability)
     random_weight_idx := 1;
 
 
-    # Create random weights for each edge. weights are unique [1..number of edges]
+    # Create random weights for each edge. weights are unique [1..number of edges + 1]
     for u in digraph_vertices do
         out_neighbours := OutNeighbors(random_graph)[u];
         Add(weights, []);

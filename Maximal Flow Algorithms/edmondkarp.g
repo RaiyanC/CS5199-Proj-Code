@@ -59,7 +59,7 @@ Edmondkarp := function(digraph, weights, source, sink)
 
         path := BFS(adj_matrix, flow_matrix, source, sink);
     od;
-    # Print("\n\n\n flow matrix ", flow_matrix, "\n\n\n");
+
     flow_information := GetFlowInformation(flow_matrix, source);
     return rec(
         parents:=flow_information[1], 
@@ -103,8 +103,7 @@ GetFlowInformation := function(flow_matrix, source)
     # initialise source values
     parents[source] := [];
     flows[source] := [];
-    
-    # Print("\n\n\n flow matrix ", flow_matrix, "\n\n\n");
+
     for u in [1..nr_vertices] do
         for v in [1..nr_vertices] do
             for e in [1..Size(flow_matrix[u][v])] do
@@ -113,6 +112,7 @@ GetFlowInformation := function(flow_matrix, source)
                     for i in [1..Size(flow_matrix[u][v])] do
                         Add(parents[v], u);
                         Add(flows[v], flow_matrix[u][v][i]);
+                        # as total flow out of source = total flow into sink. sum up flow when u is the source
                         if u = source then
                             max_flow := max_flow + flow_matrix[u][v][i];
                         fi;

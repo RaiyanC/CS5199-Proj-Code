@@ -27,8 +27,8 @@ Bellman := function(digraph, weights, source)
     od;
     
     distances[source] := 0;
-    parents[source] := -1;
-    edges[source] := -1;
+    parents[source] := fail;
+    edges[source] := fail;
 
     # relax all edges: update weight with smallest edges
     for _ in digraph_vertices do
@@ -67,8 +67,8 @@ Bellman := function(digraph, weights, source)
     for i in [1..Size(distances)] do
         d := distances[i];
         if d = infinity then
-            parents[i] := -1;
-            edges[i] := -1;
+            parents[i] := fail;
+            edges[i] := fail;
         fi; 
     od;
 

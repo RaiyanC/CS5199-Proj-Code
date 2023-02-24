@@ -1,4 +1,4 @@
-levels :=0;
+levels := 0;
 Dinic := function(digraph, weights, source, sink)
     local adj_matrix, digraph_vertices, nr_vertices, e,u,v,edges, outs, ins, 
     edge_idx, idx, out_neighbours, in_neighbours, w, mst, 

@@ -19,8 +19,8 @@ CreateSCG := function(filt, n, p)
         adjMatrix[random_u][random_v] := 1;
 
         # get a different u and v and add edge in the reverse direction
-        random_u := scc_a[Random([1..Size(scc_b)])];
-        random_v := scc_b[Random([1..Size(scc_a)])];
+        random_u := scc_b[Random([1..Size(scc_b)])];
+        random_v := scc_a[Random([1..Size(scc_a)])];
 
         adjMatrix[random_u][random_v] := 1;
     od; 
