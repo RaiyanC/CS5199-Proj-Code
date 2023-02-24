@@ -1,2 +1,5 @@
 # Ignore gap directory
 gap-4.12.2
+
+# Ignore digraphs clone
+Digraphs
