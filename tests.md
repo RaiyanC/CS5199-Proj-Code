@@ -31,6 +31,12 @@ For dijkstra
 g := Digraph([[2,3,4],[1,3,4],[1,2,4,5,6],[1,2,3,5],[3,4,6],[3,5]]);
 w := [[2,5,1], [2,3,2], [5,3,3,1,5], [1,2,3,1], [1,1,1], [5,1]];
 
+
+# dont reuse rcg5 as its random, trying to debug floydwarshall
+Read("../Shortest Path Algorithms/dijkstra.g"); Dijkstra(rcg5.random_graph, rcg5.weights, 1);
+rec( distances := [ 0, 23, 24, 30, 29, 31, 43, 11, 65, 17 ], 
+  edges := [ fail, 1, 2, 1, 2, 2, 2, 2, 3, 3 ], parents := [ fail, 1, 8, 5, 3, 2, 6, 1, 7, 8 ] )
+
 <!-- https://www.scaler.com/topics/data-structures/dijkstra-algorithm/ -->
 g2 := Digraph([[2,3],[1,3,4,5],[1,2,5],[2,5,6],[2,3,4,6],[4,5]]);
 w2 := [[4,5],[4,11,9,7],[5,11,3],[9,13,2],[7,3,13,6],[2,6]]; 
@@ -79,3 +85,6 @@ rec( flows := [ [  ], [ [ 5, 10 ] ], [ [ 5, 10, 0 ] ] ], max_flow := 15,
   parents := [ [  ], [ 1, 1 ], [ 2, 2, 2 ] ] )
 
 <!-- https://www.quora.com/Why-does-Dinics-algorithm-work-in-O-V-2-*-E-while-Edmonds-Karp-works-in-O-V-*-E-2 -->
+
+
+

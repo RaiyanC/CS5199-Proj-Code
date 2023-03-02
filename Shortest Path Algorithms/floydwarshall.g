@@ -1,9 +1,11 @@
-Floyd := function(digraph, weights)
-    local adj_matrix, digraph_vertices, nr_vertices, e,u,v,edges, outs, ins, 
+Floyd := function(digraph)
+    local weights, adj_matrix, digraph_vertices, nr_vertices, e,u,v,edges, outs, ins, 
     edge_idx, idx, out_neighbours, in_neighbours, w, mst, 
     visited, i, j, k, queue, cost, node, neighbour, next_vertex, total, 
     edges_in_mst, number_of_vertices, distances, parents;
 
+    weights := EdgeWeights(digraph);
+    
     digraph_vertices := DigraphVertices(digraph);
     nr_vertices := Size(digraph_vertices);
     outs := OutNeighbors(digraph);
@@ -48,8 +50,8 @@ Floyd := function(digraph, weights)
             if u = v then
                 distances[u][v] := 0;
                 # if the same node, then the node has no parents
-                parents[u][v] := -1;
-                edges[u][v] := -1;
+                parents[u][v] := fail;
+                edges[u][v] := fail;
             elif IsBound(adj_matrix[u][v]) then
                 w := adj_matrix[u][v][1];
                 idx := adj_matrix[u][v][2];
@@ -64,6 +66,11 @@ Floyd := function(digraph, weights)
         od;
     od;
 
+    # Print("adj mat ", adj_matrix, "\n\n\n");
+
+    # Print("distance ", distances, "\n\n\n");
+
+
     for k in [1..nr_vertices] do
         for u in [1..nr_vertices] do
             for v in [1..nr_vertices] do
@@ -71,15 +78,11 @@ Floyd := function(digraph, weights)
                     if distances[u][k] + distances[k][v] < distances[u][v] then
                         distances[u][v] := distances[u][k] + distances[k][v];
 
-                        # parents of u -> v is k
-                        parents[u][v] := k;
 
-                        # depending on which edge we are looking at, update the index
-                        if IsBound(adj_matrix[k][v]) then
-                            edges[u][v] := adj_matrix[k][v][2];
-                        else 
-                            edges[u][v] := adj_matrix[u][k][2];
-                        fi;
+                        parents[k][v] := k;
+                        # parents[u][k] := u;
+
+                        # Print("u ", u, " k ", k, " v ", v, "\n");
                     fi;
                 fi;
             od;

@@ -1,7 +1,8 @@
-Prims := function(digraph, weights)
-    local digraphVertices, outs, ins, adj, u, outNeighbours, inNeighbours, idx, v,
+Prims := function(digraph)
+    local weights, digraphVertices, outs, ins, adj, u, outNeighbours, inNeighbours, idx, v,
     w, mst, visited, queue, neighbour, total, edgesInMst, nrVertices, node, cost, nextVertex;
 
+    weights := EdgeWeights(digraph);
 
     digraphVertices := DigraphVertices(digraph);
     outs := OutNeighbors(digraph);

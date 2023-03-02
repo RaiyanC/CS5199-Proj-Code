@@ -1,9 +1,11 @@
 levels := 0;
-Dinic := function(digraph, weights, source, sink)
-    local adj_matrix, digraph_vertices, nr_vertices, e,u,v,edges, outs, ins, 
+Dinic := function(digraph, source, sink)
+    local weights, adj_matrix, digraph_vertices, nr_vertices, e,u,v,edges, outs, ins, 
     edge_idx, idx, out_neighbours, in_neighbours, w, mst, 
     visited, i, j, k, queue, cost, node, neighbour, next_vertex, total, 
     edges_in_mst, number_of_vertices, distances, parents, total_flow, flow_matrix;
+
+    weights := EdgeWeights(digraph);
 
     digraph_vertices := DigraphVertices(digraph);
     nr_vertices := Size(digraph_vertices);

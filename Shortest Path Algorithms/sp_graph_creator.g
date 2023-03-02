@@ -1,12 +1,38 @@
 CreateRandomSPGraph := function(number_of_vertices, probability)
     local random_graph, weights, used_weights, digraph_vertices,
-    number_of_edges, random_weights, out_neighbours, u, idx, random_weight_idx;
+    number_of_edges, random_weights, out_neighbours, u, idx, random_weight_idx, 
+    adjacencyList, vertices, startVertex, tree, x, i, j;
 
-    random_graph := RandomDigraph(IsConnectedDigraph, number_of_vertices, probability); # random connected digraph
+    adjacencyList := EmptyPlist(n);
 
-    Read("../test_creating_connected_graph.g");
+    vertices := [1 .. n];
 
-    random_graph := CreateSCG(IsConnectedDigraph, number_of_vertices, probability);
+    for i in vertices do
+        Add(adjacencyList, []);
+    od;
+
+    # Starting from a random vertex, we first create a tree to guarantee
+    # connectivity
+    startVertex := Remove(vertices, Random(vertices));
+    tree := [startVertex];
+
+    # While there are n-1 remaining vertices to be added to the tree
+    for x in [1 .. n - 1] do
+        # Create an edge from a random vertex in the tree, to a random vertex
+        # outside of it
+        i := Random(tree);
+        j := Remove(vertices, Random([1 .. Length(vertices)]));
+        Add(tree, j);
+        Add(adjacencyList[i], j);
+    od;
+
+    # Once the tree has been created, we fill out the rest of the graph with
+    # random edges according to p
+    adjacencyList := DIGRAPHS_FillOutGraph(n, p, adjacencyList);
+   
+
+    # random_graph := RandomDigraph(IsConnectedDigraph, number_of_vertices, probability); # random connected digraph
+    random_graph :=  DigraphNC(adjacencyList);
     digraph_vertices := DigraphVertices(random_graph); 
     number_of_edges := DigraphNrEdges(random_graph) + 1; 
 

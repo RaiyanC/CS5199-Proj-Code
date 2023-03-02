@@ -1,6 +1,8 @@
 # https://www.programiz.com/dsa/kruskal-algorithm
-Kruskals := function(digraph, weights)
-    local numberOfVertices, edgeList, u, outNeigbours, idx, v, w, mst, i, e, parent, rank, total, node, x, y;
+Kruskals := function(digraph)
+    local weights, numberOfVertices, edgeList, u, outNeigbours, idx, v, w, mst, i, e, parent, rank, total, node, x, y;
+
+    weights := EdgeWeights(digraph);
 
     # create a list of edges containining u-v
     # w: the weight of the edge
