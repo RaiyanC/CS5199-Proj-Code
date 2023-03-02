@@ -2,4 +2,8 @@
 gap-4.12.2
 
 # Ignore digraphs clone
-Digraphs
+Digraphs/*
+
+## except for my files
+!Digraphs/gap/weigths.gi
+!Digraphs/gap/weigths.gd

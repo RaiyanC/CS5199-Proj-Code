@@ -1,5 +1,6 @@
 EdgeWeightedDigraph := function(digraph, weights)
-    local digraphVertices, nrVertices, u, outNeighbours, outNeighbourWeights;
+    local digraphVertices, nrVertices, u, outNeighbours, outNeighbourWeights
+    idx, v;
 
     # check all elements of weights is a list
     if not ForAll(weights, IsList) then
@@ -24,9 +25,19 @@ EdgeWeightedDigraph := function(digraph, weights)
             ErrorNoReturn("size of out neighbours and weights for vertex ", u," must be equal");
         fi;
 
-        if not ForAll(outNeighbours, IsInt) then
-            ErrorNoReturn("out neighbours must be either integer or float");
-        fi;
+        # check all elements of out neighbours are int
+        for idx in [1..Size(outNeighbours)] do
+            v := outNeighbours[idx];
+            w := outNeighbourWeights[v];
+
+            if not (IsInt(v) or IsFloat(v)) then
+                ErrorNoReturn("out neighbour must be either integer or float");
+            fi;
+
+            if not (IsInt(w) or IsFloat(w)) then
+                ErrorNoReturn("out neighbour weight must be either integer or float");
+            fi;
+        od;
     od;
 
     SetEdgeWeights(digraph, weights);
