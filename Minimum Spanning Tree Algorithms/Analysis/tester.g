@@ -16,7 +16,7 @@ Runtests := function(alg, nodes, probability, nrIterations)
                   Concatenation("/",
                   Concatenation(String(alg), ".csv"))))));
             
-  headers := "Vertices, Edges, StartTime, EndTime\n";
+  headers := "Vertices,Edges,StartTime,EndTime\n";
   PrintTo(analysisPath, headers);
   
   

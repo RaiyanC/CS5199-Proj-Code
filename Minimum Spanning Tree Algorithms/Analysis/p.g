@@ -112,11 +112,11 @@ Prims := function(digraph, probability)
 
 
     data := Concatenation(String(nrVertices), 
-    Concatenation(", ", 
+    Concatenation(",", 
     Concatenation(String(nrEdges), 
-    Concatenation(", ",
+    Concatenation(",",
     Concatenation(String(startTime),
-    Concatenation(", ",
+    Concatenation(",",
     Concatenation(String(endTime), "\n")))))));
 
     AppendTo(analysisPath, data);
