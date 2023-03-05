@@ -88,3 +88,13 @@ rec( flows := [ [  ], [ [ 5, 10 ] ], [ [ 5, 10, 0 ] ] ], max_flow := 15,
 
 
 
+data analysis
+
+DeclareAttribute("EdgeWeights", IsDigraph);
+Read("../test_creating_edgeweighted_digraph.g");
+Read("../Minimum Spanning Tree Algorithms/mst_graph_creator.g");
+rd := CreateRandomMSTGraph(1000,0.5);
+<!-- Read("../Minimum Spanning Tree Algorithms/Analysis/p.g"); Prims(rd); -->
+
+
+Read("../Minimum Spanning Tree Algorithms/Analysis/tester.g");

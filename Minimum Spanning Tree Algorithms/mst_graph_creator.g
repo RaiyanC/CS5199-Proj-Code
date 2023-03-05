@@ -22,6 +22,5 @@ CreateRandomMSTGraph := function(number_of_vertices, probability)
         od;
     od;
     
-
-    return [random_graph, weights];
+    return EdgeWeightedDigraph(random_graph, weights);
 end;

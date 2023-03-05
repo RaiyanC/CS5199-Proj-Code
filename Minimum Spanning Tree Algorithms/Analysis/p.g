@@ -1,19 +1,13 @@
-Prims := function(digraph)
+Prims := function(digraph, probability)
     local weights, digraphVertices, outs, ins, adj, u, outNeighbours, inNeighbours, idx, v,
-    w, mst, visited, queue, neighbour, total, edgesInMst, nrVertices, node, cost, nextVertex;
+    w, mst, visited, queue, neighbour, total, edgesInMst, nrVertices, node, cost, nextVertex,
+    analysisPath, headers, nrEdges, startTime, endTime, data;
 
     weights := EdgeWeights(digraph);
 
     digraphVertices := DigraphVertices(digraph);
     outs := OutNeighbors(digraph);
     ins := InNeighbors(digraph);
-
-    analysisPath := Concatenation("../Minimum Spanning Tree Algorithms/Analysis/", 
-                  Concatenation(String(alg),
-                  Concatenation("/",
-                  Concatenation(String(probability),
-                  Concatenation("/",
-                  Concatenation(String(alg), ".csv"))))));
     
     # Create an adjacancy map for the edges with their associated weight
     adj := HashMap(Size(digraphVertices));
@@ -50,6 +44,16 @@ Prims := function(digraph)
             fi;
         od;
     od;
+
+
+    # ANALYSIS: HERE START TIME
+    
+
+    nrEdges := Size(DigraphEdges(digraph));
+    startTime := Runtimes().user_time;
+    nrVertices := Size(digraphVertices);
+
+
 
     mst := HashMap();
     visited := BlistList(digraphVertices, [1]);
@@ -100,5 +104,21 @@ Prims := function(digraph)
         fi;
     od;
 
+    # ANALYSIS: HERE STOP TIME
+    endTime := Runtimes().user_time;
+
+    analysisPath := Concatenation("../Minimum Spanning Tree Algorithms/Analysis/p/",
+                    Concatenation(String(probability), "/p.csv"));
+
+
+    data := Concatenation(String(nrVertices), 
+    Concatenation(", ", 
+    Concatenation(String(nrEdges), 
+    Concatenation(", ",
+    Concatenation(String(startTime),
+    Concatenation(", ",
+    Concatenation(String(endTime), "\n")))))));
+
+    AppendTo(analysisPath, data);
     return [total, mst];
 end;
