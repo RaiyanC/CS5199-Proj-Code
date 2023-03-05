@@ -20,7 +20,7 @@ Runtests := function(alg, nodes, probability, nrIterations)
   PrintTo(analysisPath, headers);
   
   
-  for nrNode in [1..1000] do
+  for nrNode in [1..nodes] do
     for i in [1..nrIterations] do
       # create random graphs and save them
       random_graph := CreateRandomMSTGraph(nrNode, probability);

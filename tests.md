@@ -97,4 +97,4 @@ rd := CreateRandomMSTGraph(1000,0.5);
 <!-- Read("../Minimum Spanning Tree Algorithms/Analysis/p.g"); Prims(rd); -->
 
 
-Read("../Minimum Spanning Tree Algorithms/Analysis/tester.g");
+Read("../Minimum Spanning Tree Algorithms/Analysis/tester.g"); Runtests("p",500,0.5,3);
