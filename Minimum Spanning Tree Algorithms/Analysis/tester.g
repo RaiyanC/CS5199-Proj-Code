@@ -10,11 +10,9 @@ Runtests := function(alg, nodes, probability, nrIterations)
   Read(algPath);
 
   analysisPath := Concatenation("../Minimum Spanning Tree Algorithms/Analysis/", 
-                  Concatenation(String(alg),
-                  Concatenation("/",
                   Concatenation(String(probability),
                   Concatenation("/",
-                  Concatenation(String(alg), ".csv"))))));
+                  Concatenation(String(alg), ".csv"))));
             
   headers := "Vertices,Edges,StartTime,EndTime\n";
   PrintTo(analysisPath, headers);
