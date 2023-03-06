@@ -98,3 +98,10 @@ rd := CreateRandomMSTGraph(1000,0.5);
 
 
 Read("../Minimum Spanning Tree Algorithms/Analysis/tester.g"); Runtests("p",500,0.5,3);
+
+
+Read("../Minimum Spanning Tree Algorithms/Analysis/tester.g"); Runtests("p",1001,0.05,5,10);
+python3 analyser.py -p "./0.5/p.csv" "./0.25/p.csv"
+
+
+python3 analyser.py -p "./1/k.csv" "./0.5/k.csv" "./0.25/k.csv" "./0.125/k.csv" "./0.01/k.csv" "./1/p.csv" "./0.5/p.csv" "./0.25/p.csv" "./0.125/p.csv" "./0.01/p.csv" -c -s

@@ -1,6 +1,8 @@
 # https://www.programiz.com/dsa/kruskal-algorithm
-Kruskals := function(digraph)
-    local weights, numberOfVertices, edgeList, u, outNeigbours, idx, v, w, mst, i, e, parent, rank, total, node, x, y;
+Kruskals := function(digraph, probability)
+    local weights, numberOfVertices, edgeList, u, 
+    outNeigbours, idx, v, w, mst, i, e, parent, rank, total, node, x, y,
+    analysisPath, headers, nrEdges, startTime, endTime, data, nrVertices;
 
     weights := EdgeWeights(digraph);
 
@@ -19,6 +21,13 @@ Kruskals := function(digraph)
             Add(edgeList, [w, u, v]);
         od;
     od;
+
+    # ANALYSIS: HERE START TIME
+
+    nrEdges := Size(DigraphEdges(digraph));
+    startTime := Runtimes().user_time;
+    nrVertices := numberOfVertices;
+
 
     mst := HashMap();
     i := 1;
@@ -61,6 +70,23 @@ Kruskals := function(digraph)
             union(parent, rank, x, y);
         fi;
 od;
+
+# ANALYSIS: HERE STOP TIME
+    endTime := Runtimes().user_time;
+
+    analysisPath := Concatenation("../Minimum Spanning Tree Algorithms/Analysis/",
+                    Concatenation(String(probability), "/k.csv"));
+
+
+    data := Concatenation(String(nrVertices), 
+    Concatenation(",", 
+    Concatenation(String(nrEdges), 
+    Concatenation(",",
+    Concatenation(String(startTime),
+    Concatenation(",",
+    Concatenation(String(endTime), "\n")))))));
+
+    AppendTo(analysisPath, data);
 
 return [total, mst];
 end;

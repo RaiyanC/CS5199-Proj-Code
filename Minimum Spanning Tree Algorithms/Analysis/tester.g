@@ -1,5 +1,5 @@
-Runtests := function(alg, nodes, probability, nrIterations)
-  local algPath, analysisPath, headers, i, random_graph, nrNode;
+Runtests := function(alg, nodes, probability, nrIterations, step)
+  local algPath, analysisPath, headers, i, random_graph, nrNode, idx;
 
   # read in necessary files
   Read("../test_creating_edgeweighted_digraph.g");
@@ -17,13 +17,14 @@ Runtests := function(alg, nodes, probability, nrIterations)
   headers := "Vertices,Edges,StartTime,EndTime\n";
   PrintTo(analysisPath, headers);
   
-  
-  for nrNode in [1..nodes] do
+  nrNode := 1;
+  while nrNode <= nodes do
     for i in [1..nrIterations] do
       # create random graphs and save them
       random_graph := CreateRandomMSTGraph(nrNode, probability);
-      Prims(random_graph, probability);
+      Kruskals(random_graph, probability);
     od;
+    nrNode := nrNode + step;
   od;
 
 end;

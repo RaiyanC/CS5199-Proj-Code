@@ -107,7 +107,7 @@ Prims := function(digraph, probability)
     # ANALYSIS: HERE STOP TIME
     endTime := Runtimes().user_time;
 
-    analysisPath := Concatenation("../Minimum Spanning Tree Algorithms/Analysis/p/",
+    analysisPath := Concatenation("../Minimum Spanning Tree Algorithms/Analysis/",
                     Concatenation(String(probability), "/p.csv"));
 
 
