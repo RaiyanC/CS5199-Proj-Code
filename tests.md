@@ -105,3 +105,16 @@ python3 analyser.py -p "./0.5/p.csv" "./0.25/p.csv"
 
 
 python3 analyser.py -p "./1/k.csv" "./0.5/k.csv" "./0.25/k.csv" "./0.125/k.csv" "./0.01/k.csv" "./1/p.csv" "./0.5/p.csv" "./0.25/p.csv" "./0.125/p.csv" "./0.01/p.csv" -c -s
+
+
+
+API 
+python3 analyser.py -p <paths to all the csv of one algo> [optional] -c <path to other csvs of other algo to compare> [optional- default to not save]-s <save graph>
+
+
+ # for shortest path
+Read("../Shortest Path Algorithms/Analysis/tester.g"); Runtests("d",1001,1,5,10);
+
+ Read("../Shortest Path Algorithms/sp_graph_creator.g");rd := CreateRandomSPGraph(20,0.1);
+ Read("../Shortest Path Algorithms/dijkstra.g"); Dijkstra(rd.random_graph, rd.start);
+ Read("../Shortest Path Algorithms/bellmanford.g"); Bellman(rd.random_graph, rd.start);

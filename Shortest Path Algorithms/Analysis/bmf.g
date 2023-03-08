@@ -1,13 +1,16 @@
 # https://github.com/arnab132/Bellman-Ford-Algorithm-Python/blob/main/bellman_ford.py
 # Read("../Shortest Path Algorithms/bellmanford.g"); Bellman(g,w,1);
-Bellman := function(digraph, source)
-    local edge_list, weights, digraph_vertices, distances, u, 
+Bellman := function(digraph, source, probability)
+    local edge_list, weights, digraphVertices, distances, u, 
     out_neighbours, idx, v, w, _, path, vertex, edge, parents,
-    edge_info, edges, d, i;
+    edge_info, edges, d, i, analysisPath, headers, nrVertices, nrEdges, startTime, endTime, data;
+;
 
     weights := EdgeWeights(digraph);
 
-    digraph_vertices := DigraphVertices(digraph);
+    digraphVertices := DigraphVertices(digraph);
+    nrVertices := Size(digraphVertices);
+
     edge_list := [];
     for u in DigraphVertices(digraph) do
         out_neighbours := OutNeighbors(digraph)[u];
@@ -19,12 +22,16 @@ Bellman := function(digraph, source)
         od;
     od;
 
+    # ANALYSIS: HERE START TIME
+    nrEdges := Size(DigraphEdges(digraph));
+    startTime := Runtimes().user_time;
+    nrVertices := Size(digraphVertices);
 
-    distances := [digraph_vertices];
-    parents := [digraph_vertices];
-    edges := [digraph_vertices];
+    distances := [digraphVertices];
+    parents := [digraphVertices];
+    edges := [digraphVertices];
    
-    for vertex in digraph_vertices do
+    for vertex in digraphVertices do
         distances[vertex] := infinity;
     od;
     
@@ -33,7 +40,7 @@ Bellman := function(digraph, source)
     edges[source] := fail;
 
     # relax all edges: update weight with smallest edges
-    for _ in digraph_vertices do
+    for _ in digraphVertices do
         for edge in edge_list do
             w := edge[1];
             u := edge[2];
@@ -73,6 +80,23 @@ Bellman := function(digraph, source)
             edges[i] := fail;
         fi; 
     od;
+
+    # ANALYSIS: HERE STOP TIME
+    endTime := Runtimes().user_time;
+
+    analysisPath := Concatenation("../Shortest Path Algorithms/Analysis/",
+                    Concatenation(String(probability), "/bmf.csv"));
+
+
+    data := Concatenation(String(nrVertices), 
+    Concatenation(",", 
+    Concatenation(String(nrEdges), 
+    Concatenation(",",
+    Concatenation(String(startTime),
+    Concatenation(",",
+    Concatenation(String(endTime), "\n")))))));
+
+    AppendTo(analysisPath, data);
 
     return rec(distances:=distances, parents:=parents, edges:=edges);
 end;

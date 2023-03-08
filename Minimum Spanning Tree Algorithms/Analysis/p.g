@@ -47,8 +47,6 @@ Prims := function(digraph, probability)
 
 
     # ANALYSIS: HERE START TIME
-    
-
     nrEdges := Size(DigraphEdges(digraph));
     startTime := Runtimes().user_time;
     nrVertices := Size(digraphVertices);

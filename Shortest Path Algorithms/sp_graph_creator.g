@@ -1,38 +1,36 @@
-CreateRandomSPGraph := function(number_of_vertices, probability)
-    local random_graph, weights, used_weights, digraph_vertices,
-    number_of_edges, random_weights, out_neighbours, u, idx, random_weight_idx, 
-    adjacencyList, vertices, startVertex, tree, x, i, j;
+CreateRandomSPGraph := function(n, p)
+    # this creates random connected graph - we still need to assign random weights
+    local randomDigraph, adjMatrix, stronglyConnectedComponents, 
+    scc_a, scc_b, i, j, random_u, random_v, adjList, u, v, random_graph, weights, used_weights, digraph_vertices,
+    number_of_edges, random_weights, out_neighbours, idx, random_weight_idx, 
+    adjacencyList, vertices, startVertex, tree, x;
 
-    adjacencyList := EmptyPlist(n);
+    # strong connected digraph must be at least connected
+    randomDigraph := RandomDigraph(IsConnectedDigraph, n, p);
+    stronglyConnectedComponents := DigraphStronglyConnectedComponents(randomDigraph);
+    
+    adjMatrix := AdjacencyMatrixMutableCopy(randomDigraph);
 
-    vertices := [1 .. n];
+    for i in [1..Size(stronglyConnectedComponents.comps) - 1] do
+        scc_a := stronglyConnectedComponents.comps[i];
+        scc_b := stronglyConnectedComponents.comps[i+1];
 
-    for i in vertices do
-        Add(adjacencyList, []);
-    od;
+        # add a connection from u to v
+        random_u := Random(scc_a);
+        random_v := Random(scc_b);
 
-    # Starting from a random vertex, we first create a tree to guarantee
-    # connectivity
-    startVertex := Remove(vertices, Random(vertices));
-    tree := [startVertex];
+        adjMatrix[random_u][random_v] := 1;
 
-    # While there are n-1 remaining vertices to be added to the tree
-    for x in [1 .. n - 1] do
-        # Create an edge from a random vertex in the tree, to a random vertex
-        # outside of it
-        i := Random(tree);
-        j := Remove(vertices, Random([1 .. Length(vertices)]));
-        Add(tree, j);
-        Add(adjacencyList[i], j);
-    od;
+        # get a different u and v and add edge in the reverse direction
+        random_u := Random(scc_b);
+        random_v := Random(scc_a);
 
-    # Once the tree has been created, we fill out the rest of the graph with
-    # random edges according to p
-    adjacencyList := DIGRAPHS_FillOutGraph(n, p, adjacencyList);
-   
+        adjMatrix[random_u][random_v] := 1;
+    od; 
+    
 
     # random_graph := RandomDigraph(IsConnectedDigraph, number_of_vertices, probability); # random connected digraph
-    random_graph :=  DigraphNC(adjacencyList);
+    random_graph :=  DigraphByAdjacencyMatrix(adjMatrix);
     digraph_vertices := DigraphVertices(random_graph); 
     number_of_edges := DigraphNrEdges(random_graph) + 1; 
 
@@ -52,5 +50,5 @@ CreateRandomSPGraph := function(number_of_vertices, probability)
         od;
     od;
 
-    return rec(random_graph:=random_graph, weights:=weights, start:=1, destination:=number_of_vertices);
+    return rec(random_graph := EdgeWeightedDigraph(random_graph, weights), start:=1, destination:=n);
 end;
