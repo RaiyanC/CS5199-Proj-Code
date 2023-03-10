@@ -3,13 +3,13 @@ Runtests := function(alg, nodes, probability, nrIterations, step)
 
   # read in necessary files
   Read("../test_creating_edgeweighted_digraph.g");
-  Read("../Shortest Path Algorithms/sp_graph_creator.g");
-  algPath := Concatenation("../Shortest Path Algorithms/Analysis/", 
+  Read("../Maximal Flow Algorithms/mf_graph_creator.g");
+  algPath := Concatenation("../Maximal Flow AlgorithmsAnalysis/", 
              Concatenation(String(alg), ".g"));
 
   Read(algPath);
 
-  analysisPath := Concatenation("../Shortest Path Algorithms/Analysis/", 
+  analysisPath := Concatenation("../Maximal Flow Algorithms/Analysis/", 
                   Concatenation(String(probability),
                   Concatenation("/",
                   Concatenation(String(alg), ".csv"))));
@@ -22,14 +22,11 @@ Runtests := function(alg, nodes, probability, nrIterations, step)
     for i in [1..nrIterations] do
       # create random graphs and save them
       random_graph := CreateRandomSPGraph(nrNode, probability);
-      if String(alg) = "d" then
-        Dijksttra(random_graph.random_graph, random_graph.start, probability);
+      if String(alg) = "ek" then
+        Edmond(random_graph.random_graph, random_graph.start, probability);
       fi;
-      if String(alg) = "bmf" then
+      if String(alg) = "dc" then
         Bellman(random_graph.random_graph, random_graph.start, probability);
-      fi;
-      if String(alg) = "flw" then
-        Floyd(random_graph.random_graph, probability);
       fi;
     od;
     nrNode := nrNode + step;

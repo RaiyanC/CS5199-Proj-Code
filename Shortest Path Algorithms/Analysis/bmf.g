@@ -4,7 +4,7 @@ Bellman := function(digraph, source, probability)
     local edge_list, weights, digraphVertices, distances, u, 
     out_neighbours, idx, v, w, _, path, vertex, edge, parents,
     edge_info, edges, d, i, analysisPath, headers, nrVertices, nrEdges, startTime, endTime, data;
-;
+
 
     weights := EdgeWeights(digraph);
 
