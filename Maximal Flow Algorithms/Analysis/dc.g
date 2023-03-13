@@ -1,32 +1,32 @@
 levels := 0;
-Dinic := function(digraph, source, sink)
-    local weights, adj_matrix, digraph_vertices, nr_vertices, e,u,v,edges, outs, ins, 
+Dinic := function(digraph, source, sink, probability)
+    local weights, adj_matrix, digraphVertices, nrVertices, e,u,v,edges, outs, ins, 
     edge_idx, idx, out_neighbours, in_neighbours, w, mst, 
     visited, i, j, k, queue, cost, node, neighbour, next_vertex, total, 
-    edges_in_mst, number_of_vertices, distances, parents, total_flow, flow_matrix;
+    edges_in_mst, number_of_vertices, distances, parents, total_flow,flow_information, flow_matrix, analysisPath, headers, nrEdges, startTime, endTime, data;
 
     weights := EdgeWeights(digraph);
 
-    digraph_vertices := DigraphVertices(digraph);
-    nr_vertices := Size(digraph_vertices);
+    digraphVertices := DigraphVertices(digraph);
+    nrVertices := Size(digraphVertices);
 
     outs := OutNeighbors(digraph);
     ins := InNeighbors(digraph);
 
-    adj_matrix := EmptyPlist(nr_vertices);
-    flow_matrix := EmptyPlist(nr_vertices);
+    adj_matrix := EmptyPlist(nrVertices);
+    flow_matrix := EmptyPlist(nrVertices);
 
     # fill adj and max flow with zeroes
-    for u in digraph_vertices do
-        adj_matrix[u] := EmptyPlist(nr_vertices);
-        flow_matrix[u] := EmptyPlist(nr_vertices);
-        for v in digraph_vertices do
+    for u in digraphVertices do
+        adj_matrix[u] := EmptyPlist(nrVertices);
+        flow_matrix[u] := EmptyPlist(nrVertices);
+        for v in digraphVertices do
             adj_matrix[u][v] := [0];
             flow_matrix[u][v] := [0];
         od;
     od;
 
-    for u in digraph_vertices do
+    for u in digraphVertices do
         out_neighbours := outs[u];
         for idx in [1..Size(out_neighbours)] do
             v := out_neighbours[idx]; # the out neighbour
@@ -43,11 +43,34 @@ Dinic := function(digraph, source, sink)
         od;
     od;
 
+    # ANALYSIS: HERE START TIME
+    nrEdges := Size(DigraphEdges(digraph));
+    startTime := Runtimes().user_time;
+    nrVertices := Size(digraphVertices);
+
     while BFS(adj_matrix, flow_matrix, source, sink) do
         DFS(adj_matrix, flow_matrix, source, infinity);
     od;
 
     flow_information := GetFlowInformation(flow_matrix, source);
+
+    # ANALYSIS: HERE STOP TIME
+    endTime := Runtimes().user_time;
+
+    analysisPath := Concatenation("../Maximal Flow Algorithms/Analysis/",
+                    Concatenation(String(probability), "/dc.csv"));
+
+
+    data := Concatenation(String(nrVertices), 
+    Concatenation(",", 
+    Concatenation(String(nrEdges), 
+    Concatenation(",",
+    Concatenation(String(startTime),
+    Concatenation(",",
+    Concatenation(String(endTime), "\n")))))));
+
+    AppendTo(analysisPath, data);
+
     return rec(
         parents:=flow_information[1], 
     flows:=flow_information[2],
@@ -56,16 +79,16 @@ Dinic := function(digraph, source, sink)
 end;
 
 GetFlowInformation := function(flow_matrix, source)
-    local parents, flows, u, v, e, nr_vertices, edges, max_flow, _, i;
+    local parents, flows, u, v, e, nrVertices, edges, max_flow, _, i;
 
-    nr_vertices := Size(flow_matrix);
+    nrVertices := Size(flow_matrix);
 
-    parents := EmptyPlist(nr_vertices);
-    flows := EmptyPlist(nr_vertices);
+    parents := EmptyPlist(nrVertices);
+    flows := EmptyPlist(nrVertices);
     max_flow := 0;
 
     # create empty 2D list for output
-    for _ in [1..nr_vertices] do
+    for _ in [1..nrVertices] do
         Add(parents, []);
         Add(flows, []);
     od; 
@@ -75,8 +98,8 @@ GetFlowInformation := function(flow_matrix, source)
     flows[source] := [];
     
     # Print("\n\n\n flow matrix ", flow_matrix, "\n\n\n");
-    for u in [1..nr_vertices] do
-        for v in [1..nr_vertices] do
+    for u in [1..nrVertices] do
+        for v in [1..nrVertices] do
             for e in [1..Size(flow_matrix[u][v])] do
                 if flow_matrix[u][v][e] > 0 then
                     # add parents for each flow
@@ -100,16 +123,16 @@ end;
 
 # this bfs holds the levels for the vertices
 BFS := function(adj_matrix, flow_matrix, source, sink)
-    local nr_vertices, queue,u, v, edge_idx, e, f;
+    local nrVertices, queue,u, v, edge_idx, e, f;
 
-    nr_vertices := Size(adj_matrix);
+    nrVertices := Size(adj_matrix);
     queue := PlistDeque();
     PlistDequePushFront(queue, source);
 
-    levels := EmptyPlist(nr_vertices);
+    levels := EmptyPlist(nrVertices);
     
     # fill levels with zeroes
-    for u in [1..nr_vertices] do
+    for u in [1..nrVertices] do
         levels[u] := 0;
     od;
     levels[source] := 1;
@@ -117,7 +140,7 @@ BFS := function(adj_matrix, flow_matrix, source, sink)
 
     while not IsEmpty(queue) do
         u := PlistDequePopFront(queue);
-        for v in [1..nr_vertices] do
+        for v in [1..nrVertices] do
             for edge_idx in [1..Size(adj_matrix[u][v])] do
                 e := adj_matrix[u][v][edge_idx];
                 f := flow_matrix[u][v][edge_idx];
@@ -132,16 +155,16 @@ BFS := function(adj_matrix, flow_matrix, source, sink)
 end;
 
 DFS := function(adj_matrix, flow_matrix, u, flow)
-    local temp, nr_vertices, v, f, min, e, edge_idx, fl;
+    local temp, nrVertices, v, f, min, e, edge_idx, fl;
     temp := flow;
-    nr_vertices := Size(adj_matrix);
+    nrVertices := Size(adj_matrix);
 
     # base case, if dfs reaches end
-    if u = nr_vertices then
+    if u = nrVertices then
         return flow;
     fi;
 
-    for v in [1..nr_vertices] do
+    for v in [1..nrVertices] do
         for edge_idx in [1..Size(adj_matrix[u][v])] do
             e := adj_matrix[u][v][edge_idx];
             fl := flow_matrix[u][v][edge_idx];

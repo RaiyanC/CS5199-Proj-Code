@@ -118,3 +118,21 @@ Read("../Shortest Path Algorithms/Analysis/tester.g"); Runtests("d",1001,1,5,10)
  Read("../Shortest Path Algorithms/sp_graph_creator.g");rd := CreateRandomSPGraph(20,0.1);
  Read("../Shortest Path Algorithms/dijkstra.g"); Dijkstra(rd.random_graph, rd.start);
  Read("../Shortest Path Algorithms/bellmanford.g"); Bellman(rd.random_graph, rd.start);
+
+
+ # for maximal flow
+
+DeclareAttribute("EdgeWeights", IsDigraph);
+Read("../test_creating_edgeweighted_digraph.g");
+
+Read("../Maximal Flow Algorithms/Analysis/tester.g"); Runtests("ek",1002,1,5,10);
+Read("../Maximal Flow Algorithms/Analysis/tester.g"); Runtests("ek",1002,0.5,5,10);
+Read("../Maximal Flow Algorithms/Analysis/tester.g"); Runtests("ek",1002,0.25,5,10);
+Read("../Maximal Flow Algorithms/Analysis/tester.g"); Runtests("ek",1002,0.125,5,10);
+Read("../Maximal Flow Algorithms/Analysis/tester.g"); Runtests("ek",1002,0.01,5,10);
+
+Read("../Maximal Flow Algorithms/Analysis/tester.g"); Runtests("dc",1002,1,5,10);
+Read("../Maximal Flow Algorithms/Analysis/tester.g"); Runtests("dc",1002,0.5,5,10);
+Read("../Maximal Flow Algorithms/Analysis/tester.g"); Runtests("dc",1002,0.25,5,10);
+Read("../Maximal Flow Algorithms/Analysis/tester.g"); Runtests("dc",1002,0.125,5,10);
+Read("../Maximal Flow Algorithms/Analysis/tester.g"); Runtests("dc",1002,0.01,5,10);
