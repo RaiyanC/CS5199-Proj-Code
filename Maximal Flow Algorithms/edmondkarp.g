@@ -1,75 +1,5 @@
 # edmond karp uses bfs
 # http://staff.ustc.edu.cn/~csli/graduate/algorithms/book6/chap27.htm
-Edmondkarp := function(digraph, source, sink)
-    local weights, adj_matrix, digraph_vertices, nr_vertices, e,u,v,edges, outs, ins, 
-    edge_idx, idx, out_neighbours, in_neighbours, w, mst, 
-    visited, i, j, k, queue, cost, node, neighbour, next_vertex, total, 
-    edges_in_mst, number_of_vertices, distances, parents, flow_matrix, path,
-    flow, flow_information, edge;
-
-    weights := EdgeWeights(digraph);
-
-    digraph_vertices := DigraphVertices(digraph);
-    nr_vertices := Size(digraph_vertices);
-    outs := OutNeighbors(digraph);
-    ins := InNeighbors(digraph);
-  
-    adj_matrix := EmptyPlist(nr_vertices);
-    flow_matrix := EmptyPlist(nr_vertices);
-
-    # fill adj and max flow with zeroes
-    for u in digraph_vertices do
-        adj_matrix[u] := EmptyPlist(nr_vertices);
-        flow_matrix[u] := EmptyPlist(nr_vertices);
-        for v in digraph_vertices do
-            adj_matrix[u][v] := [0];
-            flow_matrix[u][v] := [0];
-        od;
-    od;
-
-    for u in digraph_vertices do
-        out_neighbours := outs[u];
-        for idx in [1..Size(out_neighbours)] do
-            v := out_neighbours[idx]; # the out neighbour
-            w := weights[u][idx]; # the weight to the out neighbour
-
-            # if edge already exists
-            if adj_matrix[u][v][1] <> 0 then
-                Add(adj_matrix[u][v], w); 
-                Add(flow_matrix[u][v], 0); 
-                Add(flow_matrix[v][u], 0);
-            else 
-                adj_matrix[u][v][1] := w;
-            fi;
-        od;
-    od;
-
-    
-    path := BFS(adj_matrix, flow_matrix, source, sink);
-    
-    while path <> -1 do
-        flow := GetMinFlow(adj_matrix, flow_matrix, path);
-
-        for edge in path do
-            u := edge[1];
-            e := edge[2];
-            v := edge[3];
-
-            flow_matrix[u][v][e] := flow_matrix[u][v][e] + flow;
-            flow_matrix[v][u][e] := flow_matrix[v][u][e] - flow;
-        od;
-
-        path := BFS(adj_matrix, flow_matrix, source, sink);
-    od;
-
-    flow_information := GetFlowInformation(flow_matrix, source);
-    return rec(
-        parents:=flow_information[1], 
-    flows:=flow_information[2],
-    max_flow:=flow_information[3]
-    );
-end;
-
 GetMinFlow := function(adj_matrix, flow_matrix, path)
     local edge, u, e,v, min, remaining_flow;
     min := infinity;
@@ -167,4 +97,76 @@ BFS := function(adj_matrix, flow_matrix, source, sink)
         od;
     od;
     return -1;
-end;    
+end;   
+
+Edmondkarp := function(digraph, source, sink)
+    local weights, adj_matrix, digraph_vertices, nr_vertices, e,u,v,edges, outs, ins, 
+    edge_idx, idx, out_neighbours, in_neighbours, w, mst, 
+    visited, i, j, k, queue, cost, node, neighbour, next_vertex, total, 
+    edges_in_mst, number_of_vertices, distances, parents, flow_matrix, path,
+    flow, flow_information, edge;
+
+    weights := EdgeWeights(digraph);
+
+    digraph_vertices := DigraphVertices(digraph);
+    nr_vertices := Size(digraph_vertices);
+    outs := OutNeighbors(digraph);
+    ins := InNeighbors(digraph);
+  
+    adj_matrix := EmptyPlist(nr_vertices);
+    flow_matrix := EmptyPlist(nr_vertices);
+
+    # fill adj and max flow with zeroes
+    for u in digraph_vertices do
+        adj_matrix[u] := EmptyPlist(nr_vertices);
+        flow_matrix[u] := EmptyPlist(nr_vertices);
+        for v in digraph_vertices do
+            adj_matrix[u][v] := [0];
+            flow_matrix[u][v] := [0];
+        od;
+    od;
+
+    for u in digraph_vertices do
+        out_neighbours := outs[u];
+        for idx in [1..Size(out_neighbours)] do
+            v := out_neighbours[idx]; # the out neighbour
+            w := weights[u][idx]; # the weight to the out neighbour
+
+            # if edge already exists
+            if adj_matrix[u][v][1] <> 0 then
+                Add(adj_matrix[u][v], w); 
+                Add(flow_matrix[u][v], 0); 
+                Add(flow_matrix[v][u], 0);
+            else 
+                adj_matrix[u][v][1] := w;
+            fi;
+        od;
+    od;
+
+    
+    path := BFS(adj_matrix, flow_matrix, source, sink);
+    
+    while path <> -1 do
+        flow := GetMinFlow(adj_matrix, flow_matrix, path);
+
+        for edge in path do
+            u := edge[1];
+            e := edge[2];
+            v := edge[3];
+
+            flow_matrix[u][v][e] := flow_matrix[u][v][e] + flow;
+            flow_matrix[v][u][e] := flow_matrix[v][u][e] - flow;
+        od;
+
+        path := BFS(adj_matrix, flow_matrix, source, sink);
+    od;
+
+    flow_information := GetFlowInformation(flow_matrix, source);
+    return rec(
+        parents:=flow_information[1], 
+    flows:=flow_information[2],
+    max_flow:=flow_information[3]
+    );
+end;
+
+ 

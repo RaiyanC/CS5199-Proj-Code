@@ -3,7 +3,7 @@ Dinic := function(digraph, source, sink)
     local weights, adj_matrix, digraph_vertices, nr_vertices, e,u,v,edges, outs, ins, 
     edge_idx, idx, out_neighbours, in_neighbours, w, mst, 
     visited, i, j, k, queue, cost, node, neighbour, next_vertex, total, 
-    edges_in_mst, number_of_vertices, distances, parents, total_flow, flow_matrix;
+    edges_in_mst, number_of_vertices, distances, flow_information, parents, total_flow, flow_matrix;
 
     weights := EdgeWeights(digraph);
 
@@ -15,7 +15,7 @@ Dinic := function(digraph, source, sink)
 
     adj_matrix := EmptyPlist(nr_vertices);
     flow_matrix := EmptyPlist(nr_vertices);
-
+    
     # fill adj and max flow with zeroes
     for u in digraph_vertices do
         adj_matrix[u] := EmptyPlist(nr_vertices);

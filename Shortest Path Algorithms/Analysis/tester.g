@@ -8,7 +8,7 @@ Runtests := function(alg, nodes, probability, nrIterations, step)
   algPath := Concatenation("../Shortest Path Algorithms/Analysis/", 
              Concatenation(String(alg), ".g"));
   fi;
-  Read(algPath);
+  
 
   analysisPath := Concatenation("../Shortest Path Algorithms/Analysis/", 
                   Concatenation(String(probability),
@@ -24,12 +24,15 @@ Runtests := function(alg, nodes, probability, nrIterations, step)
       # create random graphs and save them
       random_graph := CreateRandomSPGraph(nrNode, probability);
       if String(alg) = "d" then
+        Read(algPath);
         Dijkstra(random_graph.random_graph, random_graph.start, probability);
       fi;
       if String(alg) = "bmf" then
+        Read(algPath);
         Bellman(random_graph.random_graph, random_graph.start, probability);
       fi;
       if String(alg) = "flw" then
+        Read(algPath);
         Floyd(random_graph.random_graph, probability);
       fi;
       if String(alg) = "all" then 

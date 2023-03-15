@@ -1,6 +1,8 @@
 # https://www.programiz.com/dsa/kruskal-algorithm
 Kruskals := function(digraph)
-    local weights, numberOfVertices, edgeList, u, outNeigbours, idx, v, w, mst, i, e, parent, rank, total, node, x, y;
+    local weights, numberOfVertices, edgeList, u, 
+    outNeigbours, idx, v, w, mst, mstWeights, i, e, 
+    parent, rank, total, node, x, y;
 
     weights := EdgeWeights(digraph);
 
@@ -20,7 +22,8 @@ Kruskals := function(digraph)
         od;
     od;
 
-    mst := HashMap();
+    mst := [];
+    mstWeights := [];
     i := 1;
     e := 1;
 
@@ -33,6 +36,8 @@ Kruskals := function(digraph)
     for v in [1..numberOfVertices] do
         Add(parent, v);
         Add(rank, 1);
+        Add(mst, []);
+        Add(mstWeights, []);
     od;
 
     total := 0;
@@ -52,19 +57,15 @@ Kruskals := function(digraph)
             e := e + 1;
             total := total + w;
 
-            if not u in mst then
-                mst[u] := [];
-            fi;
-
             Add(mst[u], v);
+            Add(mstWeights[u], w);
 
             union(parent, rank, x, y);
         fi;
 od;
 
-return [total, mst];
+return rec(total:=total, mst:=EdgeWeightedDigraph(mst, mstWeights));
 end;
-
 
 
 find := function(parent, i)

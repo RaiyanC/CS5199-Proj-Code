@@ -8,13 +8,6 @@ Prims := function(digraph)
     outs := OutNeighbors(digraph);
     ins := InNeighbors(digraph);
 
-    analysisPath := Concatenation("../Minimum Spanning Tree Algorithms/Analysis/", 
-                  Concatenation(String(alg),
-                  Concatenation("/",
-                  Concatenation(String(probability),
-                  Concatenation("/",
-                  Concatenation(String(alg), ".csv"))))));
-    
     # Create an adjacancy map for the edges with their associated weight
     adj := HashMap(Size(digraphVertices));
     for u in digraphVertices do

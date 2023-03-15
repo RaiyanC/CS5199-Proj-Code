@@ -1,5 +1,5 @@
 Runtests := function(alg, nodes, probability, nrIterations, step)
-  local algPath, analysisPath, headers, i, random_graph, nrNode, idx;
+  local algPath, analysisPath, headers, i, random_graph, nrNode, idx, a, b;
 
   # read in necessary files
   Read("../test_creating_edgeweighted_digraph.g");
@@ -7,7 +7,7 @@ Runtests := function(alg, nodes, probability, nrIterations, step)
   algPath := Concatenation("../Maximal Flow Algorithms/Analysis/", 
              Concatenation(String(alg), ".g"));
 
-  Read(algPath);
+  
 
   analysisPath := Concatenation("../Maximal Flow Algorithms/Analysis/", 
                   Concatenation(String(probability),
@@ -23,10 +23,19 @@ Runtests := function(alg, nodes, probability, nrIterations, step)
       # create random graphs and save them
       random_graph := CreateRandomMFGraph(nrNode, probability);
       if String(alg) = "ek" then
+        Read(algPath);
         Edmondkarp(random_graph.random_graph, random_graph.start, random_graph.destination, probability);
       fi;
       if String(alg) = "dc" then
+        Read(algPath);
         Dinic(random_graph.random_graph, random_graph.start,random_graph.destination, probability);
+      fi;
+      if String(alg) = "all" then
+        Read("../Maximal Flow Algorithms/Analysis/ek.g");
+        Read("../Maximal Flow Algorithms/Analysis/dc.g");
+        a := Edmondkarp(random_graph.random_graph, random_graph.start, random_graph.destination, probability);
+        b := Dinic(random_graph.random_graph, random_graph.start,random_graph.destination, probability);
+        
       fi;
     od;
     nrNode := nrNode + step;

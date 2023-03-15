@@ -5,6 +5,12 @@ SetUserPreference( "SaveAndRestoreHistory", true );
 SetUserPreference( "InfoDigraphs", 4 );
 SetUserPreference( "Editor", "emacs" );
 
+in digraphs-1.6.1/ init.g and read.g
+ReadPackage("digraphs", "gap/examples.gd"); 
+ReadPackage("digraphs", "gap/examples.gi");
+
+in digraphs-1.6.1/gap/ doc.g
+
 Digraph 1
 test_gr := Digraph([[2,3,6],[1,3],[1,2,4,5],[3,5],[3,4,6],[1,5]]); 
 weights := [[12,8,3],[12,5],[8,5,6,1],[6,9],[1,9,3],[3,3]];  
@@ -136,3 +142,10 @@ Read("../Maximal Flow Algorithms/Analysis/tester.g"); Runtests("dc",1002,0.5,5,1
 Read("../Maximal Flow Algorithms/Analysis/tester.g"); Runtests("dc",1002,0.25,5,10);
 Read("../Maximal Flow Algorithms/Analysis/tester.g"); Runtests("dc",1002,0.125,5,10);
 Read("../Maximal Flow Algorithms/Analysis/tester.g"); Runtests("dc",1002,0.01,5,10);
+
+
+
+# mst 
+g := EdgeWeightedDigraph([[2,3,6],[1,3],[1,2,4,5],[3,5],[3,4,6],[1,5]], [[12,8,3],[12,5],[8,5,6,1],[6,9],[1,9,3],[3,3]]);
+
+Read("../Minimum Spanning Tree Algorithms/kruskals.g"); Kruskals(g); 
