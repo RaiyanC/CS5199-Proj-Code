@@ -1,0 +1,393 @@
+<!DOCTYPE html><script src="sorttable.js"></script><html>
+<head><title>
+</title></head>
+<body>
+<style>
+table { border-collapse: collapse }
+tr:nth-child(odd)  { background-color: #EEE; }
+tr:nth-child(even)  { background-color: #FFF; }
+tr:nth-child(odd).exec  { background-color: #0F0; }
+tr:nth-child(even).exec  { background-color: #3F3; }
+tr:nth-child(odd).missed  { background-color: #F00; }
+tr:nth-child(even).missed  { background-color: #F33; }
+td, th {
+    border: 1px solid #98bf21;
+    padding: 3px 7px 2px 7px;
+}
+th {
+    font-size: 1.1em;
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    background-color: #A7C942;
+    color: #ffffff;
+}
+table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
+    content: " \25B4\25BE"
+}
+
+/* HSV gradient made using http://www.perbang.dk/rgbgradient/ */
+td.coverage00 { background-color: #FF0000; }
+td.coverage10 { background-color: #F83100; }
+td.coverage20 { background-color: #F25F00; }
+td.coverage30 { background-color: #EB8B00; }
+td.coverage40 { background-color: #E5B500; }
+td.coverage50 { background-color: #DFDC00; }
+td.coverage60 { background-color: #B0D800; }
+td.coverage70 { background-color: #81D200; }
+td.coverage80 { background-color: #55CB00; }
+td.coverage90 { background-color: #2CC500; }
+td.coverage100 { background-color: #04BF00; }
+td:nth-child(1) { text-align: right; }
+td:nth-child(2) { text-align: right; }
+td:nth-child(3) { text-align: right; }
+td:nth-child(4) { text-align: right; }
+</style><p>This file was read by GAP before profiling was actived, so lines which were not read but not executed are not marked.</p><table class="sortable">
+<thead><tr><th>Line</th><th>Execs</th><th>Time</th><th>Time+Childs</th><th>Code</th><th>Called Functions</th><th>Called From</th>
+</tr></thead>
+<tbody>
+<tr class='ignore'><td><a name="line1"></a>1</td><td></td><td></td><td></td><td><span><tt>#&nbsp;edmond&nbsp;karp&nbsp;uses&nbsp;bfs
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line2"></a>2</td><td></td><td></td><td></td><td><span><tt>#&nbsp;http://staff.ustc.edu.cn/~csli/graduate/algorithms/book6/chap27.htm
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line3"></a>3</td><td></td><td></td><td></td><td><span><tt>GetMinFlow&nbsp;:=&nbsp;function(adj_matrix,&nbsp;flow_matrix,&nbsp;path)
+</tt></span></td><td><span></span></td><td><span><a href=".._Maximal Flow Algorithms_edmondkarp.g.html#line150">../Maximal Flow Algorithms/edmondkarp.g:150</a> </span></td></tr>
+<tr class='ignore'><td><a name="line4"></a>4</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;local&nbsp;edge,&nbsp;u,&nbsp;e,v,&nbsp;min,&nbsp;remaining_flow;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line5"></a>5</td><td>1,051</td><td>360</td><td>360</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;min&nbsp;:=&nbsp;infinity;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line6"></a>6</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;edge&nbsp;in&nbsp;path&nbsp;do&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line7"></a>7</td><td>2,653</td><td>902</td><td>902</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;u&nbsp;:=&nbsp;edge[1];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line8"></a>8</td><td>2,653</td><td>547</td><td>547</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e&nbsp;:=&nbsp;edge[2];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line9"></a>9</td><td>2,653</td><td>603</td><td>603</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v&nbsp;:=&nbsp;edge[3];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line10"></a>10</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line11"></a>11</td><td>2,653</td><td>1,590</td><td>1,590</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remaining_flow&nbsp;:=&nbsp;adj_matrix[u][v][e]&nbsp;-&nbsp;flow_matrix[u][v][e];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line12"></a>12</td><td>2,653</td><td>1,752</td><td>1,752</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;&nbsp;remaining_flow&nbsp;&lt;&nbsp;min&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line13"></a>13</td><td>1,718</td><td>593</td><td>593</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min&nbsp;:=&nbsp;remaining_flow;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line14"></a>14</td><td>2,653</td><td>478</td><td>478</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line15"></a>15</td><td>2,653</td><td>1,248</td><td>1,248</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line16"></a>16</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line17"></a>17</td><td>1,051</td><td>893</td><td>893</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;min;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line18"></a>18</td><td></td><td></td><td></td><td><span><tt>end;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line19"></a>19</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line20"></a>20</td><td></td><td></td><td></td><td><span><tt>GetFlowInformation&nbsp;:=&nbsp;function(flow_matrix,&nbsp;source)
+</tt></span></td><td><span></span></td><td><span><a href=".._Maximal Flow Algorithms_edmondkarp.g.html#line164">../Maximal Flow Algorithms/edmondkarp.g:164</a> </span></td></tr>
+<tr class='ignore'><td><a name="line21"></a>21</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;local&nbsp;parents,&nbsp;flows,&nbsp;u,&nbsp;v,&nbsp;e,&nbsp;nr_vertices,&nbsp;edges,&nbsp;max_flow,&nbsp;_,&nbsp;i;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line22"></a>22</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line23"></a>23</td><td>1</td><td>9,139</td><td>12,182</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;nr_vertices&nbsp;:=&nbsp;Size(flow_matrix);
+</tt></span></td><td><span><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_coll.gi.html#line178">Size method</a> </span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line24"></a>24</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line25"></a>25</td><td>1</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;parents&nbsp;:=&nbsp;EmptyPlist(nr_vertices);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line26"></a>26</td><td>1</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;flows&nbsp;:=&nbsp;EmptyPlist(nr_vertices);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line27"></a>27</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;max_flow&nbsp;:=&nbsp;0;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line28"></a>28</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line29"></a>29</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;create&nbsp;empty&nbsp;2D&nbsp;list&nbsp;for&nbsp;output
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line30"></a>30</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;_&nbsp;in&nbsp;[1..nr_vertices]&nbsp;do
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line31"></a>31</td><td>500</td><td>92</td><td>92</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add(parents,&nbsp;[]);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line32"></a>32</td><td>500</td><td>96</td><td>96</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add(flows,&nbsp;[]);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line33"></a>33</td><td>1</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;od;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line34"></a>34</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line35"></a>35</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;initialise&nbsp;source&nbsp;values
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line36"></a>36</td><td>1</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;parents[source]&nbsp;:=&nbsp;[];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line37"></a>37</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;flows[source]&nbsp;:=&nbsp;[];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line38"></a>38</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line39"></a>39</td><td>1</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;u&nbsp;in&nbsp;[1..nr_vertices]&nbsp;do
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line40"></a>40</td><td>500</td><td>74</td><td>74</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;v&nbsp;in&nbsp;[1..nr_vertices]&nbsp;do
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line41"></a>41</td><td>250,000</td><td>182,804</td><td>361,567</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;e&nbsp;in&nbsp;[1..Size(flow_matrix[u][v])]&nbsp;do
+</tt></span></td><td><span><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_coll.gi.html#line178">Size method</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line42"></a>42</td><td>250,000</td><td>64,704</td><td>64,704</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;flow_matrix[u][v][e]&nbsp;>&nbsp;0&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line43"></a>43</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;add&nbsp;parents&nbsp;for&nbsp;each&nbsp;flow
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line44"></a>44</td><td>1,549</td><td>1,201</td><td>2,154</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;i&nbsp;in&nbsp;[1..Size(flow_matrix[u][v])]&nbsp;do
+</tt></span></td><td><span><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_coll.gi.html#line178">Size method</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line45"></a>45</td><td>1,549</td><td>482</td><td>482</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add(parents[v],&nbsp;u);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line46"></a>46</td><td>1,549</td><td>531</td><td>531</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add(flows[v],&nbsp;flow_matrix[u][v][i]);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line47"></a>47</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;as&nbsp;total&nbsp;flow&nbsp;out&nbsp;of&nbsp;source&nbsp;=&nbsp;total&nbsp;flow&nbsp;into&nbsp;sink.&nbsp;sum&nbsp;up&nbsp;flow&nbsp;when&nbsp;u&nbsp;is&nbsp;the&nbsp;source
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line48"></a>48</td><td>1,549</td><td>349</td><td>349</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;u&nbsp;=&nbsp;source&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line49"></a>49</td><td>499</td><td>110</td><td>110</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max_flow&nbsp;:=&nbsp;max_flow&nbsp;+&nbsp;flow_matrix[u][v][i];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line50"></a>50</td><td>1,549</td><td>335</td><td>335</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line51"></a>51</td><td>1,549</td><td>315</td><td>315</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line52"></a>52</td><td>1,549</td><td>343</td><td>343</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line53"></a>53</td><td>251,549</td><td>55,836</td><td>55,836</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line54"></a>54</td><td>250,000</td><td>56,694</td><td>56,694</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line55"></a>55</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line56"></a>56</td><td>500</td><td>78</td><td>78</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line57"></a>57</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line58"></a>58</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line59"></a>59</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line60"></a>60</td><td>1</td><td>2</td><td>2</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;[parents,&nbsp;flows,&nbsp;max_flow];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line61"></a>61</td><td>1</td><td></td><td></td><td><span><tt>end;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line62"></a>62</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line63"></a>63</td><td></td><td></td><td></td><td><span><tt>BFS&nbsp;:=&nbsp;function(adj_matrix,&nbsp;flow_matrix,&nbsp;source,&nbsp;sink)
+</tt></span></td><td><span></span></td><td><span><a href=".._Maximal Flow Algorithms_edmondkarp.g.html#line147">../Maximal Flow Algorithms/edmondkarp.g:147</a> <a href=".._Maximal Flow Algorithms_edmondkarp.g.html#line161">../Maximal Flow Algorithms/edmondkarp.g:161</a> </span></td></tr>
+<tr class='ignore'><td><a name="line64"></a>64</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;local&nbsp;queue,&nbsp;paths,&nbsp;u,&nbsp;v,&nbsp;e,&nbsp;digraph_vertices,&nbsp;nr_vertices,&nbsp;edge,&nbsp;w,&nbsp;edge_idx,&nbsp;residual_flow,idx,&nbsp;visited_edges,&nbsp;f;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line65"></a>65</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line66"></a>66</td><td>1,052</td><td>6,895,655</td><td>10,306,400</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;nr_vertices&nbsp;:=&nbsp;Size(adj_matrix);
+</tt></span></td><td><span><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_coll.gi.html#line178">Size method</a> </span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line67"></a>67</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line68"></a>68</td><td>1,052</td><td>1,808</td><td>10,360</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;queue&nbsp;:=&nbsp;PlistDeque();
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_plistdeque.gi.html#line33">PlistDeque</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line69"></a>69</td><td>1,052</td><td>1,189</td><td>5,955</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;PlistDequePushFront(queue,&nbsp;source);
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_plistdeque.gi.html#line97">PlistDequePushFront</a> </span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line70"></a>70</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line71"></a>71</td><td>1,052</td><td>1,193</td><td>6,817</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;paths&nbsp;:=&nbsp;HashMap();&nbsp;#&nbsp;edge&nbsp;to&nbsp;sourec,&nbsp;source:&nbsp;[edge,&nbsp;v]
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line19">HashMap</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line72"></a>72</td><td>1,052</td><td>1,362</td><td>1,362</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;paths[source]&nbsp;:=&nbsp;[];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line73"></a>73</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line74"></a>74</td><td>1,052</td><td>286</td><td>286</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;source&nbsp;=&nbsp;sink&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line75"></a>75</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;paths[source];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line76"></a>76</td><td>1,052</td><td>216</td><td>216</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line77"></a>77</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line78"></a>78</td><td>275,135</td><td>249,753</td><td>340,421</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;not&nbsp;IsEmpty(queue)&nbsp;do
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_plistdeque.gi.html#line255">IsEmpty for IsPlistDeque</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line79"></a>79</td><td>275,134</td><td>227,667</td><td>1,823,355</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;u&nbsp;:=&nbsp;PlistDequePopFront(queue);
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_plistdeque.gi.html#line128">PlistDequePopFront</a> </span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line80"></a>80</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line81"></a>81</td><td>275,134</td><td>66,673</td><td>66,673</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;v&nbsp;in&nbsp;[1..nr_vertices]&nbsp;do
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line82"></a>82</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;loop&nbsp;through&nbsp;edges&nbsp;for&nbsp;u&nbsp;->&nbsp;v
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line83"></a>83</td><td>137,567,000</td><td>108,364,496</td><td>210,766,374</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;edge_idx&nbsp;in&nbsp;[1..Size(adj_matrix[u][v])]&nbsp;do
+</tt></span></td><td><span><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_coll.gi.html#line178">Size method</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line84"></a>84</td><td>137,567,000</td><td>38,870,497</td><td>38,870,497</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e&nbsp;:=&nbsp;adj_matrix[u][v][edge_idx];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line85"></a>85</td><td>137,567,000</td><td>37,528,502</td><td>37,528,502</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f&nbsp;:=&nbsp;flow_matrix[u][v][edge_idx];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line86"></a>86</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line87"></a>87</td><td>137,567,000</td><td>109,838,043</td><td>109,838,043</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;e&nbsp;-&nbsp;f&nbsp;>&nbsp;0&nbsp;and&nbsp;not&nbsp;v&nbsp;in&nbsp;paths&nbsp;then
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line117">in for a hash map and a key</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line88"></a>88</td><td>524,947</td><td>248,442</td><td>248,442</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;paths[v]&nbsp;:=&nbsp;ShallowCopy(paths[u]);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line89"></a>89</td><td>524,947</td><td>237,462</td><td>237,462</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Append(paths[v],&nbsp;[[u,edge_idx,v]]);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line90"></a>90</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line91"></a>91</td><td>524,947</td><td>136,078</td><td>136,078</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;v&nbsp;=&nbsp;sink&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line92"></a>92</td><td>1,051</td><td>1,960</td><td>1,960</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;paths[v];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line93"></a>93</td><td>524,947</td><td>135,619</td><td>135,619</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line94"></a>94</td><td>523,896</td><td>435,030</td><td>3,829,249</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PlistDequePushBack(queue,&nbsp;v);
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_plistdeque.gi.html#line63">PlistDequePushBack</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line95"></a>95</td><td>138,091,947</td><td>32,280,925</td><td>32,280,925</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line96"></a>96</td><td>137,567,000</td><td>32,519,847</td><td>32,519,847</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line97"></a>97</td><td>275,134</td><td>69,771</td><td>69,771</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line98"></a>98</td><td>1,052</td><td>386</td><td>386</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line99"></a>99</td><td>1</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;-1;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line100"></a>100</td><td>1,052</td><td>229</td><td>229</td><td><span><tt>end;&nbsp;&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line101"></a>101</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line102"></a>102</td><td></td><td></td><td></td><td><span><tt>Edmondkarp&nbsp;:=&nbsp;function(digraph,&nbsp;source,&nbsp;sink)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line103"></a>103</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;local&nbsp;weights,&nbsp;adj_matrix,&nbsp;digraph_vertices,&nbsp;nr_vertices,&nbsp;e,u,v,edges,&nbsp;outs,&nbsp;ins,&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line104"></a>104</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;edge_idx,&nbsp;idx,&nbsp;out_neighbours,&nbsp;in_neighbours,&nbsp;w,&nbsp;mst,&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line105"></a>105</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;visited,&nbsp;i,&nbsp;j,&nbsp;k,&nbsp;queue,&nbsp;cost,&nbsp;node,&nbsp;neighbour,&nbsp;next_vertex,&nbsp;total,&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line106"></a>106</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;edges_in_mst,&nbsp;number_of_vertices,&nbsp;distances,&nbsp;parents,&nbsp;flow_matrix,&nbsp;path,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line107"></a>107</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;flow,&nbsp;flow_information,&nbsp;edge;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line108"></a>108</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line109"></a>109</td><td>1</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;weights&nbsp;:=&nbsp;EdgeWeights(digraph);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line110"></a>110</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line111"></a>111</td><td>1</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;digraph_vertices&nbsp;:=&nbsp;DigraphVertices(digraph);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line112"></a>112</td><td>1</td><td>3</td><td>4</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;nr_vertices&nbsp;:=&nbsp;Size(digraph_vertices);
+</tt></span></td><td><span><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_coll.gi.html#line178">Size method</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line113"></a>113</td><td>1</td><td>2</td><td>2</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;outs&nbsp;:=&nbsp;OutNeighbors(digraph);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line114"></a>114</td><td>1</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;ins&nbsp;:=&nbsp;InNeighbors(digraph);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line115"></a>115</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line116"></a>116</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;adj_matrix&nbsp;:=&nbsp;EmptyPlist(nr_vertices);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line117"></a>117</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;flow_matrix&nbsp;:=&nbsp;EmptyPlist(nr_vertices);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line118"></a>118</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line119"></a>119</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;fill&nbsp;adj&nbsp;and&nbsp;max&nbsp;flow&nbsp;with&nbsp;zeroes
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line120"></a>120</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;u&nbsp;in&nbsp;digraph_vertices&nbsp;do
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line121"></a>121</td><td>500</td><td>156</td><td>156</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adj_matrix[u]&nbsp;:=&nbsp;EmptyPlist(nr_vertices);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line122"></a>122</td><td>500</td><td>100</td><td>100</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flow_matrix[u]&nbsp;:=&nbsp;EmptyPlist(nr_vertices);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line123"></a>123</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;v&nbsp;in&nbsp;digraph_vertices&nbsp;do
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line124"></a>124</td><td>250,000</td><td>50,392</td><td>50,392</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adj_matrix[u][v]&nbsp;:=&nbsp;[0];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line125"></a>125</td><td>250,000</td><td>87,103</td><td>87,103</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flow_matrix[u][v]&nbsp;:=&nbsp;[0];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line126"></a>126</td><td>500</td><td>85</td><td>85</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line127"></a>127</td><td>1</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line128"></a>128</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line129"></a>129</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;u&nbsp;in&nbsp;digraph_vertices&nbsp;do
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line130"></a>130</td><td>500</td><td>123</td><td>123</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out_neighbours&nbsp;:=&nbsp;outs[u];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line131"></a>131</td><td>500</td><td>358</td><td>680</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;idx&nbsp;in&nbsp;[1..Size(out_neighbours)]&nbsp;do
+</tt></span></td><td><span><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_coll.gi.html#line178">Size method</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line132"></a>132</td><td>250,000</td><td>52,109</td><td>52,109</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v&nbsp;:=&nbsp;out_neighbours[idx];&nbsp;#&nbsp;the&nbsp;out&nbsp;neighbour
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line133"></a>133</td><td>250,000</td><td>55,077</td><td>55,077</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w&nbsp;:=&nbsp;weights[u][idx];&nbsp;#&nbsp;the&nbsp;weight&nbsp;to&nbsp;the&nbsp;out&nbsp;neighbour
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line134"></a>134</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line135"></a>135</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;if&nbsp;edge&nbsp;already&nbsp;exists
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line136"></a>136</td><td>250,000</td><td>57,066</td><td>57,066</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;adj_matrix[u][v][1]&nbsp;&lt;>&nbsp;0&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line137"></a>137</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add(adj_matrix[u][v],&nbsp;w);&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line138"></a>138</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add(flow_matrix[u][v],&nbsp;0);&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line139"></a>139</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add(flow_matrix[v][u],&nbsp;0);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line140"></a>140</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line141"></a>141</td><td>250,000</td><td>57,001</td><td>57,001</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adj_matrix[u][v][1]&nbsp;:=&nbsp;w;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line142"></a>142</td><td>250,000</td><td>47,323</td><td>47,323</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line143"></a>143</td><td>500</td><td>96</td><td>96</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line144"></a>144</td><td>1</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line145"></a>145</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line146"></a>146</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line147"></a>147</td><td>1</td><td>1</td><td>19,799</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;:=&nbsp;BFS(adj_matrix,&nbsp;flow_matrix,&nbsp;source,&nbsp;sink);
+</tt></span></td><td><span><a href=".._Maximal Flow Algorithms_edmondkarp.g.html#line63">BFS</a> </span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line148"></a>148</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line149"></a>149</td><td>1,052</td><td>625</td><td>625</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;path&nbsp;&lt;>&nbsp;-1&nbsp;do
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line150"></a>150</td><td>1,051</td><td>1,825</td><td>9,898</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flow&nbsp;:=&nbsp;GetMinFlow(adj_matrix,&nbsp;flow_matrix,&nbsp;path);
+</tt></span></td><td><span><a href=".._Maximal Flow Algorithms_edmondkarp.g.html#line3">GetMinFlow</a> </span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line151"></a>151</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line152"></a>152</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;edge&nbsp;in&nbsp;path&nbsp;do
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line153"></a>153</td><td>2,653</td><td>592</td><td>592</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;u&nbsp;:=&nbsp;edge[1];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line154"></a>154</td><td>2,653</td><td>734</td><td>734</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e&nbsp;:=&nbsp;edge[2];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line155"></a>155</td><td>2,653</td><td>554</td><td>554</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v&nbsp;:=&nbsp;edge[3];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line156"></a>156</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line157"></a>157</td><td>2,653</td><td>1,389</td><td>1,389</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flow_matrix[u][v][e]&nbsp;:=&nbsp;flow_matrix[u][v][e]&nbsp;+&nbsp;flow;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line158"></a>158</td><td>2,653</td><td>1,310</td><td>1,310</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flow_matrix[v][u][e]&nbsp;:=&nbsp;flow_matrix[v][u][e]&nbsp;-&nbsp;flow;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line159"></a>159</td><td>2,653</td><td>912</td><td>912</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line160"></a>160</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line161"></a>161</td><td>1,051</td><td>866</td><td>695,982,188</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;:=&nbsp;BFS(adj_matrix,&nbsp;flow_matrix,&nbsp;source,&nbsp;sink);
+</tt></span></td><td><span><a href=".._Maximal Flow Algorithms_edmondkarp.g.html#line63">BFS</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line162"></a>162</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line163"></a>163</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line164"></a>164</td><td>1</td><td>1</td><td>729,278</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;flow_information&nbsp;:=&nbsp;GetFlowInformation(flow_matrix,&nbsp;source);
+</tt></span></td><td><span><a href=".._Maximal Flow Algorithms_edmondkarp.g.html#line20">GetFlowInformation</a> </span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line165"></a>165</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;rec(
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line166"></a>166</td><td>1</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parents:=flow_information[1],&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line167"></a>167</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;flows:=flow_information[2],
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line168"></a>168</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;max_flow:=flow_information[3]
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line169"></a>169</td><td>2</td><td>7</td><td>7</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line170"></a>170</td><td>1</td><td></td><td></td><td><span><tt>end;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line171"></a>171</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line172"></a>172</td><td></td><td></td><td></td><td><span><tt>&nbsp;</tt></span></td><td><span></span></td><td><span></span></td></tr>
+</tbody>
+</table></body></html>

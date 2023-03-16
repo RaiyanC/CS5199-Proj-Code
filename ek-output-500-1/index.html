@@ -1,0 +1,88 @@
+<!DOCTYPE html><script src="sorttable.js"></script><html>
+<head><title>
+</title></head>
+<body>
+<style>
+table { border-collapse: collapse }
+tr:nth-child(odd)  { background-color: #EEE; }
+tr:nth-child(even)  { background-color: #FFF; }
+tr:nth-child(odd).exec  { background-color: #0F0; }
+tr:nth-child(even).exec  { background-color: #3F3; }
+tr:nth-child(odd).missed  { background-color: #F00; }
+tr:nth-child(even).missed  { background-color: #F33; }
+td, th {
+    border: 1px solid #98bf21;
+    padding: 3px 7px 2px 7px;
+}
+th {
+    font-size: 1.1em;
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    background-color: #A7C942;
+    color: #ffffff;
+}
+table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
+    content: " \25B4\25BE"
+}
+
+/* HSV gradient made using http://www.perbang.dk/rgbgradient/ */
+td.coverage00 { background-color: #FF0000; }
+td.coverage10 { background-color: #F83100; }
+td.coverage20 { background-color: #F25F00; }
+td.coverage30 { background-color: #EB8B00; }
+td.coverage40 { background-color: #E5B500; }
+td.coverage50 { background-color: #DFDC00; }
+td.coverage60 { background-color: #B0D800; }
+td.coverage70 { background-color: #81D200; }
+td.coverage80 { background-color: #55CB00; }
+td.coverage90 { background-color: #2CC500; }
+td.coverage100 { background-color: #04BF00; }
+td:nth-child(2) { text-align: right; }
+td:nth-child(3) { text-align: right; }
+td:nth-child(4) { text-align: right; }
+td:nth-child(5) { text-align: right; }
+td:nth-child(6) { text-align: right; }
+</style>
+                          <table style="width:100%">
+                          <tr>
+                            <th><b>Flame Graphs</b>
+                            <th>Standard</th>
+                            <th>Stacks Reversed</th>
+                            <th>X-Axis Sorted by Time</th>
+                          </tr>
+                          <tr>
+                            <th>Standard</th>
+                            <td><a href="flame-default-standard.svg">Graph</a></th>
+                            <td><a href="flame-reverse-standard.svg">Graph</a></tdt>
+                            <td><a href="flame-chart-standard.svg">Graph</a></td>
+                          <tr>
+                            <th>Squashed Recursive Function</th>
+                            <td><a href="flame-default-squash.svg">Graph</a></th>
+                            <td><a href="flame-reverse-squash.svg">Graph</a></td>
+                            <td><a href="flame-chart-squash.svg">Graph</a></td>
+                          </tr>
+                        </table></p><p><a href="funcoverview.html">Function Overview</a></p><table cellspacing='0' cellpadding='0' class="sortable">
+<thead><tr><th>File</th><th>Coverage%</th><th>Executed Lines</th><th>Total Lines</th><th>Time</th><th>Statements</th></tr></thead>
+<tbody>
+<tr><td><a href='_stdin_.html'>*stdin*</a></td><td class='coverage100'>100</td><td>1</td><td>1</td><td>4</td><td>10</td></tr>
+<tr><td><a href='.._Maximal Flow Algorithms_edmondkarp.g.html'>../Maximal Flow Algorithms/edmondkarp.g</a></td><td>N/A</td><td>102</td><td>?</td><td>368,911,062</td><td>832,471,071</td></tr>
+<tr><td><a href='_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_boolean.g.html'>/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/boolean.g</a></td><td>N/A</td><td>3</td><td>?</td><td>3</td><td>4</td></tr>
+<tr><td><a href='_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_coll.gi.html'>/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/coll.gi</a></td><td>N/A</td><td>22</td><td>?</td><td>206,438,544</td><td>551,280,493</td></tr>
+<tr><td><a href='_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_cyclotom.g.html'>/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/cyclotom.g</a></td><td>N/A</td><td>3</td><td>?</td><td>7,974</td><td>12,396</td></tr>
+<tr><td><a href='_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_integer.gi.html'>/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/integer.gi</a></td><td>N/A</td><td>5</td><td>?</td><td>8,646</td><td>15,495</td></tr>
+<tr><td><a href='_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_list.gi.html'>/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/list.gi</a></td><td>N/A</td><td>13</td><td>?</td><td>15,586</td><td>33,588</td></tr>
+<tr><td><a href='_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_newprofile.g.html'>/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/newprofile.g</a></td><td>N/A</td><td>1</td><td>?</td><td>N/A</td><td>N/A</td></tr>
+<tr><td><a href='_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_object.gi.html'>/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/object.gi</a></td><td>N/A</td><td>4</td><td>?</td><td>6,862</td><td>12,400</td></tr>
+<tr><td><a href='_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_record.gi.html'>/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/record.gi</a></td><td>N/A</td><td>18</td><td>?</td><td>50</td><td>59</td></tr>
+<tr><td><a href='_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_session.g.html'>/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/session.g</a></td><td>N/A</td><td>2</td><td>?</td><td>2</td><td>6</td></tr>
+<tr><td><a href='_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_stbc.gi.html'>/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/stbc.gi</a></td><td>N/A</td><td>5</td><td>?</td><td>3</td><td>6</td></tr>
+<tr><td><a href='_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_string.gi.html'>/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/string.gi</a></td><td>N/A</td><td>3</td><td>?</td><td>2</td><td>8</td></tr>
+<tr><td><a href='_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_teaching.g.html'>/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/teaching.g</a></td><td>N/A</td><td>6</td><td>?</td><td>18,303</td><td>28,812</td></tr>
+<tr><td><a href='_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_userpref.g.html'>/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/userpref.g</a></td><td>N/A</td><td>12</td><td>?</td><td>14,499</td><td>40,287</td></tr>
+<tr><td><a href='_cs_home_mrc7_Documents_cs5199_gap-4.12.2_pkg_gapdoc_lib_PrintUtil.gi.html'>/cs/home/mrc7/Documents/cs5199/gap-4.12.2/pkg/gapdoc/lib/PrintUtil.gi</a></td><td>N/A</td><td>3</td><td>?</td><td>3</td><td>4</td></tr>
+<tr><td><a href='_cs_home_mrc7_Documents_cs5199_gap-4.12.2_pkg_orb_gap_hash.gi.html'>/cs/home/mrc7/Documents/cs5199/gap-4.12.2/pkg/orb/gap/hash.gi</a></td><td>N/A</td><td>6</td><td>?</td><td>4</td><td>7</td></tr>
+<tr><td><a href='_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html'>/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/hashmap.gi</a></td><td>N/A</td><td>19</td><td>?</td><td>115,807,575</td><td>137,033,253</td></tr>
+<tr><td><a href='_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_plistdeque.gi.html'>/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/plistdeque.gi</a></td><td>N/A</td><td>77</td><td>?</td><td>5,561,552</td><td>18,544,915</td></tr>
+</tbody>
+</table></body></html>

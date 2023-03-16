@@ -1,4 +1,4 @@
-SetUserPreference( "PackagesToLoad", ["PackageManager", "digraphs"] );
+SetUserPreference( "PackagesToLoad", ["PackageManager", "digraphs", "profiling"] );
 SetUserPreference( "UseColorPrompt", true );
 SetUserPreference( "HistoryMaxLines", 1000 );
 SetUserPreference( "SaveAndRestoreHistory", true );
@@ -6,8 +6,8 @@ SetUserPreference( "InfoDigraphs", 4 );
 SetUserPreference( "Editor", "emacs" );
 
 in digraphs-1.6.1/ init.g and read.g
-ReadPackage("digraphs", "gap/examples.gd"); 
-ReadPackage("digraphs", "gap/examples.gi");
+ReadPackage("digraphs", "gap/weights.gd"); 
+ReadPackage("digraphs", "gap/weights.gi");
 
 in digraphs-1.6.1/gap/ doc.g
 
@@ -149,3 +149,8 @@ Read("../Maximal Flow Algorithms/Analysis/tester.g"); Runtests("dc",1002,0.01,5,
 g := EdgeWeightedDigraph([[2,3,6],[1,3],[1,2,4,5],[3,5],[3,4,6],[1,5]], [[12,8,3],[12,5],[8,5,6,1],[6,9],[1,9,3],[3,3]]);
 
 Read("../Minimum Spanning Tree Algorithms/kruskals.g"); Kruskals(g); 
+
+
+# DEBUGGING EK AND DC
+Read("../Maximal Flow Algorithms/mf_graph_creator.g"); rmfg := CreateRandomMFGraph(1000,1);
+Read("../Maximal Flow Algorithms/edmondkarp.g"); Edmondkarp(rmfg.random_graph, rmfg.start, rmfg.destination);
