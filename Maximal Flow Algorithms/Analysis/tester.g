@@ -2,7 +2,7 @@ Runtests := function(alg, nodes, probability, nrIterations, step)
   local algPath, analysisPath, headers, i, random_graph, nrNode, idx, a, b;
 
   # read in necessary files
-  Read("../test_creating_edgeweighted_digraph.g");
+  # Read("../test_creating_edgeweighted_digraph.g");
   Read("../Maximal Flow Algorithms/mf_graph_creator.g");
   algPath := Concatenation("../Maximal Flow Algorithms/Analysis/", 
              Concatenation(String(alg), ".g"));
@@ -17,7 +17,7 @@ Runtests := function(alg, nodes, probability, nrIterations, step)
   headers := "Vertices,Edges,StartTime,EndTime\n";
   PrintTo(analysisPath, headers);
   
-  nrNode := 2;
+  nrNode := 922;
   while nrNode <= nodes do
     for i in [1..nrIterations] do
       # create random graphs and save them
@@ -36,6 +36,9 @@ Runtests := function(alg, nodes, probability, nrIterations, step)
         a := Edmondkarp(random_graph.random_graph, random_graph.start, random_graph.destination, probability);
         b := Dinic(random_graph.random_graph, random_graph.start,random_graph.destination, probability);
         
+        if a.max_flow <> b.max_flow then
+          ErrorNoReturn("DIFFERENT ANSWERS");
+        fi;
       fi;
     od;
     nrNode := nrNode + step;
