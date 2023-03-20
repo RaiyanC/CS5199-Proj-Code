@@ -66,28 +66,17 @@ Floyd := function(digraph)
         od;
     od;
 
-    # Print("adj mat ", adj_matrix, "\n\n\n");
-
-    # Print("distance ", distances, "\n\n\n");
-
-
     for k in [1..nr_vertices] do
         for u in [1..nr_vertices] do
             for v in [1..nr_vertices] do
                 if distances[u][k] < infinity and distances[k][v] < infinity then
                     if distances[u][k] + distances[k][v] < distances[u][v] then
                         distances[u][v] := distances[u][k] + distances[k][v];
-
-
-                        parents[k][v] := k;
-                        # parents[u][k] := u;
-
-                        # Print("u ", u, " k ", k, " v ", v, "\n");
                     fi;
                 fi;
             od;
         od;
     od;
     
-    return rec(distances:=distances, parents:=parents, edges:=edges);
+    return distances;
 end;

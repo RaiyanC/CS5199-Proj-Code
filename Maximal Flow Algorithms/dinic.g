@@ -13,13 +13,14 @@ Dinic := function(digraph, source, sink)
     outs := OutNeighbors(digraph);
     ins := InNeighbors(digraph);
 
-    adj_matrix := EmptyPlist(nr_vertices);
-    flow_matrix := EmptyPlist(nr_vertices);
+    adj_matrix := HashMap();
+    flow_matrix := HashMap();
     
     # fill adj and max flow with zeroes
     for u in digraph_vertices do
-        adj_matrix[u] := EmptyPlist(nr_vertices);
-        flow_matrix[u] := EmptyPlist(nr_vertices);
+        adj_matrix[u] := HashMap();
+        flow_matrix[u] := HashMap();
+
         for v in digraph_vertices do
             adj_matrix[u][v] := [0];
             flow_matrix[u][v] := [0];
@@ -74,7 +75,6 @@ GetFlowInformation := function(flow_matrix, source)
     parents[source] := [];
     flows[source] := [];
     
-    # Print("\n\n\n flow matrix ", flow_matrix, "\n\n\n");
     for u in [1..nr_vertices] do
         for v in [1..nr_vertices] do
             for e in [1..Size(flow_matrix[u][v])] do
@@ -117,7 +117,7 @@ BFS := function(adj_matrix, flow_matrix, source, sink)
 
     while not IsEmpty(queue) do
         u := PlistDequePopFront(queue);
-        for v in [1..nr_vertices] do
+        for v in Keys(adj_matrix[u]) do
             for edge_idx in [1..Size(adj_matrix[u][v])] do
                 e := adj_matrix[u][v][edge_idx];
                 f := flow_matrix[u][v][edge_idx];
@@ -141,7 +141,7 @@ DFS := function(adj_matrix, flow_matrix, u, flow)
         return flow;
     fi;
 
-    for v in [1..nr_vertices] do
+    for v in Keys(adj_matrix[u]) do
         for edge_idx in [1..Size(adj_matrix[u][v])] do
             e := adj_matrix[u][v][edge_idx];
             fl := flow_matrix[u][v][edge_idx];

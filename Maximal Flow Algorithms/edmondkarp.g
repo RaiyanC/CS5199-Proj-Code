@@ -68,7 +68,7 @@ BFS := function(adj_matrix, flow_matrix, source, sink)
     queue := PlistDeque();
     PlistDequePushFront(queue, source);
     
-    paths := HashMap(); # edge to sourec, source: [edge, v]
+    paths := HashMap(); # edge to source, source: [edge, v]
     paths[source] := [];
 
     if source = sink then
@@ -112,17 +112,12 @@ Edmondkarp := function(digraph, source, sink)
     nr_vertices := Size(digraph_vertices);
     outs := OutNeighbors(digraph);
     ins := InNeighbors(digraph);
-  
-    # adj_matrix := EmptyPlist(nr_vertices);
-    # flow_matrix := EmptyPlist(nr_vertices);
 
     adj_matrix := HashMap();
     flow_matrix := HashMap();
 
     # fill adj and max flow with zeroes
     for u in digraph_vertices do
-        # adj_matrix[u] := EmptyPlist(nr_vertices);
-        # flow_matrix[u] := EmptyPlist(nr_vertices);
 
         adj_matrix[u] := HashMap();
         flow_matrix[u] := HashMap();

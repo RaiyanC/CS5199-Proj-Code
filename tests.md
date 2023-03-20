@@ -154,3 +154,9 @@ Read("../Minimum Spanning Tree Algorithms/kruskals.g"); Kruskals(g);
 # DEBUGGING EK AND DC
 Read("../Maximal Flow Algorithms/mf_graph_creator.g"); rmfg := CreateRandomMFGraph(1000,1);
 Read("../Maximal Flow Algorithms/edmondkarp.g"); Edmondkarp(rmfg.random_graph, rmfg.start, rmfg.destination);
+
+
+# Johnson
+https://www.coursera.org/lecture/algorithms-npcomplete/johnsons-algorithm-i-eT0Xt
+g := EdgeWeightedDigraph([[2,3],[4],[4],[]],[[5,1],[6],[11],[]]);
+Read("../Shortest Path Algorithms/johnson.g"); Johnson(g); 

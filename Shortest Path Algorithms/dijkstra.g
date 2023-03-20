@@ -1,7 +1,7 @@
 Dijkstra := function(digraph, source)
-local weights, digraphVertices, nrVertices, adj, u, outNeighbours, idx, v, w, 
-distances, parents, edges, vertex, visited, queue, node, currDist, neighbour,
-edgeInfo, distance, i, d;
+    local weights, digraphVertices, nrVertices, adj, u, outNeighbours, idx, v, w, 
+    distances, parents, edges, vertex, visited, queue, node, currDist, neighbour,
+    edgeInfo, distance, i, d;
 
     weights := EdgeWeights(digraph);
 
