@@ -180,99 +180,89 @@ Johnson := function(digraph)
     local weights, adj, adjMatrix, digraphVertices, nrVertices, e,u,v,edges, outs, ins, 
     edge_idx, idx, outNeighbours, inNeighbours, w, mst, 
     visited, i, j, k, queue, cost, node, neighbour, total, distances, parents, start,
-    newDigraph, newWeights, mutableOuts, bellman_distances, distance;
+    mutableWeights, mutableOuts, bellman_distances, distance;
 
-    weights := EdgeWeights(digraph);
+    mutableWeights := EdgeWeightsMutableCopy(digraph);
     
     digraphVertices := DigraphVertices(digraph);
     nrVertices := Size(digraphVertices);
-    outs := OutNeighbors(digraph);
+    mutableOuts := OutNeighborsMutableCopy(digraph);
 
     # add new u that connects to all other v with weight 0
-    newDigraph := EmptyPlist(nrVertices);
-    newWeights := EmptyPlist(nrVertices);
-    newDigraph[1] := [];
-    newWeights[1] := [];
+    Add(mutableOuts, [], 1);
+    Add(mutableWeights, [], 1);
 
+    # fill new u
     for v in [1..nrVertices] do
-        Add(newDigraph[1], v + 1);
-        Add(newWeights[1], 0);
+        Add(mutableOuts[1], v + 1);
+        Add(mutableWeights[1], 0);
     od;
 
-    for v in [1..nrVertices] do
-        # adding + 1 to empty lists returns a type list instead of collection
-        if Size(outs[v]) = 0 then
-            Add(newDigraph, []);
-            Add(newWeights, []);
-        else 
-            Add(newDigraph, outs[v] + 1);
-            Add(newWeights, weights[v]);
-        fi;
-        
+    # update v to v + 1
+    for u in [2..nrVertices + 1] do
+        for v in [1..Size(mutableOuts[u])] do
+            mutableOuts[u][v] := mutableOuts[u][v] + 1;
+        od; 
     od;
-
-    digraph := EdgeWeightedDigraph(newDigraph, newWeights);
+    
+    digraph := EdgeWeightedDigraph(mutableOuts, mutableWeights);
     bellman_distances := Bellman(digraph, 1).distances;
-
-    weights := EdgeWeightsMutableCopy(digraph);
+    
+    mutableWeights := EdgeWeightsMutableCopy(digraph);
     digraphVertices := DigraphVertices(digraph);
     nrVertices := Size(digraphVertices);
-    outs := OutNeighborsMutableCopy(digraph);
+    mutableOuts := OutNeighborsMutableCopy(digraph);
 
     # set weight(u, v) = weight(u, v) + bell_dist(u) - bell_dist(v) for each edge (u, v)
     for u in digraphVertices do
-        outNeighbours := OutNeighbors(digraph)[u];
+        outNeighbours := mutableOuts[u];
         for idx in [1..Size(outNeighbours)] do
             v := outNeighbours[idx]; # the out neighbour
-            w := weights[u][idx]; # the weight to the out neighbour
-
-            weights[u][idx] := w + bellman_distances[u] - bellman_distances[v];
+            w := mutableWeights[u][idx]; # the weight to the out neighbour
+            mutableWeights[u][idx] := w + bellman_distances[u] - bellman_distances[v];
         od;
     od;
 
-    Print(outs, "\n");
+    Remove(mutableOuts, 1);
+    Remove(mutableWeights, 1);
 
-    Remove(outs, 1);
-    Remove(weights, 1);
-
-    for u in outs do
-        Print(u, " ",FamilyObj(u), "\n");
+    # update v to v - 1
+    for u in [1..Size(mutableOuts)] do
+        for v in [1..Size(mutableOuts[u])] do
+            mutableOuts[u][v] := mutableOuts[u][v] - 1;
+        od; 
     od;
 
-    
+    digraph := EdgeWeightedDigraph(mutableOuts, mutableWeights);
+    digraphVertices := DigraphVertices(digraph);
 
-    digraph := EdgeWeightedDigraph(outs, weights);
-    # digraphVertices := DigraphVertices(digraph);
+    distance := EmptyPlist(nrVertices);
 
-    # distance := EmptyPlist(nrVertices);
-
-    # run dijkstra
-    # for u in digraphVertices do
-    #     distance[u] := Dijkstra(digraph, u).distances;
-    # od;
+    # # run dijkstra
+    for u in digraphVertices do
+        distance[u] := Dijkstra(digraph, u).distances;
+    od;
 
     # correct distances
-    # for u in digraphVertices do
-    #     for v in digraphVertices do
-    #         if distance[u][v] = fail then
-    #             distance[u][v] := fail;
-    #             continue;
-    #         fi;
-    #         distance[u][v] := distance[u][v] + bellman_distances[v] - bellman_distances[u];
-    #     od;
-    # od;
+    for u in digraphVertices do
+        for v in digraphVertices do
+            if distance[u][v] = fail then
+                continue;
+            fi;
+            distance[u][v] := distance[u][v] + (bellman_distances[v+1] - bellman_distances[u+1]);
+        od;
+    od;
 
-    # correct distances in original graph
+    # # correct distances in original graph
     # for u in digraphVertices do
-    #     outNeighbours := OutNeighbors(digraph)[u];
+    #     outNeighbours := mutableOuts[u];
     #     for idx in [1..Size(outNeighbours)] do
     #         v := outNeighbours[idx]; # the out neighbour
-    #         w := weights[u][idx]; # the weight to the out neighbour
+    #         w := mutableWeights[u][idx]; # the weight to the out neighbour
 
-    #         weights[u][idx] := w + bellman_distances[u] + bellman_distances[v];
+    #         mutableWeights[u][idx] := w + bellman_distances[v] + bellman_distances[u];
     #     od;
     # od;
 
-    # return distance;
-    return 0;
+    return distance;
 end;

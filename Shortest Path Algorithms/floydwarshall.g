@@ -77,6 +77,16 @@ Floyd := function(digraph)
             od;
         od;
     od;
+
+    # replace infinity with fails
+    for u in [1..nr_vertices] do
+            for v in [1..nr_vertices] do
+                if distances[u][v] = infinity then
+                    distances[u][v] := fail;
+                fi;
+        od;
+    od;
+
     
     return distances;
 end;
