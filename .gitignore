@@ -1,5 +1,6 @@
 # Ignore gap directory
 gap-4.12.2
+ek-output.gz
 
 # Ignore digraphs clone
 Digraphs/*

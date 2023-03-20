@@ -2,7 +2,7 @@ Runtests := function(alg, nodes, probability, nrIterations, step)
   local algPath, analysisPath, headers, i, random_graph, nrNode, idx;
 
   # read in necessary files
-  Read("../test_creating_edgeweighted_digraph.g");
+  # Read("../test_creating_edgeweighted_digraph.g");
   Read("../Shortest Path Algorithms/sp_graph_creator.g");
   if alg <> "all" then
   algPath := Concatenation("../Shortest Path Algorithms/Analysis/", 
@@ -35,13 +35,19 @@ Runtests := function(alg, nodes, probability, nrIterations, step)
         Read(algPath);
         Floyd(random_graph.random_graph, probability);
       fi;
+      if String(alg) = "j" then
+        Read(algPath);
+        Johnson(random_graph.random_graph, probability);
+      fi;
       if String(alg) = "all" then 
         Read("../Shortest Path Algorithms/Analysis/d.g");
         Read("../Shortest Path Algorithms/Analysis/bmf.g");
         Read("../Shortest Path Algorithms/Analysis/flw.g");
+        Read("../Shortest Path Algorithms/Analysis/j.g");
         Dijkstra(random_graph.random_graph, random_graph.start, probability);
         Bellman(random_graph.random_graph, random_graph.start, probability);
         Floyd(random_graph.random_graph, probability);
+        Johnson(random_graph.random_graph, probability);
       fi;
 
     od;

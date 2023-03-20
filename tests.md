@@ -125,7 +125,11 @@ Read("../Shortest Path Algorithms/Analysis/tester.g"); Runtests("d",1001,1,5,10)
  Read("../Shortest Path Algorithms/dijkstra.g"); Dijkstra(rd.random_graph, rd.start);
  Read("../Shortest Path Algorithms/bellmanford.g"); Bellman(rd.random_graph, rd.start);
 
-
+Read("../Shortest Path Algorithms/Analysis/tester.g"); Runtests("j",1001,1,5,10);
+Read("../Shortest Path Algorithms/Analysis/tester.g"); Runtests("j",1001,0.5,5,10);
+Read("../Shortest Path Algorithms/Analysis/tester.g"); Runtests("j",1001,0.25,5,10);
+Read("../Shortest Path Algorithms/Analysis/tester.g"); Runtests("j",1001,0.125,5,10);
+Read("../Shortest Path Algorithms/Analysis/tester.g"); Runtests("j",1001,0.01,5,10);
  # for maximal flow
 
 DeclareAttribute("EdgeWeights", IsDigraph);
