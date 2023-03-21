@@ -22,9 +22,10 @@ union := function(parent, rank, x, y)
     fi;
 end;
 
-Karger := function(digraph)
+minCut := function(digraph)
     local subsets, digraphVertices, nrVertices, nrV, nrEdges, i, u, u_idx, v, v_idx,
-    edgeList, outNeigbours, idx, w, weights, s1, s2, randomEdgeIdx, cuts, parent, x, y;
+    edgeList, outNeigbours, idx, w, weights, randomEdgeIdx, cuts, edgesCut, parent,
+    total, x, y;
 
     weights := EdgeWeights(digraph);
     digraphVertices := DigraphVertices(digraph);
@@ -51,9 +52,11 @@ Karger := function(digraph)
         Add(rank, 1);
     od;
 
+    edgesCut := [];
     nrV := nrVertices;
     while nrV > 2 do
         randomEdgeIdx := Random([1..Size(edgeList)]);
+        w := edgeList[randomEdgeIdx][1];
         u := edgeList[randomEdgeIdx][2];
         v := edgeList[randomEdgeIdx][3];
 
@@ -61,109 +64,51 @@ Karger := function(digraph)
         y := find(parent, v);
 
         if x <> y then
+            
             nrV := nrV - 1;
             union(parent, rank, x, y);
         fi;
     od;
 
     cuts := 0;
+    total := 0;
     for i in [1..nrEdges] do
+        w := edgeList[i][1];
+        u := edgeList[i][2];
+        v := edgeList[i][3];
         
-        x := find(parent, edgeList[i][2]);
-        y := find(parent, edgeList[i][3]);
+        x := find(parent, u);
+        y := find(parent, v);
 
         if x <> y then
+            Add(edgesCut, [u, v]);
             cuts := cuts + 1;
+            total := total + w;
         fi;
     od;
-    return cuts;
+
+    return rec(cuts:=cuts, edgesCut:=edgesCut, total:=total);
 end;
 
-# mergeVertices := function(digraph, u_idx, v_idx)
-#     local mutableOuts, mutableWeights, head, tail, head_w, tail_w;
+Karger := function(digraph)
+    local digraphVertices, nrVertices, nrEdges, i, upperBound, edgesCut, cutInfo, total;
 
-#     mutableOuts := OutNeighborsMutableCopy(digraph);
-#     mutableWeights := EdgeWeightsMutableCopy(digraph);
+    digraphVertices := DigraphVertices(digraph);
+    nrVertices := Size(digraphVertices);
+    nrEdges := Size(DigraphEdges(digraph));
+    edgesCut := [];
+    total := 0;
 
-#     Print("before ", mutableOuts, " ", mutableWeights, "\n");
-#     Print(u_idx, " ", v_idx,"\n");
+    upperBound := Int(nrVertices * LogInt(nrVertices, 2)/(nrVertices - 1));
 
-#     head := mutableOuts[u_idx];
-#     tail := mutableOuts[u_idx];
-#     head_w := mutableWeights[u_idx];
-#     tail_w := mutableWeights[u_idx];
+    for i in [1.. upperBound] do
+        cutInfo := minCut(digraph);
+        if cutInfo.cuts <= nrEdges then
+            nrEdges := cutInfo.cuts;
+            edgesCut := cutInfo.edgesCut;
+            total := cutInfo.total;
+        fi;
+    od;
 
-#     # remove the edge between u and v
-#     Remove(mutableOuts[u_idx], v_idx);
-#     Remove(mutableWeights[u_idx], v_idx);
-
-    
-# end;
-
-
-# contract := function(digraph, min_v)
-#     local digraphVertices, nrVertices, nrEdges, outNeigbours, i, upperBound, u, v;
-
-#     digraphVertices := DigraphVertices(digraph);
-#     nrVertices := Size(digraphVertices);
-#     nrEdges := Size(DigraphEdges(digraph));
-
-#     if min_v = fail then
-#         min_v := 2;
-#     fi;
-
-#     digraph := EdgeWeightedDigraph(OutNeighborsMutableCopy(digraph), EdgeWeightsMutableCopy(digraph));
-#     while nrVertices > min_v do
-        # outNeigbours := OutNeighbors(digraph);
-        # u := Random([1..Size(outNeigbours)]);
-        # v := Random([1..Size(outNeigbours[u])]);
-#         mergeVertices(digraph, u, v);
-#     od;
-# end;
-
-# minCut := function(digraph)
-#     local digraphVertices, nrVertices, nrEdges, i, upperBound;
-
-#     digraphVertices := DigraphVertices(digraph);
-#     nrVertices := Size(digraphVertices);
-#     nrEdges := Size(DigraphEdges(digraph));
-
-#     upperBound := Int(nrVertices * LogInt(nrVertices, 2)/(nrVertices - 1));
-#     for i in [1..upperBound] do
-#         digraph := contract(digraph, fail);
-#         nrEdges := Minimum(nrEdges, Size(DigraphEdges(digraph)));
-#     od;
-#     return nrEdges;
-# end;
-
-# fastMinCut := function(digraph)
-#     local digraphVertices, nrVertices, t, g1, g2;
-
-#     digraphVertices := DigraphVertices(digraph);
-#     nrVertices := Size(digraphVertices);
-    
-
-#     if nrVertices <= 6 then
-#         return minCut(digraph);
-#     else 
-#         t := Floor(1 + nrVertices / Sqrt(2));
-#         g1 := contract(digraph, t);
-#         g2 := contract(digraph, t);
-#     fi;
-
-#     return Minimum(fastMinCut(g1), fastMinCut(g2));
-# end;
-
-# Karger := function(digraph)
-    # local digraphVertices, nrVertices, nrEdges, i, upperBound;
-
-    # digraphVertices := DigraphVertices(digraph);
-    # nrVertices := Size(digraphVertices);
-    # nrEdges := Size(DigraphEdges(digraph));
-
-#     upperBound := Int(nrVertices * LogInt(nrVertices, 2)/(nrVertices - 1));
-#     for i in [1..upperBound] do
-#         nrEdges := Minimum(nrEdges, minCut(digraph));
-#     od;
-#     return nrEdges;
-# end;
+    return  rec(cuts:=nrEdges, edgesCut:=edgesCut, total:=total);
+end;
