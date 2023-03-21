@@ -1,5 +1,7 @@
 # Ignore gap directory
 gap-4.12.2
+
+# Ignore large file
 ek-output.gz
 
 # Ignore digraphs clone

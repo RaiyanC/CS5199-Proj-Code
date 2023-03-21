@@ -182,8 +182,6 @@ Johnson := function(digraph, probability)
     visited, i, j, k, queue, cost, node, neighbour, total, distances, parents, start,
     mutableWeights, mutableOuts, bellman_distances, distance, analysisPath, headers, nrEdges, startTime, endTime, data;
 
-    
-
     mutableWeights := EdgeWeightsMutableCopy(digraph);
     
     digraphVertices := DigraphVertices(digraph);

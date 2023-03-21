@@ -102,8 +102,7 @@ end;
 Edmondkarp := function(digraph, source, sink)
     local weights, adj_matrix, digraph_vertices, nr_vertices, e,u,v,edges, outs, ins, 
     edge_idx, idx, out_neighbours, in_neighbours, w, mst, 
-    visited, i, j, k, queue, cost, node, neighbour, next_vertex, total, 
-    edges_in_mst, number_of_vertices, distances, parents, flow_matrix, path,
+    visited, i, j, k, queue, cost, node, neighbour, next_vertex, total, distances, parents, flow_matrix, path,
     flow, flow_information, edge;
 
     weights := EdgeWeights(digraph);
