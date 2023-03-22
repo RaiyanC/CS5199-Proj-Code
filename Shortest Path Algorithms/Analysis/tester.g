@@ -18,7 +18,7 @@ Runtests := function(alg, nodes, probability, nrIterations, step)
   headers := "Vertices,Edges,StartTime,EndTime\n";
   PrintTo(analysisPath, headers);
   
-  nrNode := 1;
+  nrNode := 942;
   while nrNode <= nodes do
     for i in [1..nrIterations] do
       # create random graphs and save them

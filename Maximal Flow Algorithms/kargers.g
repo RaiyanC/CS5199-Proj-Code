@@ -64,7 +64,6 @@ minCut := function(digraph)
         y := find(parent, v);
 
         if x <> y then
-            
             nrV := nrV - 1;
             union(parent, rank, x, y);
         fi;
@@ -109,6 +108,5 @@ Karger := function(digraph)
             total := cutInfo.total;
         fi;
     od;
-
     return  rec(cuts:=nrEdges, edgesCut:=edgesCut, total:=total);
 end;
