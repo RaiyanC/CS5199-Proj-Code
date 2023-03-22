@@ -177,10 +177,9 @@ Dijkstra := function(digraph, source)
 end;
 
 Johnson := function(digraph)
-    local weights, adj, adjMatrix, digraphVertices, nrVertices, e,u,v,edges, outs, ins, 
-    edge_idx, idx, outNeighbours, inNeighbours, w, mst, 
-    visited, i, j, k, queue, cost, node, neighbour, total, distances, parents, start,
-    mutableWeights, mutableOuts, bellman_distances, distance;
+    local adjMatrix, digraphVertices, nrVertices, e,u,v,edges, outs,
+    idx, outNeighbours, w, i, j, k, distances,
+    mutableWeights, mutableOuts, bellmanDistances, distance;
 
     mutableWeights := EdgeWeightsMutableCopy(digraph);
     
@@ -206,7 +205,7 @@ Johnson := function(digraph)
     od;
     
     digraph := EdgeWeightedDigraph(mutableOuts, mutableWeights);
-    bellman_distances := Bellman(digraph, 1).distances;
+    bellmanDistances := Bellman(digraph, 1).distances;
     
     mutableWeights := EdgeWeightsMutableCopy(digraph);
     digraphVertices := DigraphVertices(digraph);
@@ -219,7 +218,7 @@ Johnson := function(digraph)
         for idx in [1..Size(outNeighbours)] do
             v := outNeighbours[idx]; # the out neighbour
             w := mutableWeights[u][idx]; # the weight to the out neighbour
-            mutableWeights[u][idx] := w + bellman_distances[u] - bellman_distances[v];
+            mutableWeights[u][idx] := w + bellmanDistances[u] - bellmanDistances[v];
         od;
     od;
 
@@ -249,7 +248,7 @@ Johnson := function(digraph)
             if distance[u][v] = fail then
                 continue;
             fi;
-            distance[u][v] := distance[u][v] + (bellman_distances[v+1] - bellman_distances[u+1]);
+            distance[u][v] := distance[u][v] + (bellmanDistances[v+1] - bellmanDistances[u+1]);
         od;
     od;
 

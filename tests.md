@@ -165,7 +165,7 @@ https://www.coursera.org/lecture/algorithms-npcomplete/johnsons-algorithm-i-eT0X
 g := EdgeWeightedDigraph([[2,3],[4],[4],[]],[[5,1],[6],[11],[]]);
 Read("../Shortest Path Algorithms/johnson.g"); Johnson(g); 
 
-
+johnson better for sparse graphs, floyd better for dense graphs
 
 # painting graphs
 
