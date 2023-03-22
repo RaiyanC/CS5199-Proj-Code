@@ -5,7 +5,7 @@ getEuclidianDistance := function(x1, y1, x2, y2)
   b := y2 - y1;
   c := a^2 + b^2;
 
-  return c;
+  return Sqrt(Float(c));
 end;
 
 CreateRandomEuclidianGraph := function(n, p, xRange, yRange, isNegative, negativeProbability)

@@ -1,18 +1,16 @@
 Prims := function(digraph)
-    local weights, digraphVertices, outs, ins, adj, u, outNeighbours, inNeighbours, idx, v,
+    local weights, digraphVertices, outs, adj, u, outNeighbours, inNeighbours, idx, v,
     w, mst, visited, queue, neighbour, total, edgesInMst, nrVertices, node, cost, nextVertex;
 
     weights := EdgeWeights(digraph);
 
     digraphVertices := DigraphVertices(digraph);
     outs := OutNeighbors(digraph);
-    ins := InNeighbors(digraph);
 
     # Create an adjacancy map for the edges with their associated weight
     adj := HashMap(Size(digraphVertices));
     for u in digraphVertices do
         outNeighbours := outs[u];
-        inNeighbours := ins[u];
 
         if not u in adj then 
             adj[u] := HashMap();

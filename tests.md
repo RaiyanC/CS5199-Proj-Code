@@ -164,3 +164,17 @@ Read("../Maximal Flow Algorithms/edmondkarp.g"); Edmondkarp(rmfg.random_graph, r
 https://www.coursera.org/lecture/algorithms-npcomplete/johnsons-algorithm-i-eT0Xt
 g := EdgeWeightedDigraph([[2,3],[4],[4],[]],[[5,1],[6],[11],[]]);
 Read("../Shortest Path Algorithms/johnson.g"); Johnson(g); 
+
+
+
+# painting graphs
+
+Read("../Minimum Spanning Tree Algorithms/paint_mst.g"); PaintMST(digraph, mst);
+
+
+Read("../Minimum Spanning Tree Algorithms/paint_mst.g"); paint:= PaintMST(rg2, DigraphEdgeWeightedMinimumSpanningTree(rg2).mst);
+Splash(DotColoredDigraph(rg2, paint.vertColors, paint.edgeColors));
+
+
+Read("../Minimum Spanning Tree Algorithms/paint_mst.g"); paint:= PaintMST(rg, DigraphEdgeWeightedMinimumSpanningTree(rg).mst, "lightpink", "blue", "black");
+Splash(DotColoredDigraph(rg, paint.vertColors, paint.edgeColors));

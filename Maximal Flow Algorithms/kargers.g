@@ -98,7 +98,7 @@ Karger := function(digraph)
     edgesCut := [];
     total := 0;
 
-    upperBound := Int(nrVertices * LogInt(nrVertices, 2)/(nrVertices - 1));
+    upperBound := Int(nrVertices * Log(nrVertices, FLOAT.E)/(nrVertices - 1));
 
     for i in [1.. upperBound] do
         cutInfo := minCut(digraph);
