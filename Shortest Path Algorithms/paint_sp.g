@@ -18,7 +18,7 @@ getSmallestEdge := function(digraph, u, v)
 
     return smallestEdgeIdx;
 end;
-PaintMST := function(digraph, mst, vertColour, mainCOlour, edgeColour)
+PaintSPFromVertex := function(digraph, mst, start, dest, startColour, destColour, vertColour, mainColour, edgeColour)
     local digraphVertices, nrVertices, outsMST, outNeighbours, outNeighboursMST, edgeColours, 
     vertColours, u, v, idxOfSmallestEdge;
 
@@ -49,9 +49,13 @@ PaintMST := function(digraph, mst, vertColour, mainCOlour, edgeColour)
         # paint mst edges
         for v in outNeighboursMST do
             idxOfSmallestEdge := getSmallestEdge(digraph, u, v);
-            edgeColours[u][idxOfSmallestEdge] := mainCOlour;
+            edgeColours[u][idxOfSmallestEdge] := mainColour;
         od;
     od;
+
+    vertColours[start] := startColour;
+    vertColour[dest] := destColour;
+
 
     return rec(vertColors:=vertColours, edgeColors:=edgeColours);
 end;
