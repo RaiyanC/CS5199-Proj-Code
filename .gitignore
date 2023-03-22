@@ -5,12 +5,12 @@ gap-4.12.2
 ek-output.gz
 
 # Ignore digraphs clone
-/Digraphs/*
+# /Digraphs/*
 
-## except for my files
-!/Digraphs/gap/weights.gi
-!/Digraphs/gap/weights.gd
-!/Digraphs/gap/doc.g
-!/Digraphs/doc/weights.xml
-!/Digraphs/read.g
-!/Digraphs/init.g
+# ## except for my files
+# !/Digraphs/gap/weights.gi
+# !/Digraphs/gap/weights.gd
+# !/Digraphs/gap/doc.g
+# !/Digraphs/doc/weights.xml
+# !/Digraphs/read.g
+# !/Digraphs/init.g
