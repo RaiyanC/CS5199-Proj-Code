@@ -168,7 +168,7 @@ Read("../Shortest Path Algorithms/johnson.g"); Johnson(g);
 johnson better for sparse graphs, floyd better for dense graphs
 
 # painting graphs
-
+Read("../Minimum Spanning Tree Algorithms/mst_graph_creator.g");
 Read("../Minimum Spanning Tree Algorithms/paint_mst.g"); PaintMST(digraph, mst);
 
 
@@ -178,3 +178,7 @@ Splash(DotColoredDigraph(rg2, paint.vertColors, paint.edgeColors));
 
 Read("../Minimum Spanning Tree Algorithms/paint_mst.g"); paint:= PaintMST(rg, DigraphEdgeWeightedMinimumSpanningTree(rg).mst, "lightpink", "blue", "black");
 Splash(DotColoredDigraph(rg, paint.vertColors, paint.edgeColors));
+
+
+# euclidian graphs
+Read("../Shortest Path Algorithms/euclidian_graph_creator.g");

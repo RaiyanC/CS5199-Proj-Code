@@ -34,5 +34,6 @@ CreateRandomEuclidianGraph := function(n, p, xRange, yRange, isNegative, negativ
     od;
   od;
   
-   return rec(random_graph := EdgeWeightedDigraph(digraph, weights), start:=1, destination:=n);
+  # return [digraph, weights];
+  return rec(random_graph := EdgeWeightedDigraph(digraph, weights), start:=1, destination:=n);
 end;
