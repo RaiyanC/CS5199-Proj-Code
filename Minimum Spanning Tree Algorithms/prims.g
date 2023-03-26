@@ -91,5 +91,5 @@ Prims := function(digraph)
         fi;
     od;
 
-    return [total, mst];
+    return rec(total:=total, mst:=mst);
 end;

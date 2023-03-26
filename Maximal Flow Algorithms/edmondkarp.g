@@ -103,7 +103,7 @@ Edmondkarp := function(digraph, source, sink)
     local weights, adj_matrix, digraph_vertices, nr_vertices, e,u,v,edges, outs, ins, 
     edge_idx, idx, out_neighbours, in_neighbours, w, mst, 
     visited, i, j, k, queue, cost, node, neighbour, next_vertex, total, distances, parents, flow_matrix, path,
-    flow, flow_information, edge;
+    flow, flowInformation, edge;
 
     weights := EdgeWeights(digraph);
 
@@ -162,11 +162,11 @@ Edmondkarp := function(digraph, source, sink)
         path := BFS(adj_matrix, flow_matrix, source, sink);
     od;
 
-    flow_information := GetFlowInformation(flow_matrix, source);
+    flowInformation := GetFlowInformation(flow_matrix, source);
     return rec(
-        parents:=flow_information[1], 
-    flows:=flow_information[2],
-    max_flow:=flow_information[3]
+        parents:=flowInformation[1], 
+    flows:=flowInformation[2],
+    maxFlow:=flowInformation[3]
     );
 end;
 

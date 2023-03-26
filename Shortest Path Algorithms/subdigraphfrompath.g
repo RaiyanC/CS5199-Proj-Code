@@ -175,3 +175,4 @@ PaintSubdigraph := function(digraph, subdigraph, options)
 
     return DotColoredDigraph(digraph, vertColours, edgeColours);
 end;
+
