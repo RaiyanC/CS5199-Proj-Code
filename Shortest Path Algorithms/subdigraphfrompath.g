@@ -176,3 +176,96 @@ PaintSubdigraph := function(digraph, subdigraph, options)
     return DotColoredDigraph(digraph, vertColours, edgeColours);
 end;
 
+DotEdgeWeightedGraph := function(digraph, subdigraph, options)
+    local digraphVertices, outsOriginal, outNeighboursOriginal, nrVertices, outsSubdigraph, 
+    outNeighbours, outNeighboursSubdigraph, edgeColours, 
+    vertColours, u, v, idxOfSmallestEdge, opts, mainColour, edgeColour, sourceColour, destColour, vertColour,
+    vert_func, edge_func, weights;
+
+    mainColour := "blue";
+    edgeColour := "black";
+    vertColour := "lightpink";
+    sourceColour := "green";
+    destColour := "red";
+    
+
+    if IsRecord(options) then
+        opts := ShallowCopy(options);
+    else
+        opts := rec();
+    fi;
+
+    # optional argument defaults   
+    if not IsBound(opts.sourceColour) then
+        opts.sourceColour := sourceColour;
+    fi;
+
+    if not IsBound(opts.destColour) then
+        opts.destColour := destColour;
+    fi;
+
+    if not IsBound(opts.vertColour) then
+        opts.vertColour := vertColour;
+    fi;
+
+    if not IsBound(opts.mainColour) then
+        opts.mainColour := mainColour;
+    fi;
+
+    if not IsBound(opts.edgeColour) then
+        opts.edgeColour := edgeColour;
+    fi;
+
+    digraphVertices := DigraphVertices(subdigraph);
+    nrVertices := Size(digraphVertices);
+    outsOriginal := OutNeighbors(digraph);
+    outsSubdigraph := OutNeighbors(subdigraph);
+
+    edgeColours := EmptyPlist(nrVertices);
+    vertColours := EmptyPlist(nrVertices);
+
+    for u in digraphVertices do
+        vertColours[u] := opts.vertColour;
+        edgeColours[u] := [];
+        outNeighboursSubdigraph := outsSubdigraph[u];
+        outNeighboursOriginal := outsOriginal[u];
+
+        # make everything black
+        for v in outNeighboursOriginal do
+            Add(edgeColours[u], opts.edgeColour);
+        od;
+
+        # paint mst edges
+        for v in outNeighboursSubdigraph do
+            idxOfSmallestEdge := getSmallestEdge(digraph, u, v);
+            edgeColours[u][idxOfSmallestEdge] := opts.mainColour;
+        od;
+    od;
+
+    # set source and dest colours
+    if IsBound(opts.source) then
+        if 1 <= opts.source and opts.source <= nrVertices then
+            vertColours[opts.source] := opts.sourceColour;
+        else
+            ErrorNoReturn("source vertex does not exist,");
+        fi;
+    fi;
+
+    if IsBound(opts.dest) then
+        if 1 <= opts.dest and opts.dest <= nrVertices then
+            vertColours[opts.dest] := opts.destColour;
+        else
+            ErrorNoReturn("destination vertex does not exist,"); 
+        fi;
+    fi;
+
+    Print(OutNeighbours(digraph), " ",edgeColours,"\n");
+
+    weights := EdgeWeights(digraph);
+    # https://graphs.grevian.org/example
+    if DIGRAPHS_ValidVertColors(digraph, vertColours) and DIGRAPHS_ValidEdgeColors(digraph, edgeColours) then
+        vert_func := i -> StringFormatted("[color={}, style=filled]", vertColours[i]);
+        edge_func := {i, j} -> StringFormatted("[color={}, label={}]", edgeColours[i][j], weights[i][j]);
+    return DIGRAPHS_DotDigraph(digraph, [vert_func], [edge_func]);
+  fi;
+end;
