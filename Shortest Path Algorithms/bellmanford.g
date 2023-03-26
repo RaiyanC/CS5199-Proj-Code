@@ -1,18 +1,18 @@
 # https://github.com/arnab132/Bellman-Ford-Algorithm-Python/blob/main/bellman_ford.py
 # Read("../Shortest Path Algorithms/bellmanford.g"); Bellman(g,w,1);
 Bellman := function(digraph, source)
-    local edge_list, weights, digraph_vertices, distances, u, 
-    out_neighbours, idx, v, w, _, path, vertex, edge, parents,
+    local edge_list, weights, digraphVertices, distances, u, 
+    outNeighbours, idx, v, w, _, path, vertex, edge, parents,
     edge_info, edges, d, i;
 
     weights := EdgeWeights(digraph);
 
-    digraph_vertices := DigraphVertices(digraph);
+    digraphVertices := DigraphVertices(digraph);
     edge_list := [];
     for u in DigraphVertices(digraph) do
-        out_neighbours := OutNeighbors(digraph)[u];
-        for idx in [1..Size(out_neighbours)] do
-            v := out_neighbours[idx]; # the out neighbour
+        outNeighbours := OutNeighbors(digraph)[u];
+        for idx in [1..Size(outNeighbours)] do
+            v := outNeighbours[idx]; # the out neighbour
             w := weights[u][idx]; # the weight to the out neighbour
 
             Add(edge_list, [w, u, v, idx]);
@@ -20,11 +20,11 @@ Bellman := function(digraph, source)
     od;
 
 
-    distances := [digraph_vertices];
-    parents := [digraph_vertices];
-    edges := [digraph_vertices];
+    distances := [digraphVertices];
+    parents := [digraphVertices];
+    edges := [digraphVertices];
    
-    for vertex in digraph_vertices do
+    for vertex in digraphVertices do
         distances[vertex] := infinity;
     od;
     
@@ -33,14 +33,14 @@ Bellman := function(digraph, source)
     edges[source] := fail;
 
     # relax all edges: update weight with smallest edges
-    for _ in digraph_vertices do
+    for _ in digraphVertices do
         for edge in edge_list do
             w := edge[1];
             u := edge[2];
             v := edge[3];
             idx := edge[4];
 
-            if distances[u] <> infinity and distances[u] + w < distances[v] then
+            if Float(distances[u]) <> Float(infinity) and Float(distances[u]) + Float(w) < Float(distances[v]) then
                 distances[v] := distances[u] + w;
 
                 # if distance is smaller, copy the path to u and add v to it.
@@ -60,15 +60,15 @@ Bellman := function(digraph, source)
         u := edge[2];
         v := edge[3];
 
-        if distances[u] <> infinity and distances[u] + w < distances[v] then
-            return fail;
+        if Float(distances[u]) <> Float(infinity) and Float(distances[u]) + Float(w) < Float(distances[v]) then
+            ErrorNoReturn("negative cycle exists,");
         fi;
     od;
 
     # fill lists with fail if no path is possible
     for i in [1..Size(distances)] do
         d := distances[i];
-        if d = infinity then
+        if Float(d) = Float(infinity) then
             parents[i] := fail;
             edges[i] := fail;
         fi; 

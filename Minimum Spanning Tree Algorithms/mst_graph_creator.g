@@ -1,26 +1,26 @@
-CreateRandomMSTGraph := function(filt, number_of_vertices, probability)
-    local random_graph, weights, used_weights, digraph_vertices,
-    number_of_edges, random_weights, out_neighbours, u, idx, random_weight_idx;
+CreateRandomMSTGraph := function(filt, n, p)
+    local randomDigraph, weights, digraphVertices,
+    nrEdges, randomWeights, outNeighbours, u, idx, randWeightIdx;
 
-    random_graph := RandomDigraph(filt, number_of_vertices, probability); # random connected digraph
-    digraph_vertices := DigraphVertices(random_graph); 
-    number_of_edges := DigraphNrEdges(random_graph) + 1; 
+    randomDigraph := RandomDigraph(filt, n, p); # random connected digraph
+    digraphVertices := DigraphVertices(randomDigraph); 
+    nrEdges := DigraphNrEdges(randomDigraph) + 1; 
 
     
-    random_weights := Shuffle([1..number_of_edges]);
+    randomWeights := Shuffle([1..nrEdges]);
     weights := [];
-    random_weight_idx := 1;
+    randWeightIdx := 1;
 
 
     # Create random weights for each edge. weights are unique [1..number of edges + 1]
-    for u in digraph_vertices do
-        out_neighbours := OutNeighbors(random_graph)[u];
+    for u in digraphVertices do
+        outNeighbours := OutNeighbors(randomDigraph)[u];
         Add(weights, []);
-        for idx in [1..Size(out_neighbours)] do
-            weights[u][idx] := random_weights[random_weight_idx];
-            random_weight_idx := random_weight_idx + 1;        
+        for idx in [1..Size(outNeighbours)] do
+            weights[u][idx] := randomWeights[randWeightIdx];
+            randWeightIdx := randWeightIdx + 1;        
         od;
     od;
     
-    return EdgeWeightedDigraph(random_graph, weights);
+    return EdgeWeightedDigraph(randomDigraph, weights);
 end;

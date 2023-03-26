@@ -192,3 +192,14 @@ Read("../Shortest Path Algorithms/dijkstra.g");ans:= Dijkstra(rd.random_graph, r
 Read("../Shortest Path Algorithms/subdigraphfrompath.g"); sd := SubdigraphFromPaths(rd.random_graph, ans);
 Read("../Shortest Path Algorithms/subdigraphfrompath.g"); p:= PaintSubdigraph(rd.random_graph, sd, "lightpink", "blue", "black");
 Splash(p);
+
+Or for last command
+Read("../Shortest Path Algorithms/subdigraphfrompath.g"); p:= PaintSubdigraph(rd.random_graph, sd, rec(source:=1, dest:=4));
+Splash(p);
+
+or
+
+Read("../Shortest Path Algorithms/subdigraphfrompath.g"); Splash(PaintSubdigraph(rd.random_graph, sd, rec(source:=1, dest:=4)));
+
+
+## testing

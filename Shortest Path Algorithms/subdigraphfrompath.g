@@ -89,39 +89,6 @@ getSmallestEdge := function(digraph, u, v)
     return smallestEdgeIdx;
 end;
 
-PaintSubdigraph := function(digraph, subdigraph, vertColour, mainColour, edgeColour)
-    local digraphVertices, outsOriginal, outNeighboursOriginal, nrVertices, outsSubdigraph, outNeighbours, outNeighboursSubdigraph, edgeColours, 
-    vertColours, u, v, idxOfSmallestEdge;
-
-    digraphVertices := DigraphVertices(subdigraph);
-    nrVertices := Size(digraphVertices);
-    outsOriginal := OutNeighbors(digraph);
-    outsSubdigraph := OutNeighbors(subdigraph);
-
-    edgeColours := EmptyPlist(nrVertices);
-    vertColours := EmptyPlist(nrVertices);
-
-    for u in digraphVertices do
-        vertColours[u] := vertColour;
-        edgeColours[u] := [];
-        outNeighboursSubdigraph := outsSubdigraph[u];
-        outNeighboursOriginal := outsOriginal[u];
-
-        # make everything black
-        for v in outNeighboursOriginal do
-            Add(edgeColours[u], edgeColour);
-        od;
-
-        # paint mst edges
-        for v in outNeighboursSubdigraph do
-            idxOfSmallestEdge := getSmallestEdge(digraph, u, v);
-            edgeColours[u][idxOfSmallestEdge] := mainColour;
-        od;
-    od;
-
-    return DotColoredDigraph(digraph, vertColours, edgeColours);
-end;
-
 PaintSubdigraph := function(digraph, subdigraph, options)
     # options d, sd, opts: src, srcColor, dest, destColor, vertColor, mainColour, edgeColour
     local digraphVertices, outsOriginal, outNeighboursOriginal, nrVertices, outsSubdigraph, 
