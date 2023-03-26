@@ -18,13 +18,11 @@ getSmallestEdge := function(digraph, u, v)
 
     return smallestEdgeIdx;
 end;
+
+
 PaintSPFromVertex := function(digraph, mst, start, dest, startColour, destColour, vertColour, mainColour, edgeColour)
     local digraphVertices, nrVertices, outsMST, outNeighbours, outNeighboursMST, edgeColours, 
     vertColours, u, v, idxOfSmallestEdge;
-
-    # vertColour := "lightpink";
-    # edgeColour := "blue";
-    # otherColour := "black";
 
     digraphVertices := DigraphVertices(mst);
     nrVertices := Size(digraphVertices);

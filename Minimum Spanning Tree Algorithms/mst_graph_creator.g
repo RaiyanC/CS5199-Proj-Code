@@ -1,8 +1,8 @@
-CreateRandomMSTGraph := function(number_of_vertices, probability)
+CreateRandomMSTGraph := function(filt, number_of_vertices, probability)
     local random_graph, weights, used_weights, digraph_vertices,
     number_of_edges, random_weights, out_neighbours, u, idx, random_weight_idx;
 
-    random_graph := RandomDigraph(IsConnectedDigraph, number_of_vertices, probability); # random connected digraph
+    random_graph := RandomDigraph(filt, number_of_vertices, probability); # random connected digraph
     digraph_vertices := DigraphVertices(random_graph); 
     number_of_edges := DigraphNrEdges(random_graph) + 1; 
 

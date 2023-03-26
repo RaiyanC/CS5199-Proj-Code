@@ -121,9 +121,9 @@ python3 analyser.py -p <paths to all the csv of one algo> [optional] -c <path to
  # for shortest path
 Read("../Shortest Path Algorithms/Analysis/tester.g"); Runtests("d",1001,1,5,10);
 
- Read("../Shortest Path Algorithms/sp_graph_creator.g");rd := CreateRandomSPGraph(20,0.1);
- Read("../Shortest Path Algorithms/dijkstra.g"); Dijkstra(rd.random_graph, rd.start);
- Read("../Shortest Path Algorithms/bellmanford.g"); Bellman(rd.random_graph, rd.start);
+Read("../Shortest Path Algorithms/sp_graph_creator.g");rd := CreateRandomSPGraph(20,0.1);
+Read("../Shortest Path Algorithms/dijkstra.g"); Dijkstra(rd.random_graph, rd.start);
+Read("../Shortest Path Algorithms/bellmanford.g"); Bellman(rd.random_graph, rd.start);
 
 Read("../Shortest Path Algorithms/Analysis/tester.g"); Runtests("j",1003,1,5,10);
 Read("../Shortest Path Algorithms/Analysis/tester.g"); Runtests("j",1001,0.5,5,10);
@@ -181,4 +181,14 @@ Splash(DotColoredDigraph(rg, paint.vertColors, paint.edgeColors));
 
 
 # euclidian graphs
-Read("../Shortest Path Algorithms/euclidian_graph_creator.g");
+Read("../Shortest Path Algorithms/euclidian_graph_creator.g"); rg:=CreateRandomEuclidianGraph(4,0.1,100,100,0,0);
+DigraphEdgeWeightedShortestPathsFromVertex(rg.random_graph, rg.start);
+
+
+
+# painting and subsidgraphs
+Read("../Shortest Path Algorithms/sp_graph_creator.g");rd := CreateRandomSPGraph(5,0.1);
+Read("../Shortest Path Algorithms/dijkstra.g");ans:= Dijkstra(rd.random_graph, rd.start);
+Read("../Shortest Path Algorithms/subdigraphfrompath.g"); sd := SubdigraphFromPaths(rd.random_graph, ans);
+Read("../Shortest Path Algorithms/subdigraphfrompath.g"); p:= PaintSubdigraph(rd.random_graph, sd, "lightpink", "blue", "black");
+Splash(p);
