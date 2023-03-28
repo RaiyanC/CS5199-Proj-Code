@@ -14,3 +14,8 @@ cp ./Digraphs/gap/doc.g ./Digraphs/gap/weights.gd ./Digraphs/gap/weights.gi ~/.g
 # copy weights.xml
 cp ./Digraphs/doc/weights.xml ./Digraphs/doc/z-chap5.xml ~/.gap/pkg/digraphs-1.6.1/doc
 
+# copy weights.tst
+cp ./Digraphs/tst/standard/weights.tst ~/.gap/pkg/digraphs-1.6.1/tst/standard
+
+# copy testinstall.tst
+cp ./Digraphs/tst/testinstall.tst ~/.gap/pkg/digraphs-1.6.1/tst

@@ -203,3 +203,12 @@ Read("../Shortest Path Algorithms/subdigraphfrompath.g"); Splash(PaintSubdigraph
 
 
 ## testing
+
+# unit testing mst
+gap> d := EdgeWeightedDigraph([[1],[2]],[[5],[10]]);
+<immutable digraph with 2 vertices, 2 edges>
+gap> DigraphEdgeWeightedMinimumSpanningTree(d);     
+Error, digraph must be strongly connected, at /home/mrc7/.gap/pkg/digraphs-1.6.1/gap/weights.gi:163 called from
+<function "DigraphEdgeWeightedMinimumSpanningTree for an edge weighted digraph">( <arguments> )
+ called from read-eval loop at *stdin*:7
+type 'quit;' to quit to outer loop

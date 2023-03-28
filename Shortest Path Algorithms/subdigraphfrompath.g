@@ -259,13 +259,11 @@ DotEdgeWeightedGraph := function(digraph, subdigraph, options)
         fi;
     fi;
 
-    Print(OutNeighbours(digraph), " ",edgeColours,"\n");
-
     weights := EdgeWeights(digraph);
     # https://graphs.grevian.org/example
     if DIGRAPHS_ValidVertColors(digraph, vertColours) and DIGRAPHS_ValidEdgeColors(digraph, edgeColours) then
         vert_func := i -> StringFormatted("[color={}, style=filled]", vertColours[i]);
-        edge_func := {i, j} -> StringFormatted("[color={}, label={}]", edgeColours[i][j], weights[i][j]);
+        edge_func := {i, j} -> StringFormatted("[color={}, label={}, penwidth=3.0]", edgeColours[i][j], weights[i][j]);
     return DIGRAPHS_DotDigraph(digraph, [vert_func], [edge_func]);
   fi;
 end;

@@ -175,9 +175,3 @@ Dijkstra := function(digraph, source)
 
     return rec(distances:=distances, parents:=parents, edges:=edges);
 end;
-
-ShortestPath := function(digraph, source)
-
-
-end;
-
