@@ -14,6 +14,7 @@ class Plotter():
     self.algorithms_analysed = set()
     self.algorithms = {
       "p": "Prim's Algorithm",
+      "pv1": "Prim's (unoptimised) algorithm",
       "k": "Kruskal's Algorithm",
       "d": "Dijkstra's Algorithm",
       "bmf": "Bellman Ford Algorithm",

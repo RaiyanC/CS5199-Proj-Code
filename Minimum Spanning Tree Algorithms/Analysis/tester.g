@@ -2,7 +2,7 @@ Runtests := function(alg, nodes, probability, nrIterations, step)
   local algPath, analysisPath, headers, i, random_graph, nrNode, idx;
 
   # read in necessary files
-  Read("../test_creating_edgeweighted_digraph.g");
+  # Read("../test_creating_edgeweighted_digraph.g");
   Read("../Minimum Spanning Tree Algorithms/mst_graph_creator.g");
   algPath := Concatenation("../Minimum Spanning Tree Algorithms/Analysis/", 
              Concatenation(String(alg), ".g"));
@@ -21,8 +21,16 @@ Runtests := function(alg, nodes, probability, nrIterations, step)
   while nrNode <= nodes do
     for i in [1..nrIterations] do
       # create random graphs and save them
-      random_graph := CreateRandomMSTGraph(nrNode, probability);
-      Kruskals(random_graph, probability);
+      random_graph := CreateRandomMSTGraph(IsConnectedDigraph, nrNode, probability);
+      # if alg = "k" then
+      #   Kruskals(random_graph, probability);
+      # fi;
+      # if alg = "p" then 
+      #   Prims(random_graph, probability);
+      # fi;
+      # if alg = "pv1" then 
+        Prims(random_graph, probability);
+      # fi;
     od;
     nrNode := nrNode + step;
   od;
