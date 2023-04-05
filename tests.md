@@ -231,3 +231,7 @@ ProfilePackage("digraphs"); for code coverage
 gaplint Digraphs/tst/standard/weights.tst # to run linter
 DigraphsTestInstall();
 DigraphsTestStandard();
+
+
+# python mst
+python3 analyser.py -p "./1/mst-py.csv" "./0.5/mst-py.csv" "./0.25/mst-py.csv" "./0.125/mst-py.csv" "./0.01/mst-py.csv"

@@ -20,7 +20,8 @@ class Plotter():
       "bmf": "Bellman Ford Algorithm",
       "flw": "Floyd Warshall Algorithm",
       "ek": "Edmond Karp Algorithm",
-      "dc": "Dinic's Algorithm"
+      "dc": "Dinic's Algorithm",
+      "mst-py": "Scipy's Minimum Spanning Tree Algorithm"
     }
   
 

@@ -1,30 +1,45 @@
 # https://www.programiz.com/dsa/prim-algorithm
 Prims := function(digraph, probability)
-local nrVertices, weights, currVertex, selected, min,
-x, y, i, j, adjMatrix, v, e, weightIdx, mst, total, analysisPath,
-headers, nrEdges, startTime, endTime, data;;
+local nrVertices, weights, digraphVertices, outNeighbours, idx, ins, outs, currVertex, selected, min,
+x, y, u, v, adjMatrix, v, e, weightIdx, mst, total, analysisPath,
+headers, nrEdges, startTime, endTime, data;
 
-
+digraphVertices := DigraphVertices(digraph);
 weights := EdgeWeights(digraph);
 nrVertices := DigraphNrVertices(digraph);
+outs := OutNeighbors(digraph);
+ins := InNeighbors(digraph);
 
+# check graph is connected
+if not IsConnectedDigraph(digraph) then
+    ErrorNoReturn("digraph must be connected,");
+fi;
 
 # Create 2D array filled with zeros - this is the adjacancy matrix
 adjMatrix := EmptyPlist(nrVertices);
-for i in [1..nrVertices] do
-    adjMatrix[i] := [];
-    for j in [1..nrVertices] do
-        Add(adjMatrix[i], 0);
+for u in [1..nrVertices] do
+    adjMatrix[u] := [];
+    for v in [1..nrVertices] do
+        Add(adjMatrix[u], 0);
     od;
 od;
 
 
 # Fill the 2D array with weights of the edge
-for v in DigraphVertices(digraph) do
-    weightIdx := 1;
-    for e in OutNeighbors(digraph)[v] do
-        adjMatrix[v][e] := weights[v][weightIdx];
-        weightIdx := weightIdx + 1;
+for u in digraphVertices do
+    outNeighbours := outs[u];
+    
+    for idx in [1 .. Size(outNeighbours)] do 
+        v := outNeighbours[idx]; # the out neighbour
+        w := weights[u][idx]; # the weight of the edge to the out neighbour
+
+        if adjMatrix[u][v] = 0 then
+            adjMatrix[u][v] := w;
+            adjMatrix[v][u] := w;
+        else if w < adjMatrix[u][v] then
+            adjMatrix[u][v] := w;
+            adjMatrix[v][u] := w;
+        fi;
     od;
 od; 
 
@@ -35,7 +50,7 @@ startTime := Runtimes().user_time;
 selected := [];
 
 # Fill selected with false as we haven't explored any vertices yet
-for i in [1..nrVertices] do
+for u in [1..nrVertices] do
     Add(selected, false);
 od;
 
@@ -49,14 +64,14 @@ while currVertex <= nrVertices do
     x := 1;
     y := 1;
     
-    for i in [1..nrVertices] do
-        if selected[i] = true then 
-            for j in [1..nrVertices] do
-                if selected[j] = false and adjMatrix[i][j] <> 0 then
-                    if min > adjMatrix[i][j] then
-                        min := adjMatrix[i][j];
-                        x := i;
-                        y := j;
+    for u in [1..nrVertices] do
+        if selected[u] = true then 
+            for v in [1..nrVertices] do
+                if selected[v] = false and adjMatrix[u][v] <> 0 then
+                    if min > adjMatrix[u][v] then
+                        min := adjMatrix[u][v];
+                        x := u;
+                        y := v;
                     fi;
                 fi;
             od;

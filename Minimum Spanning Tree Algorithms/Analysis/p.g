@@ -10,7 +10,7 @@ Prims := function(digraph, probability)
     ins := InNeighbors(digraph);
     
     # Create an adjacancy map for the edges with their associated weight
-    adj := HashMap(Size(digraphVertices));
+    adj := HashMap(Size(digraphVertices) * 2);
     for u in digraphVertices do
         outNeighbours := outs[u];
         inNeighbours := ins[u];

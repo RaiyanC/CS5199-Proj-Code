@@ -20,7 +20,11 @@ class Plotter():
       "flw": "Floyd Warshall Algorithm",
       "ek": "Edmond Karp Algorithm",
       "dc": "Dinic's Algorithm",
-      "j": "Johnson's Algorithm"
+      "j": "Johnson's Algorithm",
+      "sp-d-python": "Scipy's Dijkstra's Algorithm",
+      "sp-bmf-python": "Scipy's Bellman Ford Algorithm",
+      "sp-flw-python": "Scipy's Floyd Warshall Algorithm",
+      "sp-j-python": "Scipy's Johnson's Algorithm"
     }
   
 

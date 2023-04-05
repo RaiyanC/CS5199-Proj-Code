@@ -22,16 +22,19 @@ union := function(parent, rank, x, y)
     fi;
 end;
 
+getMaxWeightedEdge := function()
+
+end;
+
 minCut := function(digraph)
     local subsets, digraphVertices, nrVertices, nrV, nrEdges, i, u, u_idx, v, v_idx,
     edgeList, outNeigbours, idx, w, weights, randomEdgeIdx, cuts, edgesCut, parent,
-    total, x, y;
+    total, x, y, rank;
 
     weights := EdgeWeights(digraph);
     digraphVertices := DigraphVertices(digraph);
     nrVertices := Size(digraphVertices);
     nrEdges := Size(DigraphEdges(digraph));
-    
 
     edgeList := [];
     for u in digraphVertices do
@@ -43,6 +46,10 @@ minCut := function(digraph)
             Add(edgeList, [w, u, v]);
         od;
     od;
+
+    # sort edge weights by their weight
+    StableSortBy(edgeList, x -> x[1]);
+    i := Size(edgeList);
 
     parent := [];
     rank := [];
@@ -63,6 +70,8 @@ minCut := function(digraph)
         x := find(parent, u);
         y := find(parent, v);
 
+        # i := i - 1;
+
         if x <> y then
             nrV := nrV - 1;
             union(parent, rank, x, y);
@@ -71,11 +80,11 @@ minCut := function(digraph)
 
     cuts := 0;
     total := 0;
-    for i in [1..nrEdges] do
+    for i in Reversed([1..nrEdges]) do
         w := edgeList[i][1];
         u := edgeList[i][2];
         v := edgeList[i][3];
-        
+
         x := find(parent, u);
         y := find(parent, v);
 
@@ -98,7 +107,8 @@ Karger := function(digraph)
     edgesCut := [];
     total := 0;
 
-    upperBound := Int(nrVertices * Log(nrVertices, FLOAT.E)/(nrVertices - 1));
+    # upperBound := Int(nrVertices * Log(nrVertices, 2)/(nrVertices - 1));
+    upperBound := nrVertices;
 
     for i in [1.. upperBound] do
         cutInfo := minCut(digraph);

@@ -46,7 +46,7 @@ Kruskals := function(digraph)
         w := node[1];
         u := node[2];
         v := node[3];
-        
+
         i := i + 1;
 
         x := find(parent, u);
