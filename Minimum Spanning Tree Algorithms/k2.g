@@ -98,7 +98,8 @@ find := function(parent, i)
         return i;
     fi;
 
-    return parent[i] := find(parent, parent[i]);
+    parent[i] := find(parent, parent[i]);
+    return parent[i];
 end;
 
 

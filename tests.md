@@ -235,3 +235,6 @@ DigraphsTestStandard();
 
 # python mst
 python3 analyser.py -p "./1/mst-py.csv" "./0.5/mst-py.csv" "./0.25/mst-py.csv" "./0.125/mst-py.csv" "./0.01/mst-py.csv"
+
+
+maybe useful? https://math.hawaii.edu/~williamdemeo/GAP/manual.pdf

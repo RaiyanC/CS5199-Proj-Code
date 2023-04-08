@@ -75,7 +75,7 @@ od;
     endTime := Runtimes().user_time;
 
     analysisPath := Concatenation("../Minimum Spanning Tree Algorithms/Analysis/",
-                    Concatenation(String(probability), "/k.csv"));
+                    Concatenation(String(probability), "/kv2.csv"));
 
 
     data := Concatenation(String(nrVertices), 
