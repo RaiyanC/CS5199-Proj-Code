@@ -1,5 +1,5 @@
 # https://www.programiz.com/dsa/kruskal-algorithm
-Kruskals := function(digraph, probability)
+Kruskalsv2 := function(digraph, probability)
     local weights, numberOfVertices, edgeList, u, 
     outNeigbours, idx, v, w, mst, i, e, parent, rank, total, node, x, y,
     analysisPath, headers, nrEdges, startTime, endTime, data, nrVertices;
@@ -98,7 +98,8 @@ find := function(parent, i)
         return i;
     fi;
 
-    return parent[i] := find(parent, parent[i]);
+    parent[i] := find(parent, parent[i]);
+    return parent[i];
 end;
 
 

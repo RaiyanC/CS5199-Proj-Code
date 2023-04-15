@@ -1,0 +1,518 @@
+<!DOCTYPE html><script src="sorttable.js"></script><html>
+<head><title>
+</title></head>
+<body>
+<style>
+table { border-collapse: collapse }
+tr:nth-child(odd)  { background-color: #EEE; }
+tr:nth-child(even)  { background-color: #FFF; }
+tr:nth-child(odd).exec  { background-color: #0F0; }
+tr:nth-child(even).exec  { background-color: #3F3; }
+tr:nth-child(odd).missed  { background-color: #F00; }
+tr:nth-child(even).missed  { background-color: #F33; }
+td, th {
+    border: 1px solid #98bf21;
+    padding: 3px 7px 2px 7px;
+}
+th {
+    font-size: 1.1em;
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    background-color: #A7C942;
+    color: #ffffff;
+}
+table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
+    content: " \25B4\25BE"
+}
+
+/* HSV gradient made using http://www.perbang.dk/rgbgradient/ */
+td.coverage00 { background-color: #FF0000; }
+td.coverage10 { background-color: #F83100; }
+td.coverage20 { background-color: #F25F00; }
+td.coverage30 { background-color: #EB8B00; }
+td.coverage40 { background-color: #E5B500; }
+td.coverage50 { background-color: #DFDC00; }
+td.coverage60 { background-color: #B0D800; }
+td.coverage70 { background-color: #81D200; }
+td.coverage80 { background-color: #55CB00; }
+td.coverage90 { background-color: #2CC500; }
+td.coverage100 { background-color: #04BF00; }
+td:nth-child(1) { text-align: right; }
+td:nth-child(2) { text-align: right; }
+td:nth-child(3) { text-align: right; }
+td:nth-child(4) { text-align: right; }
+</style><p>This file was read by GAP before profiling was actived, so lines which were not read but not executed are not marked.</p><table class="sortable">
+<thead><tr><th>Line</th><th>Execs</th><th>Time</th><th>Time+Childs</th><th>Code</th><th>Called Functions</th><th>Called From</th>
+</tr></thead>
+<tbody>
+<tr class='ignore'><td><a name="line1"></a>1</td><td></td><td></td><td></td><td><span><tt>#############################################################################
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line2"></a>2</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line3"></a>3</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;This&nbsp;file&nbsp;is&nbsp;part&nbsp;of&nbsp;GAP,&nbsp;a&nbsp;system&nbsp;for&nbsp;computational&nbsp;discrete&nbsp;algebra.
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line4"></a>4</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line5"></a>5</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;Copyright&nbsp;of&nbsp;GAP&nbsp;belongs&nbsp;to&nbsp;its&nbsp;developers,&nbsp;whose&nbsp;names&nbsp;are&nbsp;too&nbsp;numerous
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line6"></a>6</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;to&nbsp;list&nbsp;here.&nbsp;Please&nbsp;refer&nbsp;to&nbsp;the&nbsp;COPYRIGHT&nbsp;file&nbsp;for&nbsp;details.
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line7"></a>7</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line8"></a>8</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;SPDX-License-Identifier:&nbsp;GPL-2.0-or-later
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line9"></a>9</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line10"></a>10</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line11"></a>11</td><td></td><td></td><td></td><td><span><tt>#&nbsp;returns&nbsp;names&nbsp;of&nbsp;components
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line12"></a>12</td><td></td><td></td><td></td><td><span><tt>InstallMethod(&nbsp;RecNames,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line13"></a>13</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"for&nbsp;a&nbsp;record&nbsp;in&nbsp;internal&nbsp;representation",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line14"></a>14</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;IsRecord&nbsp;and&nbsp;IsInternalRep&nbsp;],
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line15"></a>15</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REC_NAMES&nbsp;);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line16"></a>16</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line17"></a>17</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line18"></a>18</td><td></td><td></td><td></td><td><span><tt>InstallGlobalFunction(&nbsp;"NamesOfComponents",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line19"></a>19</td><td></td><td></td><td></td><td><span><tt>function(&nbsp;obj&nbsp;)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line20"></a>20</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;IsComponentObjectRep(&nbsp;obj&nbsp;)&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line21"></a>21</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;REC_NAMES_COMOBJ(&nbsp;obj&nbsp;);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line22"></a>22</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;elif&nbsp;IsRecord(&nbsp;obj&nbsp;)&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line23"></a>23</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;RecNames(&nbsp;obj&nbsp;);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line24"></a>24</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;else
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line25"></a>25</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error(&nbsp;"&lt;obj>&nbsp;must&nbsp;be&nbsp;a&nbsp;component&nbsp;object&nbsp;or&nbsp;a&nbsp;record"&nbsp;);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line26"></a>26</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line27"></a>27</td><td></td><td></td><td></td><td><span><tt>end&nbsp;);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line28"></a>28</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line29"></a>29</td><td></td><td></td><td></td><td><span><tt>#############################################################################
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line30"></a>30</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line31"></a>31</td><td></td><td></td><td></td><td><span><tt>#m&nbsp;&nbsp;PrintObj(&nbsp;&lt;record>&nbsp;)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line32"></a>32</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line33"></a>33</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;The&nbsp;record&nbsp;&lt;record>&nbsp;is&nbsp;printed&nbsp;by&nbsp;printing&nbsp;all&nbsp;its&nbsp;components.
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line34"></a>34</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line35"></a>35</td><td></td><td></td><td></td><td><span><tt>InstallMethod(&nbsp;PrintObj,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line36"></a>36</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;"record",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line37"></a>37</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;IsRecord&nbsp;],
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line38"></a>38</td><td></td><td></td><td></td><td><span><tt>##&nbsp;Changed&nbsp;to&nbsp;use&nbsp;sorted&nbsp;component&nbsp;names&nbsp;to&nbsp;make&nbsp;printing&nbsp;nicer&nbsp;to&nbsp;read&nbsp;and
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line39"></a>39</td><td></td><td></td><td></td><td><span><tt>##&nbsp;independent&nbsp;of&nbsp;session&nbsp;(i.e.,&nbsp;the&nbsp;ordering&nbsp;in&nbsp;which&nbsp;component&nbsp;names&nbsp;were&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line40"></a>40</td><td></td><td></td><td></td><td><span><tt>##&nbsp;first&nbsp;used).&nbsp;Except&nbsp;for&nbsp;the&nbsp;sorting&nbsp;of&nbsp;components&nbsp;this&nbsp;does&nbsp;the&nbsp;same&nbsp;as&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line41"></a>41</td><td></td><td></td><td></td><td><span><tt>##&nbsp;the&nbsp;former&nbsp;(now&nbsp;removed)&nbsp;kernel&nbsp;function&nbsp;FuncPRINT_PREC_DEFAULT.
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line42"></a>42</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;function(&nbsp;record&nbsp;)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line43"></a>43</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;local&nbsp;com,&nbsp;i,&nbsp;snam,&nbsp;nam,&nbsp;names,&nbsp;order;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line44"></a>44</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;Print("\>\>rec(\n\>\>");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line45"></a>45</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;com&nbsp;:=&nbsp;false;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line46"></a>46</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line47"></a>47</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;names&nbsp;:=&nbsp;List(RecNames(record));
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line48"></a>48</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;order&nbsp;:=&nbsp;[1..Length(names)];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line49"></a>49</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;SortParallel(names,&nbsp;order);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line50"></a>50</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line51"></a>51</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;i&nbsp;in&nbsp;[1..Length(names)]&nbsp;do
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line52"></a>52</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nam&nbsp;:=&nbsp;names[i];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line53"></a>53</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;com&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line54"></a>54</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print("\&lt;\&lt;,\n\>\>");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line55"></a>55</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line56"></a>56</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;com&nbsp;:=&nbsp;true;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line57"></a>57</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line58"></a>58</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET_PRINT_OBJ_INDEX(order[i]);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line59"></a>59</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;easy&nbsp;if&nbsp;nam&nbsp;is&nbsp;integer&nbsp;or&nbsp;valid&nbsp;identifier:
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line60"></a>60</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;ForAll(nam,&nbsp;x->&nbsp;x&nbsp;in&nbsp;IdentifierLetters)&nbsp;and&nbsp;Size(nam)&nbsp;>&nbsp;0&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line61"></a>61</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print(nam,&nbsp;"\&lt;&nbsp;:=&nbsp;\>");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line62"></a>62</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line63"></a>63</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;otherwise&nbsp;we&nbsp;use&nbsp;(...)&nbsp;syntax:
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line64"></a>64</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;snam&nbsp;:=&nbsp;String(nam);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line65"></a>65</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print("(");&nbsp;View(snam);&nbsp;Print(")\&lt;&nbsp;:=&nbsp;\>");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line66"></a>66</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line67"></a>67</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PrintObj(record.(nam));
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line68"></a>68</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line69"></a>69</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;Print("&nbsp;\&lt;\&lt;\&lt;\&lt;)");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line70"></a>70</td><td></td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line71"></a>71</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line72"></a>72</td><td></td><td></td><td></td><td><span><tt>#############################################################################
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line73"></a>73</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line74"></a>74</td><td></td><td></td><td></td><td><span><tt>#m&nbsp;&nbsp;String(&nbsp;&lt;record>&nbsp;)&nbsp;&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;&nbsp;for&nbsp;a&nbsp;record
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line75"></a>75</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line76"></a>76</td><td></td><td></td><td></td><td><span><tt>InstallMethod(&nbsp;String,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line77"></a>77</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;"record",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line78"></a>78</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;IsRecord&nbsp;],
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line79"></a>79</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;function(&nbsp;record&nbsp;)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line80"></a>80</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;local&nbsp;&nbsp;&nbsp;str,&nbsp;&nbsp;nam,&nbsp;&nbsp;com;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line81"></a>81</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line82"></a>82</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;str&nbsp;:=&nbsp;"rec(&nbsp;";
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line83"></a>83</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;com&nbsp;:=&nbsp;false;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line84"></a>84</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;nam&nbsp;in&nbsp;Set(RecNames(&nbsp;record&nbsp;))&nbsp;do
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line85"></a>85</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;com&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line86"></a>86</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Append(&nbsp;str,&nbsp;",&nbsp;"&nbsp;);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line87"></a>87</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line88"></a>88</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;com&nbsp;:=&nbsp;true;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line89"></a>89</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line90"></a>90</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Append(&nbsp;str,&nbsp;nam&nbsp;);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line91"></a>91</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Append(&nbsp;str,&nbsp;"&nbsp;:=&nbsp;"&nbsp;);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line92"></a>92</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;IsStringRep(&nbsp;record.(&nbsp;nam&nbsp;)&nbsp;)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line93"></a>93</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;(&nbsp;IsString(&nbsp;record.(&nbsp;nam&nbsp;)&nbsp;)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line94"></a>94</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;not&nbsp;IsEmpty(&nbsp;record.(&nbsp;nam&nbsp;)&nbsp;)&nbsp;)&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line95"></a>95</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Append(&nbsp;str,&nbsp;"\""&nbsp;);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line96"></a>96</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Append(&nbsp;str,&nbsp;String(&nbsp;record.(nam)&nbsp;)&nbsp;);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line97"></a>97</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Append(&nbsp;str,&nbsp;"\""&nbsp;);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line98"></a>98</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line99"></a>99</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Append(&nbsp;str,&nbsp;String(&nbsp;record.(nam)&nbsp;)&nbsp;);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line100"></a>100</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line101"></a>101</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line102"></a>102</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;Append(&nbsp;str,&nbsp;"&nbsp;)"&nbsp;);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line103"></a>103</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;should&nbsp;not&nbsp;be&nbsp;necessary&nbsp;if&nbsp;all&nbsp;methods&nbsp;for&nbsp;components&nbsp;are&nbsp;alright
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line104"></a>104</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;ConvertToStringRep(&nbsp;str&nbsp;);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line105"></a>105</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;str;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line106"></a>106</td><td></td><td></td><td></td><td><span><tt>end&nbsp;);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line107"></a>107</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line108"></a>108</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line109"></a>109</td><td></td><td></td><td></td><td><span><tt>#############################################################################
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line110"></a>110</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line111"></a>111</td><td></td><td></td><td></td><td><span><tt>#m&nbsp;&nbsp;ViewObj(&nbsp;&lt;record>&nbsp;)&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;&nbsp;for&nbsp;a&nbsp;record&nbsp;(default)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line112"></a>112</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line113"></a>113</td><td></td><td></td><td></td><td><span><tt>InstallMethod(&nbsp;ViewObj,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line114"></a>114</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;"record",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line115"></a>115</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;IsRecord&nbsp;],
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line116"></a>116</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;function(&nbsp;record&nbsp;)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line117"></a>117</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;local&nbsp;nam,&nbsp;com,&nbsp;i,&nbsp;snam,&nbsp;names,&nbsp;order;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line118"></a>118</td><td>1</td><td>2</td><td>2</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;Print("\>\>rec(&nbsp;\>\>");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line119"></a>119</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;com&nbsp;:=&nbsp;false;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line120"></a>120</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line121"></a>121</td><td>1</td><td>3</td><td>8</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;names&nbsp;:=&nbsp;List(RecNames(record));
+</tt></span></td><td><span><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_coll.gi.html#line643">List</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line122"></a>122</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;order&nbsp;:=&nbsp;[1..Length(names)];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line123"></a>123</td><td>1</td><td>5</td><td>5</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;SortParallel(names,&nbsp;order);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line124"></a>124</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line125"></a>125</td><td>1</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;i&nbsp;in&nbsp;[1..Length(names)]&nbsp;do
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line126"></a>126</td><td>2</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nam&nbsp;:=&nbsp;names[i];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line127"></a>127</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;com&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line128"></a>128</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print("\&lt;,\&lt;&nbsp;\>\>");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line129"></a>129</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line130"></a>130</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;com&nbsp;:=&nbsp;true;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line131"></a>131</td><td>2</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line132"></a>132</td><td>2</td><td>2</td><td>2</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET_PRINT_OBJ_INDEX(order[i]);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line133"></a>133</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;easy&nbsp;if&nbsp;nam&nbsp;is&nbsp;integer&nbsp;or&nbsp;valid&nbsp;identifier:
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line134"></a>134</td><td>12</td><td>8</td><td>18</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;ForAll(nam,&nbsp;x->&nbsp;x&nbsp;in&nbsp;IdentifierLetters)&nbsp;and&nbsp;Size(nam)&nbsp;>&nbsp;0&nbsp;then
+</tt></span></td><td><span><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_coll.gi.html#line178">Size method</a> <a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_coll.gi.html#line1553">ForAll</a> </span></td><td><span><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_coll.gi.html#line1559">/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/coll.gi:1559</a> </span></td></tr>
+<tr class='exec'><td><a name="line135"></a>135</td><td>2</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print(nam,&nbsp;"&nbsp;:=&nbsp;");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line136"></a>136</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line137"></a>137</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;otherwise&nbsp;we&nbsp;use&nbsp;(...)&nbsp;syntax:
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line138"></a>138</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;snam&nbsp;:=&nbsp;String(nam);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line139"></a>139</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Print("(");&nbsp;View(snam);&nbsp;Print(")&nbsp;:=&nbsp;");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line140"></a>140</td><td>2</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line141"></a>141</td><td>2</td><td>3</td><td>151</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ViewObj(record.(nam));
+</tt></span></td><td><span><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_object.gi.html#line164">PrintObj default method delegating to PrintString</a> <a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_object.gi.html#line419">ViewObj default method trying ViewString</a> <a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_teaching.g.html#line775">ViewObj method</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line142"></a>142</td><td>3</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line143"></a>143</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;Print("&nbsp;\&lt;\&lt;\&lt;\&lt;)");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line144"></a>144</td><td>1</td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line145"></a>145</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line146"></a>146</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line147"></a>147</td><td></td><td></td><td></td><td><span><tt>#&nbsp;methods&nbsp;to&nbsp;catch&nbsp;error&nbsp;cases
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line148"></a>148</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line149"></a>149</td><td></td><td></td><td></td><td><span><tt>InstallMethod(&nbsp;\.,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line150"></a>150</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"catch&nbsp;error",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line151"></a>151</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line152"></a>152</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IsObject,IsObject],
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line153"></a>153</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line154"></a>154</td><td></td><td></td><td></td><td><span><tt>function(obj,nr)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line155"></a>155</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;local&nbsp;msg;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line156"></a>156</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;msg:=Concatenation("illegal&nbsp;access&nbsp;to&nbsp;record&nbsp;component&nbsp;`obj.",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line157"></a>157</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NameRNam(nr),"'\n",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line158"></a>158</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"of&nbsp;the&nbsp;object&nbsp;&lt;obj>.&nbsp;(Objects&nbsp;by&nbsp;default&nbsp;do&nbsp;not&nbsp;have&nbsp;record&nbsp;components.\n",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line159"></a>159</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"The&nbsp;error&nbsp;might&nbsp;be&nbsp;a&nbsp;relic&nbsp;from&nbsp;translated&nbsp;GAP3&nbsp;code.)");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line160"></a>160</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;Error(msg);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line161"></a>161</td><td></td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line162"></a>162</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line163"></a>163</td><td></td><td></td><td></td><td><span><tt>InstallMethod(&nbsp;IsBound\.,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line164"></a>164</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"catch&nbsp;error",true,[IsObject,IsObject],0,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line165"></a>165</td><td></td><td></td><td></td><td><span><tt>function(obj,nr)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line166"></a>166</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;local&nbsp;msg;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line167"></a>167</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;msg:=Concatenation("illegal&nbsp;access&nbsp;to&nbsp;record&nbsp;component&nbsp;`IsBound(obj.",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line168"></a>168</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NameRNam(nr),")'\n",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line169"></a>169</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"of&nbsp;the&nbsp;object&nbsp;&lt;obj>.&nbsp;(Objects&nbsp;by&nbsp;default&nbsp;do&nbsp;not&nbsp;have&nbsp;record&nbsp;components.\n",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line170"></a>170</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"The&nbsp;error&nbsp;might&nbsp;be&nbsp;a&nbsp;relic&nbsp;from&nbsp;translated&nbsp;GAP3&nbsp;code.)");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line171"></a>171</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;Error(msg);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line172"></a>172</td><td></td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line173"></a>173</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line174"></a>174</td><td></td><td></td><td></td><td><span><tt>InstallMethod(&nbsp;Unbind\.,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line175"></a>175</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"catch&nbsp;error",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line176"></a>176</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line177"></a>177</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IsObject,IsObject],
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line178"></a>178</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line179"></a>179</td><td></td><td></td><td></td><td><span><tt>function(obj,nr)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line180"></a>180</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;local&nbsp;msg;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line181"></a>181</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;msg:=Concatenation("illegal&nbsp;access&nbsp;to&nbsp;record&nbsp;component&nbsp;`Unbind(obj.",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line182"></a>182</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NameRNam(nr),")'\n",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line183"></a>183</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"of&nbsp;the&nbsp;object&nbsp;&lt;obj>.&nbsp;(Objects&nbsp;by&nbsp;default&nbsp;do&nbsp;not&nbsp;have&nbsp;record&nbsp;components.\n",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line184"></a>184</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"The&nbsp;error&nbsp;might&nbsp;be&nbsp;a&nbsp;relic&nbsp;from&nbsp;translated&nbsp;GAP3&nbsp;code.)");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line185"></a>185</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;Error(msg);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line186"></a>186</td><td></td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line187"></a>187</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line188"></a>188</td><td></td><td></td><td></td><td><span><tt>InstallMethod(&nbsp;\.\:\=,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line189"></a>189</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"catch&nbsp;error",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line190"></a>190</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;true,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line191"></a>191</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IsObject,IsObject,IsObject],
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line192"></a>192</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line193"></a>193</td><td></td><td></td><td></td><td><span><tt>function(obj,nr,elm)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line194"></a>194</td><td></td><td></td><td></td><td><span><tt>local&nbsp;msg;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line195"></a>195</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;msg:=Concatenation("illegal&nbsp;assignment&nbsp;to&nbsp;record&nbsp;component&nbsp;`obj.",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line196"></a>196</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NameRNam(nr),"'\n",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line197"></a>197</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"of&nbsp;the&nbsp;object&nbsp;&lt;obj>.&nbsp;(Objects&nbsp;by&nbsp;default&nbsp;cannot&nbsp;have&nbsp;record&nbsp;components.\n",
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line198"></a>198</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"The&nbsp;error&nbsp;might&nbsp;be&nbsp;a&nbsp;relic&nbsp;from&nbsp;translated&nbsp;GAP3&nbsp;code.)");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line199"></a>199</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;Error(msg);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line200"></a>200</td><td></td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line201"></a>201</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line202"></a>202</td><td></td><td></td><td></td><td><span><tt>#############################################################################
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line203"></a>203</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line204"></a>204</td><td></td><td></td><td></td><td><span><tt>#F&nbsp;&nbsp;SetNamesForFunctionsInRecord(&nbsp;&lt;rec-name>[,&nbsp;&lt;record>&nbsp;][,&nbsp;&lt;field-names>])
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line205"></a>205</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line206"></a>206</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;set&nbsp;the&nbsp;names&nbsp;of&nbsp;functions&nbsp;bound&nbsp;to&nbsp;components&nbsp;of&nbsp;a&nbsp;record.&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line207"></a>207</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line208"></a>208</td><td></td><td></td><td></td><td><span><tt>InstallGlobalFunction(SetNamesForFunctionsInRecord,&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line209"></a>209</td><td></td><td></td><td></td><td><span><tt>function(arg)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line210"></a>210</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;local&nbsp;recname,&nbsp;next,&nbsp;record,&nbsp;fields,&nbsp;field;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line211"></a>211</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;LENGTH(arg)&nbsp;=&nbsp;0&nbsp;or&nbsp;not&nbsp;IS_STRING(arg[1])&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line212"></a>212</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error("SetNamesForFunctionsInRecord:&nbsp;you&nbsp;must&nbsp;give&nbsp;a&nbsp;record&nbsp;name");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line213"></a>213</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line214"></a>214</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;recname&nbsp;:=&nbsp;arg[1];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line215"></a>215</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;next&nbsp;:=&nbsp;2;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line216"></a>216</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;LENGTH(arg)&nbsp;>=&nbsp;next&nbsp;and&nbsp;IS_REC(arg[next])&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line217"></a>217</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;record&nbsp;:=&nbsp;arg[2];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line218"></a>218</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;next&nbsp;:=&nbsp;3;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line219"></a>219</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;else
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line220"></a>220</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;record&nbsp;:=&nbsp;VALUE_GLOBAL(recname);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line221"></a>221</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line222"></a>222</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;LENGTH(arg)&nbsp;>=&nbsp;next&nbsp;and&nbsp;IS_LIST(arg[next])&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line223"></a>223</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fields&nbsp;:=&nbsp;arg[next];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line224"></a>224</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;else
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line225"></a>225</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fields&nbsp;:=&nbsp;REC_NAMES(record);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line226"></a>226</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line227"></a>227</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;field&nbsp;in&nbsp;fields&nbsp;do
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line228"></a>228</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;IS_STRING(field)&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line229"></a>229</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;IsFunction(record.(field))&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line230"></a>230</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SetNameFunction(record.(field),&nbsp;Concatenation(recname,".",field));
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line231"></a>231</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line232"></a>232</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line233"></a>233</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line234"></a>234</td><td></td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+</tbody>
+</table></body></html>

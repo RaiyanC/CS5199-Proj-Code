@@ -1,0 +1,500 @@
+<!DOCTYPE html><script src="sorttable.js"></script><html>
+<head><title>
+</title></head>
+<body>
+<style>
+table { border-collapse: collapse }
+tr:nth-child(odd)  { background-color: #EEE; }
+tr:nth-child(even)  { background-color: #FFF; }
+tr:nth-child(odd).exec  { background-color: #0F0; }
+tr:nth-child(even).exec  { background-color: #3F3; }
+tr:nth-child(odd).missed  { background-color: #F00; }
+tr:nth-child(even).missed  { background-color: #F33; }
+td, th {
+    border: 1px solid #98bf21;
+    padding: 3px 7px 2px 7px;
+}
+th {
+    font-size: 1.1em;
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    background-color: #A7C942;
+    color: #ffffff;
+}
+table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
+    content: " \25B4\25BE"
+}
+
+/* HSV gradient made using http://www.perbang.dk/rgbgradient/ */
+td.coverage00 { background-color: #FF0000; }
+td.coverage10 { background-color: #F83100; }
+td.coverage20 { background-color: #F25F00; }
+td.coverage30 { background-color: #EB8B00; }
+td.coverage40 { background-color: #E5B500; }
+td.coverage50 { background-color: #DFDC00; }
+td.coverage60 { background-color: #B0D800; }
+td.coverage70 { background-color: #81D200; }
+td.coverage80 { background-color: #55CB00; }
+td.coverage90 { background-color: #2CC500; }
+td.coverage100 { background-color: #04BF00; }
+td:nth-child(1) { text-align: right; }
+td:nth-child(2) { text-align: right; }
+td:nth-child(3) { text-align: right; }
+td:nth-child(4) { text-align: right; }
+</style><p>This file was read by GAP before profiling was actived, so lines which were not read but not executed are not marked.</p><table class="sortable">
+<thead><tr><th>Line</th><th>Execs</th><th>Time</th><th>Time+Childs</th><th>Code</th><th>Called Functions</th><th>Called From</th>
+</tr></thead>
+<tbody>
+<tr class='ignore'><td><a name="line1"></a>1</td><td></td><td></td><td></td><td><span><tt>#############################################################################
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line2"></a>2</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line3"></a>3</td><td></td><td></td><td></td><td><span><tt>#W&nbsp;&nbsp;PrintUtil.gi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GAPDoc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Frank&nbsp;Lübeck
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line4"></a>4</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line5"></a>5</td><td></td><td></td><td></td><td><span><tt>##
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line6"></a>6</td><td></td><td></td><td></td><td><span><tt>#Y&nbsp;&nbsp;Copyright&nbsp;(C)&nbsp;&nbsp;2000,&nbsp;&nbsp;Frank&nbsp;Lübeck,&nbsp;&nbsp;Lehrstuhl&nbsp;D&nbsp;für&nbsp;Mathematik,&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line7"></a>7</td><td></td><td></td><td></td><td><span><tt>#Y&nbsp;&nbsp;RWTH&nbsp;Aachen
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line8"></a>8</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line9"></a>9</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;The&nbsp;&nbsp;files&nbsp;PrintUtil.gd&nbsp;and&nbsp;&nbsp;PrintUtil.gi&nbsp;contain&nbsp;utilities&nbsp;&nbsp;for&nbsp;printing
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line10"></a>10</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;objects&nbsp;or&nbsp;large&nbsp;amounts&nbsp;of&nbsp;data.
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line11"></a>11</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line12"></a>12</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line13"></a>13</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;a&nbsp;hack:&nbsp;type&nbsp;for&nbsp;objects&nbsp;which&nbsp;only&nbsp;exist&nbsp;to&nbsp;print&nbsp;something
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line14"></a>14</td><td></td><td></td><td></td><td><span><tt>BindGlobal("DUMMYTBPTYPE",&nbsp;NewType(NewFamily(""),&nbsp;IsObjToBePrinted));
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line15"></a>15</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line16"></a>16</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line17"></a>17</td><td></td><td></td><td></td><td><span><tt>InstallMethod(PrintObj,&nbsp;"IsObjToBePrinted",&nbsp;true,&nbsp;[IsObjToBePrinted],&nbsp;0,&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line18"></a>18</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function(obj)&nbsp;obj!.f();&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line19"></a>19</td><td></td><td></td><td></td><td><span><tt>end);&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line20"></a>20</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line21"></a>21</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;#GAPDoc&nbsp;Label="PrintTo1">
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line22"></a>22</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;ManSection&nbsp;>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line23"></a>23</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;Func&nbsp;Arg="filename,&nbsp;fun"&nbsp;Name="PrintTo1"&nbsp;/>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line24"></a>24</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;Func&nbsp;Arg="filename,&nbsp;fun"&nbsp;Name="AppendTo1"&nbsp;/>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line25"></a>25</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;Description>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line26"></a>26</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;The&nbsp;&nbsp;argument&nbsp;&nbsp;&lt;A>fun&lt;/A>&nbsp;&nbsp;must&nbsp;&nbsp;be&nbsp;a&nbsp;&nbsp;function&nbsp;&nbsp;without&nbsp;&nbsp;arguments.
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line27"></a>27</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;Everything&nbsp;which&nbsp;is&nbsp;&nbsp;printed&nbsp;by&nbsp;a&nbsp;call&nbsp;&lt;A>fun()&lt;/A>&nbsp;&nbsp;is&nbsp;printed&nbsp;into
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line28"></a>28</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;the&nbsp;file&nbsp;&lt;A>filename&lt;/A>.&nbsp;As&nbsp;with&nbsp;&lt;Ref&nbsp;BookName="ref"&nbsp;Func="PrintTo"
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line29"></a>29</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;/>&nbsp;&nbsp;and&nbsp;&lt;Ref&nbsp;&nbsp;BookName="ref"&nbsp;Func="AppendTo"&nbsp;&nbsp;/>&nbsp;this&nbsp;&nbsp;overwrites&nbsp;or
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line30"></a>30</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;appends&nbsp;&nbsp;to,&nbsp;respectively,&nbsp;&nbsp;a&nbsp;previous&nbsp;&nbsp;content&nbsp;of&nbsp;&nbsp;&lt;A>filename&lt;/A>.
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line31"></a>31</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;P/>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line32"></a>32</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line33"></a>33</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;These&nbsp;functions&nbsp;can&nbsp;be&nbsp;particularly&nbsp;efficient&nbsp;when&nbsp;many&nbsp;small&nbsp;pieces
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line34"></a>34</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;of&nbsp;text&nbsp;shall&nbsp;be&nbsp;written&nbsp;to&nbsp;a&nbsp;file,&nbsp;because&nbsp;no&nbsp;multiple&nbsp;reopening&nbsp;of
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line35"></a>35</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;the&nbsp;file&nbsp;is&nbsp;necessary.
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line36"></a>36</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line37"></a>37</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;Example>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line38"></a>38</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;gap>&nbsp;f&nbsp;:=&nbsp;function()&nbsp;local&nbsp;i;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line39"></a>39</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;for&nbsp;i&nbsp;in&nbsp;[1..100000]&nbsp;do&nbsp;Print(i,&nbsp;"\n");&nbsp;od;&nbsp;end;;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line40"></a>40</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;gap>&nbsp;PrintTo1("nonsense",&nbsp;f);&nbsp;#&nbsp;now&nbsp;check&nbsp;the&nbsp;local&nbsp;file&nbsp;`nonsense'
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line41"></a>41</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;/Example>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line42"></a>42</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;/Description>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line43"></a>43</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;/ManSection>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line44"></a>44</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;#/GAPDoc>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line45"></a>45</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line46"></a>46</td><td></td><td></td><td></td><td><span><tt>InstallGlobalFunction(PrintTo1,&nbsp;function(file,&nbsp;fun)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line47"></a>47</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;local&nbsp;&nbsp;&nbsp;obj;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line48"></a>48</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;obj&nbsp;:=&nbsp;rec(f&nbsp;:=&nbsp;fun);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line49"></a>49</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;Objectify(DUMMYTBPTYPE,&nbsp;obj);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line50"></a>50</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;PrintTo(file,&nbsp;obj);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line51"></a>51</td><td></td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line52"></a>52</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line53"></a>53</td><td></td><td></td><td></td><td><span><tt>InstallGlobalFunction(AppendTo1,&nbsp;function(file,&nbsp;fun)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line54"></a>54</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;local&nbsp;&nbsp;&nbsp;obj;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line55"></a>55</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;obj&nbsp;:=&nbsp;rec(f&nbsp;:=&nbsp;fun);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line56"></a>56</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;Objectify(DUMMYTBPTYPE,&nbsp;obj);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line57"></a>57</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;AppendTo(file,&nbsp;obj);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line58"></a>58</td><td></td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line59"></a>59</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line60"></a>60</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;#GAPDoc&nbsp;Label="StringPrint">
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line61"></a>61</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;ManSection&nbsp;>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line62"></a>62</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;Func&nbsp;Arg="obj1[,&nbsp;obj2[,&nbsp;...]]"&nbsp;Name="StringPrint"&nbsp;/>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line63"></a>63</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;Func&nbsp;Arg="obj"&nbsp;Name="StringView"&nbsp;/>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line64"></a>64</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;Func&nbsp;Arg="obj"&nbsp;Name="StringDisplay"&nbsp;/>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line65"></a>65</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;Description>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line66"></a>66</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;These&nbsp;&nbsp;functions&nbsp;&nbsp;return&nbsp;a&nbsp;&nbsp;string&nbsp;&nbsp;containing&nbsp;&nbsp;the&nbsp;output&nbsp;&nbsp;of&nbsp;&nbsp;a
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line67"></a>67</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;C>Print&lt;/C>,&nbsp;&lt;C>ViewObj&lt;/C>&nbsp;or&nbsp;&lt;C>Display&lt;/C>&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line68"></a>68</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;call,&nbsp;respectively,&nbsp;with&nbsp;the&nbsp;same&nbsp;arguments.&lt;P/>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line69"></a>69</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line70"></a>70</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;This&nbsp;should&nbsp;&nbsp;be&nbsp;considered&nbsp;&nbsp;as&nbsp;a&nbsp;(temporary?)&nbsp;&nbsp;hack.&nbsp;It&nbsp;&nbsp;would&nbsp;be
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line71"></a>71</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;better&nbsp;to&nbsp;&nbsp;have&nbsp;&lt;Ref&nbsp;&nbsp;BookName="ref"&nbsp;Oper="String"/>&nbsp;&nbsp;methods&nbsp;for
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line72"></a>72</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;all&nbsp;&nbsp;&amp;GAP;&nbsp;objects&nbsp;&nbsp;and&nbsp;&nbsp;to&nbsp;have&nbsp;&nbsp;a&nbsp;&nbsp;generic&nbsp;&lt;Ref&nbsp;&nbsp;BookName="ref"
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line73"></a>73</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;Func="Print"/>-function&nbsp;which&nbsp;just&nbsp;interprets&nbsp;these&nbsp;strings.
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line74"></a>74</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;/Description>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line75"></a>75</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;/ManSection>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line76"></a>76</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;#/GAPDoc>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line77"></a>77</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line78"></a>78</td><td></td><td></td><td></td><td><span><tt>InstallGlobalFunction(StringPrint,&nbsp;function(obj)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line79"></a>79</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;local&nbsp;&nbsp;&nbsp;str,&nbsp;&nbsp;out;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line80"></a>80</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;str&nbsp;:=&nbsp;"";
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line81"></a>81</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;out&nbsp;:=&nbsp;OutputTextString(str,&nbsp;false);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line82"></a>82</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;PrintTo1(out,&nbsp;function()&nbsp;Print(obj);&nbsp;end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line83"></a>83</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;CloseStream(out);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line84"></a>84</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;return&nbsp;str;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line85"></a>85</td><td></td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line86"></a>86</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line87"></a>87</td><td></td><td></td><td></td><td><span><tt>InstallGlobalFunction(StringView,&nbsp;function(obj)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line88"></a>88</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;local&nbsp;&nbsp;&nbsp;str,&nbsp;&nbsp;out;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line89"></a>89</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;str&nbsp;:=&nbsp;"";
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line90"></a>90</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;out&nbsp;:=&nbsp;OutputTextString(str,&nbsp;false);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line91"></a>91</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;PrintTo1(out,&nbsp;function()&nbsp;View(obj);&nbsp;end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line92"></a>92</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;CloseStream(out);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line93"></a>93</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;return&nbsp;str;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line94"></a>94</td><td></td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line95"></a>95</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line96"></a>96</td><td></td><td></td><td></td><td><span><tt>InstallGlobalFunction(StringDisplay,&nbsp;function(obj)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line97"></a>97</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;local&nbsp;&nbsp;&nbsp;str,&nbsp;&nbsp;out;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line98"></a>98</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;str&nbsp;:=&nbsp;"";
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line99"></a>99</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;out&nbsp;:=&nbsp;OutputTextString(str,&nbsp;false);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line100"></a>100</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;PrintTo1(out,&nbsp;function()&nbsp;Display(obj);&nbsp;end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line101"></a>101</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;CloseStream(out);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line102"></a>102</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;return&nbsp;str;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line103"></a>103</td><td></td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line104"></a>104</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line105"></a>105</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line106"></a>106</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;#GAPDoc&nbsp;Label="PrintFormattedString">
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line107"></a>107</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;ManSection&nbsp;>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line108"></a>108</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;Func&nbsp;Arg="str"&nbsp;Name="PrintFormattedString"&nbsp;/>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line109"></a>109</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;Description>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line110"></a>110</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;This&nbsp;&nbsp;function&nbsp;&nbsp;prints&nbsp;a&nbsp;&nbsp;string&nbsp;&nbsp;&lt;A>str&lt;/A>.&nbsp;&nbsp;The&nbsp;difference&nbsp;&nbsp;to
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line111"></a>111</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;C>Print(str);&lt;/C>&nbsp;&nbsp;is&nbsp;&nbsp;&nbsp;that&nbsp;&nbsp;no&nbsp;&nbsp;additional&nbsp;&nbsp;line&nbsp;&nbsp;&nbsp;breaks&nbsp;&nbsp;are
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line112"></a>112</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;introduced&nbsp;&nbsp;by&nbsp;&nbsp;&amp;GAP;'s&nbsp;&nbsp;standard&nbsp;printing&nbsp;&nbsp;mechanism.&nbsp;&nbsp;This&nbsp;&nbsp;can
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line113"></a>113</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;be&nbsp;&nbsp;used&nbsp;&nbsp;to&nbsp;&nbsp;print&nbsp;&nbsp;lines&nbsp;&nbsp;which&nbsp;are&nbsp;&nbsp;longer&nbsp;&nbsp;than&nbsp;&nbsp;the&nbsp;&nbsp;current
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line114"></a>114</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;screen&nbsp;width.&nbsp;&nbsp;In&nbsp;particular&nbsp;&nbsp;one&nbsp;can&nbsp;&nbsp;print&nbsp;text&nbsp;&nbsp;which&nbsp;contains
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line115"></a>115</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;escape&nbsp;sequences&nbsp;&nbsp;like&nbsp;those&nbsp;explained&nbsp;in&nbsp;&nbsp;&lt;Ref&nbsp;Var="TextAttr"/>,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line116"></a>116</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;where&nbsp;&nbsp;lines&nbsp;&nbsp;&nbsp;may&nbsp;&nbsp;have&nbsp;&nbsp;&nbsp;more&nbsp;&nbsp;characters&nbsp;&nbsp;&nbsp;than&nbsp;&nbsp;&lt;Emph>visible
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line117"></a>117</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;characters&lt;/Emph>.
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line118"></a>118</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;/Description>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line119"></a>119</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;/ManSection>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line120"></a>120</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;#/GAPDoc>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line121"></a>121</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line122"></a>122</td><td></td><td></td><td></td><td><span><tt>InstallGlobalFunction(PrintFormattedString,&nbsp;function(str)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line123"></a>123</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;local&nbsp;&nbsp;&nbsp;n,&nbsp;&nbsp;l,&nbsp;&nbsp;i;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line124"></a>124</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;Print("\c");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line125"></a>125</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;n&nbsp;:=&nbsp;QuoInt(SizeScreen()[1],&nbsp;2)+1;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line126"></a>126</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;l&nbsp;:=&nbsp;Length(str);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line127"></a>127</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;i&nbsp;:=&nbsp;0;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line128"></a>128</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;while&nbsp;i+n&lt;=l&nbsp;do
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line129"></a>129</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;Print(str{[i+1..i+n]},&nbsp;"\c");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line130"></a>130</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;i&nbsp;:=&nbsp;i+n;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line131"></a>131</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line132"></a>132</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;if&nbsp;i&lt;l&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line133"></a>133</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;Print(str{[i+1..l]},&nbsp;"\c");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line134"></a>134</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line135"></a>135</td><td></td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line136"></a>136</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line137"></a>137</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line138"></a>138</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;#GAPDoc&nbsp;Label="Page">
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line139"></a>139</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;ManSection&nbsp;>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line140"></a>140</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;Func&nbsp;Arg="..."&nbsp;Name="Page"&nbsp;/>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line141"></a>141</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;Func&nbsp;Arg="obj"&nbsp;Name="PageDisplay"&nbsp;/>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line142"></a>142</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;Description>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line143"></a>143</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;These&nbsp;functions&nbsp;&nbsp;are&nbsp;similar&nbsp;to&nbsp;&lt;Ref&nbsp;&nbsp;BookName="ref"&nbsp;Func="Print"
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line144"></a>144</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;/>&nbsp;and&nbsp;&nbsp;&lt;Ref&nbsp;BookName="ref"&nbsp;Func="Display"&nbsp;/>,&nbsp;&nbsp;respectively.&nbsp;The
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line145"></a>145</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;difference&nbsp;is&nbsp;that&nbsp;the&nbsp;output&nbsp;is&nbsp;not&nbsp;sent&nbsp;directly&nbsp;to&nbsp;the&nbsp;screen,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line146"></a>146</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;but&nbsp;&nbsp;is&nbsp;piped&nbsp;&nbsp;into&nbsp;the&nbsp;&nbsp;current&nbsp;pager;&nbsp;&nbsp;see&nbsp;&lt;Ref&nbsp;&nbsp;BookName="ref"
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line147"></a>147</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;Func="Pager"&nbsp;/>.
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line148"></a>148</td><td></td><td></td><td></td><td><span><tt>##&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line149"></a>149</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;!--&nbsp;cannot&nbsp;be&nbsp;run&nbsp;in&nbsp;automatic&nbsp;test&nbsp;-->
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line150"></a>150</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;Log>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line151"></a>151</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;gap>&nbsp;Page([1..1421]+0);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line152"></a>152</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;gap>&nbsp;PageDisplay(CharacterTable("Symmetric",&nbsp;14));
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line153"></a>153</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;/Log>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line154"></a>154</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;/Description>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line155"></a>155</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;/ManSection>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line156"></a>156</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;#/GAPDoc>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line157"></a>157</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line158"></a>158</td><td></td><td></td><td></td><td><span><tt>InstallGlobalFunction(Page,&nbsp;function(arg)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line159"></a>159</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;local&nbsp;&nbsp;&nbsp;str,&nbsp;&nbsp;out;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line160"></a>160</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;str&nbsp;:=&nbsp;"";
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line161"></a>161</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;out&nbsp;:=&nbsp;OutputTextString(str,&nbsp;true);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line162"></a>162</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;CallFuncList(PrintTo,&nbsp;Concatenation([out],arg));
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line163"></a>163</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;CloseStream(out);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line164"></a>164</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;Pager(rec(lines&nbsp;:=&nbsp;str,&nbsp;formatted:=true));
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line165"></a>165</td><td></td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line166"></a>166</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line167"></a>167</td><td></td><td></td><td></td><td><span><tt>InstallGlobalFunction(PageDisplay,&nbsp;function(x)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line168"></a>168</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;local&nbsp;&nbsp;&nbsp;str,&nbsp;&nbsp;out;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line169"></a>169</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;str&nbsp;:=&nbsp;"";
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line170"></a>170</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;out&nbsp;:=&nbsp;OutputTextString(str,&nbsp;true);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line171"></a>171</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;PrintTo1(out,&nbsp;function()&nbsp;Display(x);end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line172"></a>172</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;CloseStream(out);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line173"></a>173</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;Pager(rec(lines&nbsp;:=&nbsp;str,&nbsp;formatted:=true));
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line174"></a>174</td><td></td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line175"></a>175</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line176"></a>176</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line177"></a>177</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;#GAPDoc&nbsp;Label="StringFile">
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line178"></a>178</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;ManSection&nbsp;>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line179"></a>179</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;Func&nbsp;Arg="filename"&nbsp;Name="StringFile"&nbsp;/>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line180"></a>180</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;Func&nbsp;Arg="filename,&nbsp;str[,&nbsp;append]"&nbsp;Name="FileString"&nbsp;/>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line181"></a>181</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;Description>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line182"></a>182</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;The&nbsp;&nbsp;function&nbsp;&lt;Ref&nbsp;&nbsp;Func="StringFile"&nbsp;/>&nbsp;&nbsp;returns&nbsp;the&nbsp;&nbsp;content&nbsp;of
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line183"></a>183</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;file&nbsp;&nbsp;&lt;A>filename&lt;/A>&nbsp;as&nbsp;&nbsp;a&nbsp;string.&nbsp;&nbsp;This&nbsp;works&nbsp;&nbsp;efficiently&nbsp;with
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line184"></a>184</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;arbitrary&nbsp;(binary&nbsp;or&nbsp;text)&nbsp;files.&nbsp;If&nbsp;something&nbsp;went&nbsp;wrong,&nbsp;&nbsp;&nbsp;this&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line185"></a>185</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;function&nbsp;returns&nbsp;&lt;K>fail&lt;/K>.
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line186"></a>186</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;P/>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line187"></a>187</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line188"></a>188</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;Conversely&nbsp;&nbsp;the&nbsp;function&nbsp;&nbsp;&lt;Ref&nbsp;&nbsp;Func="FileString"&nbsp;&nbsp;/>&nbsp;writes&nbsp;&nbsp;the
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line189"></a>189</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;content&nbsp;of&nbsp;a&nbsp;string&nbsp;&lt;A>str&lt;/A>&nbsp;&nbsp;into&nbsp;the&nbsp;file&nbsp;&lt;A>filename&lt;/A>.&nbsp;If
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line190"></a>190</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;the&nbsp;&nbsp;optional&nbsp;third&nbsp;&nbsp;argument&nbsp;&lt;A>append&lt;/A>&nbsp;&nbsp;is&nbsp;given&nbsp;&nbsp;and&nbsp;equals
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line191"></a>191</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;K>true&lt;/K>&nbsp;then&nbsp;&nbsp;the&nbsp;content&nbsp;&nbsp;of&nbsp;&lt;A>str&lt;/A>&nbsp;&nbsp;is&nbsp;appended&nbsp;&nbsp;to&nbsp;the
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line192"></a>192</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;file.&nbsp;Otherwise&nbsp;&nbsp;previous&nbsp;&nbsp;content&nbsp;&nbsp;of&nbsp;&nbsp;the&nbsp;file&nbsp;is&nbsp;deleted.&nbsp;This&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line193"></a>193</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;function&nbsp;returns&nbsp;the&nbsp;number&nbsp;of&nbsp;&nbsp;bytes&nbsp;&nbsp;written&nbsp;&nbsp;or&nbsp;&lt;K>fail&lt;/K>&nbsp;if&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line194"></a>194</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;something&nbsp;went&nbsp;wrong.&lt;P/>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line195"></a>195</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line196"></a>196</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;Both&nbsp;functions&nbsp;are&nbsp;quite&nbsp;efficient,&nbsp;even&nbsp;with&nbsp;large&nbsp;files.&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line197"></a>197</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;/Description>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line198"></a>198</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;/ManSection>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line199"></a>199</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&lt;#/GAPDoc>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line200"></a>200</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line201"></a>201</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;moved&nbsp;into&nbsp;lib/string.g{d,i}
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line202"></a>202</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line203"></a>203</td><td></td><td></td><td></td><td><span><tt>#&nbsp;GAP3&nbsp;type&nbsp;dispatcher&nbsp;for&nbsp;viewing&nbsp;and&nbsp;printing&nbsp;records
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line204"></a>204</td><td></td><td></td><td></td><td><span><tt>InstallMethod(ViewObj,&nbsp;[IsRecord],&nbsp;function(r)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line205"></a>205</td><td>2</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;if&nbsp;IsBound(r.operations)&nbsp;and&nbsp;IsRecord(r.operations)&nbsp;and&nbsp;IsBound(r.operations.ViewObj)&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line206"></a>206</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;r.operations.ViewObj(r);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line207"></a>207</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;else
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line208"></a>208</td><td>1</td><td>2</td><td>2</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;TryNextMethod();
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line209"></a>209</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line210"></a>210</td><td></td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line211"></a>211</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line212"></a>212</td><td></td><td></td><td></td><td><span><tt>InstallMethod(PrintObj,&nbsp;[IsRecord],&nbsp;function(r)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line213"></a>213</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;if&nbsp;IsBound(r.operations)&nbsp;and&nbsp;IsRecord(r.operations)&nbsp;and&nbsp;IsBound(r.operations.PrintObj)&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line214"></a>214</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;r.operations.PrintObj(r);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line215"></a>215</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;else
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line216"></a>216</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;TryNextMethod();
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line217"></a>217</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line218"></a>218</td><td></td><td></td><td></td><td><span><tt>end);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line219"></a>219</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;#&nbsp;example:
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line220"></a>220</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;r&nbsp;:=&nbsp;rec(&nbsp;a&nbsp;:=&nbsp;1,&nbsp;b&nbsp;:=&nbsp;2,&nbsp;operations&nbsp;:=&nbsp;rec(
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line221"></a>221</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ViewObj&nbsp;:=&nbsp;function(r)&nbsp;Print("view&nbsp;rec");&nbsp;end,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line222"></a>222</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PrintObj&nbsp;:=&nbsp;function(r)&nbsp;Print("print&nbsp;rec");&nbsp;end)&nbsp;&nbsp;);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line223"></a>223</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;View(r,&nbsp;&nbsp;rec(&nbsp;c&nbsp;:=&nbsp;3&nbsp;));&nbsp;Print("\n");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line224"></a>224</td><td></td><td></td><td></td><td><span><tt>##&nbsp;&nbsp;Print(r,&nbsp;"\n",&nbsp;rec(&nbsp;c&nbsp;:=&nbsp;3&nbsp;),&nbsp;"\n");
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line225"></a>225</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+</tbody>
+</table></body></html>

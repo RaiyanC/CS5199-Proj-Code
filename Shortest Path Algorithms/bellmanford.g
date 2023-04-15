@@ -3,12 +3,14 @@
 Bellman := function(digraph, source)
     local edge_list, weights, digraphVertices, distances, u, 
     outNeighbours, idx, v, w, _, path, vertex, edge, parents,
-    edge_info, edges, d, i;
+    edge_info, edges, d, i, flag;
 
     weights := EdgeWeights(digraph);
 
     digraphVertices := DigraphVertices(digraph);
     edge_list := [];
+    flag = true;
+    
     for u in DigraphVertices(digraph) do
         outNeighbours := OutNeighbors(digraph)[u];
         for idx in [1..Size(outNeighbours)] do
@@ -50,8 +52,12 @@ Bellman := function(digraph, source)
                 
                 parents[v] := u;
                 edges[v] := idx;
+                flag = false;
             fi;
         od;
+        if flag = true then
+            break;
+        fi;
     od;
 
     # check for negative cycles

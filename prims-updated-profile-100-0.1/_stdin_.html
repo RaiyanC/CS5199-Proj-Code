@@ -1,0 +1,60 @@
+<!DOCTYPE html><script src="sorttable.js"></script><html>
+<head><title>
+</title></head>
+<body>
+<style>
+table { border-collapse: collapse }
+tr:nth-child(odd)  { background-color: #EEE; }
+tr:nth-child(even)  { background-color: #FFF; }
+tr:nth-child(odd).exec  { background-color: #0F0; }
+tr:nth-child(even).exec  { background-color: #3F3; }
+tr:nth-child(odd).missed  { background-color: #F00; }
+tr:nth-child(even).missed  { background-color: #F33; }
+td, th {
+    border: 1px solid #98bf21;
+    padding: 3px 7px 2px 7px;
+}
+th {
+    font-size: 1.1em;
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    background-color: #A7C942;
+    color: #ffffff;
+}
+table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
+    content: " \25B4\25BE"
+}
+
+/* HSV gradient made using http://www.perbang.dk/rgbgradient/ */
+td.coverage00 { background-color: #FF0000; }
+td.coverage10 { background-color: #F83100; }
+td.coverage20 { background-color: #F25F00; }
+td.coverage30 { background-color: #EB8B00; }
+td.coverage40 { background-color: #E5B500; }
+td.coverage50 { background-color: #DFDC00; }
+td.coverage60 { background-color: #B0D800; }
+td.coverage70 { background-color: #81D200; }
+td.coverage80 { background-color: #55CB00; }
+td.coverage90 { background-color: #2CC500; }
+td.coverage100 { background-color: #04BF00; }
+td:nth-child(1) { text-align: right; }
+td:nth-child(2) { text-align: right; }
+td:nth-child(3) { text-align: right; }
+td:nth-child(4) { text-align: right; }
+</style><table class="sortable">
+<thead><tr><th>Line</th><th>Execs</th><th>Time</th><th>Time+Childs</th><th>Code</th><th>Called Functions</th><th>Called From</th>
+</tr></thead>
+<tbody>
+<tr class='ignore'><td><a name="line1"></a>1</td><td></td><td></td><td></td><td><span><tt>&lt;missing&nbsp;file></tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line2"></a>2</td><td></td><td></td><td></td><td><span><tt>&lt;missing&nbsp;file></tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line3"></a>3</td><td></td><td></td><td></td><td><span><tt>&lt;missing&nbsp;file></tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line4"></a>4</td><td></td><td></td><td></td><td><span><tt>&lt;missing&nbsp;file></tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line5"></a>5</td><td></td><td></td><td></td><td><span><tt>&lt;missing&nbsp;file></tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line6"></a>6</td><td></td><td></td><td></td><td><span><tt>&lt;missing&nbsp;file></tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line7"></a>7</td><td></td><td></td><td></td><td><span><tt>&lt;missing&nbsp;file></tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line8"></a>8</td><td></td><td></td><td></td><td><span><tt>&lt;missing&nbsp;file></tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line9"></a>9</td><td></td><td></td><td></td><td><span><tt>&lt;missing&nbsp;file></tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line10"></a>10</td><td>5</td><td>2</td><td>246,364</td><td><span><tt>&lt;missing&nbsp;file></tt></span></td><td><span><a href=".._Minimum Spanning Tree Algorithms_prims.g.html#line1">Prims</a> <a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_pkg_orb_gap_hash.gi.html#line46">ViewObj for hash tables</a> <a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_session.g.html#line52">/cs/home/mrc7/Documents/cs5199/gap-4.12.2/lib/session.g:52</a> <a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_record.gi.html#line116">ViewObj record</a> <a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_newprofile.g.html#line135">UnprofileLineByLine</a> <a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_pkg_gapdoc_lib_PrintUtil.gi.html#line204">ViewObj method</a> <a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_teaching.g.html#line775">ViewObj method</a> <a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_stbc.gi.html#line1847">ViewObj stabilizer chain records</a> </span></td><td><span></span></td></tr>
+</tbody>
+</table></body></html>

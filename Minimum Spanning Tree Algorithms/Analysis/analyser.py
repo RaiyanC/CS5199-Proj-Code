@@ -21,7 +21,8 @@ class Plotter():
       "flw": "Floyd Warshall Algorithm",
       "ek": "Edmond Karp Algorithm",
       "dc": "Dinic's Algorithm",
-      "mst-py": "Scipy's Minimum Spanning Tree Algorithm"
+      "mst-py": "Scipy's Minimum Spanning Tree Algorithm",
+      "kv2": "Kruskal's Algorithm with Path Compression"
     }
   
 
@@ -47,9 +48,11 @@ class Plotter():
       graph = sns.relplot(data=self.df, x=self.headers[0], y=self.headers[2], hue=self.headers[1], kind="line")
       
     
-    graph.set(xlabel='Vertices', ylabel='Avg Time (ms)', title=title)
+    # graph.set(xlabel='Vertices', ylabel='Avg Time (ms)', title=title)
+    format = 'jpeg'
+    graph.set(xlabel='Vertices', ylabel='Avg Time (ms)')
     if save:
-      plt.savefig(f"./Graphs/{title}.jpg", bbox_inches='tight')
+      plt.savefig(f"./Graphs/{title}.{format}", bbox_inches='tight')
     plt.show()
 
 

@@ -84,7 +84,7 @@ Dijkstra := function(digraph, source)
         od;
     od;
 
-    # fill lists with -1 if no path is possible
+    # fill lists with fail if no path is possible
     for i in [1..Size(distances)] do
         d := distances[i];
         if d = infinity then

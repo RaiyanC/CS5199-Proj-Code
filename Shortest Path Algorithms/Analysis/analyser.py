@@ -24,7 +24,8 @@ class Plotter():
       "sp-d-python": "Scipy's Dijkstra's Algorithm",
       "sp-bmf-python": "Scipy's Bellman Ford Algorithm",
       "sp-flw-python": "Scipy's Floyd Warshall Algorithm",
-      "sp-j-python": "Scipy's Johnson's Algorithm"
+      "sp-j-python": "Scipy's Johnson's Algorithm",
+      "bmfv2": "Bellman--Ford (optimised)"
     }
   
 

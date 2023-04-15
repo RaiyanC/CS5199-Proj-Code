@@ -21,15 +21,17 @@ Runtests := function(alg, nodes, probability, nrIterations, step)
   while nrNode <= nodes do
     for i in [1..nrIterations] do
       # create random graphs and save them
-      random_graph := CreateRandomMSTGraph(IsConnectedDigraph, nrNode, probability);
+      # random_graph := CreateRandomMSTGraph(IsConnectedDigraph, nrNode, probability);
+      random_graph := RandomUniqueEdgeWeightedDigraph(IsConnectedDigraph,nrNode, probability);
       # if alg = "k" then
-      #   Kruskals(random_graph, probability);
+        # Kruskals(random_graph, probability);
+        Kruskalsv2(random_graph, probability);
       # fi;
       # if alg = "p" then 
       #   Prims(random_graph, probability);
       # fi;
       # if alg = "pv1" then 
-        Prims(random_graph, probability);
+        # Prims(random_graph, probability);
       # fi;
     od;
     nrNode := nrNode + step;

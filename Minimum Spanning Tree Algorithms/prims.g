@@ -8,7 +8,7 @@ Prims := function(digraph)
     outs := OutNeighbors(digraph);
 
     # Create an adjacancy map for the edges with their associated weight
-    adj := HashMap(Size(digraphVertices));
+    adj := HashMap();
     for u in digraphVertices do
         outNeighbours := outs[u];
 

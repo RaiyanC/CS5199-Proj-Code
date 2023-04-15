@@ -1,0 +1,239 @@
+<!DOCTYPE html><script src="sorttable.js"></script><html>
+<head><title>
+</title></head>
+<body>
+<style>
+table { border-collapse: collapse }
+tr:nth-child(odd)  { background-color: #EEE; }
+tr:nth-child(even)  { background-color: #FFF; }
+tr:nth-child(odd).exec  { background-color: #0F0; }
+tr:nth-child(even).exec  { background-color: #3F3; }
+tr:nth-child(odd).missed  { background-color: #F00; }
+tr:nth-child(even).missed  { background-color: #F33; }
+td, th {
+    border: 1px solid #98bf21;
+    padding: 3px 7px 2px 7px;
+}
+th {
+    font-size: 1.1em;
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    background-color: #A7C942;
+    color: #ffffff;
+}
+table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
+    content: " \25B4\25BE"
+}
+
+/* HSV gradient made using http://www.perbang.dk/rgbgradient/ */
+td.coverage00 { background-color: #FF0000; }
+td.coverage10 { background-color: #F83100; }
+td.coverage20 { background-color: #F25F00; }
+td.coverage30 { background-color: #EB8B00; }
+td.coverage40 { background-color: #E5B500; }
+td.coverage50 { background-color: #DFDC00; }
+td.coverage60 { background-color: #B0D800; }
+td.coverage70 { background-color: #81D200; }
+td.coverage80 { background-color: #55CB00; }
+td.coverage90 { background-color: #2CC500; }
+td.coverage100 { background-color: #04BF00; }
+td:nth-child(1) { text-align: right; }
+td:nth-child(2) { text-align: right; }
+td:nth-child(3) { text-align: right; }
+td:nth-child(4) { text-align: right; }
+</style><p>This file was read by GAP before profiling was actived, so lines which were not read but not executed are not marked.</p><table class="sortable">
+<thead><tr><th>Line</th><th>Execs</th><th>Time</th><th>Time+Childs</th><th>Code</th><th>Called Functions</th><th>Called From</th>
+</tr></thead>
+<tbody>
+<tr class='ignore'><td><a name="line1"></a>1</td><td></td><td></td><td></td><td><span><tt>Prims&nbsp;:=&nbsp;function(digraph)
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line2"></a>2</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;local&nbsp;weights,&nbsp;digraphVertices,&nbsp;outs,&nbsp;adj,&nbsp;u,&nbsp;outNeighbours,&nbsp;inNeighbours,&nbsp;idx,&nbsp;v,
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line3"></a>3</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;w,&nbsp;mst,&nbsp;visited,&nbsp;queue,&nbsp;neighbour,&nbsp;total,&nbsp;edgesInMst,&nbsp;nrVertices,&nbsp;node,&nbsp;cost,&nbsp;nextVertex;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line4"></a>4</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line5"></a>5</td><td>1</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;weights&nbsp;:=&nbsp;EdgeWeights(digraph);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line6"></a>6</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line7"></a>7</td><td>1</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;digraphVertices&nbsp;:=&nbsp;DigraphVertices(digraph);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line8"></a>8</td><td>1</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;outs&nbsp;:=&nbsp;OutNeighbors(digraph);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line9"></a>9</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line10"></a>10</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;Create&nbsp;an&nbsp;adjacancy&nbsp;map&nbsp;for&nbsp;the&nbsp;edges&nbsp;with&nbsp;their&nbsp;associated&nbsp;weight
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line11"></a>11</td><td>1</td><td>2</td><td>14</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;adj&nbsp;:=&nbsp;HashMap(Size(digraphVertices));
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line19">HashMap</a> <a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_coll.gi.html#line178">Size method</a> </span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line12"></a>12</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;u&nbsp;in&nbsp;digraphVertices&nbsp;do
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line13"></a>13</td><td>3</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;outNeighbours&nbsp;:=&nbsp;outs[u];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line14"></a>14</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line15"></a>15</td><td>3</td><td>2</td><td>2</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;not&nbsp;u&nbsp;in&nbsp;adj&nbsp;then&nbsp;
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line117">in for a hash map and a key</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line16"></a>16</td><td>1</td><td>0</td><td>4</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adj[u]&nbsp;:=&nbsp;HashMap();
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line19">HashMap</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line17"></a>17</td><td>3</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line18"></a>18</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line19"></a>19</td><td>3</td><td>3</td><td>4</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;idx&nbsp;in&nbsp;[1..Size(outNeighbours)]&nbsp;do
+</tt></span></td><td><span><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_coll.gi.html#line178">Size method</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line20"></a>20</td><td>9</td><td>2</td><td>2</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v&nbsp;:=&nbsp;outNeighbours[idx];&nbsp;#&nbsp;the&nbsp;out&nbsp;neighbour
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line21"></a>21</td><td>9</td><td>2</td><td>2</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w&nbsp;:=&nbsp;weights[u][idx];&nbsp;#&nbsp;the&nbsp;weight&nbsp;of&nbsp;the&nbsp;edge&nbsp;to&nbsp;the&nbsp;out&nbsp;neighbour
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line22"></a>22</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line23"></a>23</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;Adding&nbsp;an&nbsp;edge&nbsp;for&nbsp;the&nbsp;current&nbsp;direction
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line24"></a>24</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line25"></a>25</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;check&nbsp;if&nbsp;there&nbsp;is&nbsp;an&nbsp;edge
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line26"></a>26</td><td>9</td><td>6</td><td>6</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;v&nbsp;in&nbsp;adj[u]&nbsp;then
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line117">in for a hash map and a key</a> </span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line27"></a>27</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;if&nbsp;edge&nbsp;already&nbsp;exists,&nbsp;update&nbsp;minimum&nbsp;for&nbsp;both&nbsp;directions
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line28"></a>28</td><td>3</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;w&nbsp;&lt;&nbsp;adj[u][v]&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line29"></a>29</td><td>2</td><td>2</td><td>2</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adj[u][v]&nbsp;:=&nbsp;w;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line30"></a>30</td><td>2</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adj[v][u]&nbsp;:=&nbsp;w;&nbsp;#&nbsp;this&nbsp;is&nbsp;the&nbsp;reverse&nbsp;edge.&nbsp;necessary&nbsp;to&nbsp;convert&nbsp;from&nbsp;directed&nbsp;to&nbsp;undirected&nbsp;graph
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line31"></a>31</td><td>5</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line32"></a>32</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line33"></a>33</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;if&nbsp;edge&nbsp;doesn't&nbsp;exist&nbsp;already,&nbsp;set&nbsp;it&nbsp;as&nbsp;the&nbsp;weight
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line34"></a>34</td><td>6</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adj[u][v]&nbsp;:=&nbsp;w;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line35"></a>35</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line36"></a>36</td><td>6</td><td>4</td><td>4</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;not&nbsp;v&nbsp;in&nbsp;adj&nbsp;then
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line117">in for a hash map and a key</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line37"></a>37</td><td>2</td><td>1</td><td>7</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adj[v]&nbsp;:=&nbsp;HashMap();
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line19">HashMap</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line38"></a>38</td><td>6</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line39"></a>39</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line40"></a>40</td><td>6</td><td>3</td><td>3</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adj[v][u]&nbsp;:=&nbsp;w;&nbsp;#&nbsp;again,&nbsp;adding&nbsp;the&nbsp;reverse&nbsp;edge
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line41"></a>41</td><td>15</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line42"></a>42</td><td>3</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line43"></a>43</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line44"></a>44</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line45"></a>45</td><td>1</td><td>0</td><td>3</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;mst&nbsp;:=&nbsp;HashMap();
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line19">HashMap</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line46"></a>46</td><td>1</td><td>2</td><td>2</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;visited&nbsp;:=&nbsp;BlistList(digraphVertices,&nbsp;[1]);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line47"></a>47</td><td>5</td><td>1</td><td>6</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;queue&nbsp;:=&nbsp;BinaryHeap({x,&nbsp;y}&nbsp;->&nbsp;x[1]&nbsp;>&nbsp;y[1]);
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_binaryheap.gi.html#line26">BinaryHeap</a> </span></td><td><span><a href=".._Minimum Spanning Tree Algorithms_prims.g.html#line54">../Minimum Spanning Tree Algorithms/prims.g:54</a> <a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_binaryheap.gi.html#line72">/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/binaryheap.gi:72</a> <a href=".._Minimum Spanning Tree Algorithms_prims.g.html#line88">../Minimum Spanning Tree Algorithms/prims.g:88</a> </span></td></tr>
+<tr class='ignore'><td><a name="line48"></a>48</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line49"></a>49</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;Add&nbsp;neighbours&nbsp;of&nbsp;first&nbsp;vertex&nbsp;to&nbsp;heap
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line50"></a>50</td><td>1</td><td>1</td><td>25</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;neighbour&nbsp;in&nbsp;KeyValueIterator(adj[1])&nbsp;do
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line170">NextIterator_HashMap</a> <a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line208">/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/hashmap.gi:208</a> <a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line227">KeyValueIterator for a hash set</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line51"></a>51</td><td>3</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v&nbsp;:=&nbsp;neighbour[1];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line52"></a>52</td><td>3</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w&nbsp;:=&nbsp;neighbour[2];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line53"></a>53</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line54"></a>54</td><td>3</td><td>3</td><td>24</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Push(queue,&nbsp;[w,&nbsp;1,&nbsp;v]);&nbsp;#&nbsp;weight,&nbsp;u,&nbsp;v
+</tt></span></td><td><span><a href=".._Minimum Spanning Tree Algorithms_prims.g.html#line47">../Minimum Spanning Tree Algorithms/prims.g:47</a> <a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line170">NextIterator_HashMap</a> <a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line208">/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/hashmap.gi:208</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line55"></a>55</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line56"></a>56</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line57"></a>57</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;total&nbsp;:=&nbsp;0;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line58"></a>58</td><td>1</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;edgesInMst&nbsp;:=&nbsp;0;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line59"></a>59</td><td>1</td><td>0</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;nrVertices&nbsp;:=&nbsp;Size(digraphVertices);
+</tt></span></td><td><span><a href="_cs_home_mrc7_Documents_cs5199_gap-4.12.2_lib_coll.gi.html#line178">Size method</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line60"></a>60</td><td>5</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;not&nbsp;IsEmpty(queue)&nbsp;do
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_binaryheap.gi.html#line94">IsEmpty for a binary heap in plain representation</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line61"></a>61</td><td>4</td><td>1</td><td>6</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;node&nbsp;:=&nbsp;Pop(queue);
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_binaryheap.gi.html#line61">Pop for a binary heap in plain representation</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line62"></a>62</td><td>4</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cost&nbsp;:=&nbsp;node[1];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line63"></a>63</td><td>4</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;u&nbsp;:=&nbsp;node[2];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line64"></a>64</td><td>4</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v&nbsp;:=&nbsp;node[3];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line65"></a>65</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line66"></a>66</td><td>4</td><td>2</td><td>2</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;not&nbsp;visited[v]&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line67"></a>67</td><td>2</td><td>2</td><td>2</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;visited[v]&nbsp;:=&nbsp;true;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line68"></a>68</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line69"></a>69</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line70"></a>70</td><td>2</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;not&nbsp;u&nbsp;in&nbsp;mst&nbsp;then
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line117">in for a hash map and a key</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line71"></a>71</td><td>2</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mst[u]&nbsp;:=&nbsp;[];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line72"></a>72</td><td>2</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line73"></a>73</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line74"></a>74</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line75"></a>75</td><td>2</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add(mst[u],&nbsp;v);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line76"></a>76</td><td>2</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total&nbsp;:=&nbsp;total&nbsp;+&nbsp;cost;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line77"></a>77</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line78"></a>78</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;optimisation&nbsp;to&nbsp;break&nbsp;out&nbsp;if&nbsp;MST&nbsp;reached&nbsp;when&nbsp;edges&nbsp;==&nbsp;v&nbsp;-&nbsp;1
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line79"></a>79</td><td>2</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;edgesInMst&nbsp;=&nbsp;nrVertices&nbsp;-&nbsp;1&nbsp;then
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line80"></a>80</td><td></td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line81"></a>81</td><td>2</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line82"></a>82</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line83"></a>83</td><td>2</td><td>1</td><td>22</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;neighbour&nbsp;in&nbsp;KeyValueIterator(adj[v])&nbsp;do
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line170">NextIterator_HashMap</a> <a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line208">/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/hashmap.gi:208</a> <a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line227">KeyValueIterator for a hash set</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line84"></a>84</td><td>6</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nextVertex&nbsp;:=&nbsp;neighbour[1];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line85"></a>85</td><td>6</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w&nbsp;:=&nbsp;neighbour[2];
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line86"></a>86</td><td></td><td></td><td></td><td><span><tt>&nbsp;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line87"></a>87</td><td>6</td><td>3</td><td>28</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;not&nbsp;visited[nextVertex]&nbsp;then
+</tt></span></td><td><span><a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line170">NextIterator_HashMap</a> <a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line208">/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/hashmap.gi:208</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line88"></a>88</td><td>1</td><td>2</td><td>2</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Push(queue,&nbsp;[w,&nbsp;v,&nbsp;nextVertex]);
+</tt></span></td><td><span><a href=".._Minimum Spanning Tree Algorithms_prims.g.html#line47">../Minimum Spanning Tree Algorithms/prims.g:47</a> <a href="_home_mrc7_.gap_pkg_datastructures-0.3.0_gap_hashmap.gi.html#line208">/home/mrc7/.gap/pkg/datastructures-0.3.0/gap/hashmap.gi:208</a> </span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line89"></a>89</td><td>6</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line90"></a>90</td><td>2</td><td>1</td><td>1</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line91"></a>91</td><td>6</td><td></td><td></td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fi;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line92"></a>92</td><td>5</td><td>2</td><td>2</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;od;
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='ignore'><td><a name="line93"></a>93</td><td></td><td></td><td></td><td><span><tt>
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line94"></a>94</td><td>1</td><td>2</td><td>2</td><td><span><tt>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;rec(total:=total,&nbsp;mst:=mst);
+</tt></span></td><td><span></span></td><td><span></span></td></tr>
+<tr class='exec'><td><a name="line95"></a>95</td><td>1</td><td></td><td></td><td><span><tt>end;</tt></span></td><td><span></span></td><td><span></span></td></tr>
+</tbody>
+</table></body></html>
