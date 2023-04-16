@@ -23,9 +23,10 @@ Runtests := function(alg, nodes, probability, nrIterations, step)
       # create random graphs and save them
       # random_graph := CreateRandomMSTGraph(IsConnectedDigraph, nrNode, probability);
       random_graph := RandomUniqueEdgeWeightedDigraph(IsConnectedDigraph,nrNode, probability);
+      Primsv3(random_graph, probability);
       # if alg = "k" then
         # Kruskals(random_graph, probability);
-        Kruskalsv2(random_graph, probability);
+        # Kruskalsv2(random_graph, probability);
       # fi;
       # if alg = "p" then 
       #   Prims(random_graph, probability);

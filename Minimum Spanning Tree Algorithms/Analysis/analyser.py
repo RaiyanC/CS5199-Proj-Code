@@ -14,7 +14,7 @@ class Plotter():
     self.algorithms_analysed = set()
     self.algorithms = {
       "p": "Prim's Algorithm",
-      "pv1": "Prim's (unoptimised) algorithm",
+      "pv1": "Prim's (unoptimised) Algorithm",
       "k": "Kruskal's Algorithm",
       "d": "Dijkstra's Algorithm",
       "bmf": "Bellman Ford Algorithm",
@@ -22,7 +22,8 @@ class Plotter():
       "ek": "Edmond Karp Algorithm",
       "dc": "Dinic's Algorithm",
       "mst-py": "Scipy's Minimum Spanning Tree Algorithm",
-      "kv2": "Kruskal's Algorithm with Path Compression"
+      "kv2": "Kruskal's Algorithm with Path Compression",
+      "pv3": "Prim's Algorithm (without HashMap Size)"
     }
   
 

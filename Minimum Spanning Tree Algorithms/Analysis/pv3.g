@@ -1,4 +1,4 @@
-Prims := function(digraph, probability)
+Primsv3 := function(digraph, probability)
     local weights, digraphVertices, outs, ins, adj, u, outNeighbours, inNeighbours, idx, v,
     w, mst, visited, queue, neighbour, total, edgesInMst, nrVertices, node, cost, nextVertex,
     analysisPath, headers, nrEdges, startTime, endTime, data;
@@ -106,7 +106,7 @@ Prims := function(digraph, probability)
     endTime := Runtimes().user_time;
 
     analysisPath := Concatenation("../Minimum Spanning Tree Algorithms/Analysis/",
-                    Concatenation(String(probability), "/p.csv"));
+                    Concatenation(String(probability), "/pv3.csv"));
 
 
     data := Concatenation(String(nrVertices), 

@@ -59,7 +59,7 @@ Floyd := function(digraph)
                 distances[u][v] := w;
 
                 # parent of u -> v is u
-                parents[u][v] := u;
+                parents[u][v] := [u, idx];
                 edges[u][v] := idx;
             
             fi;
@@ -72,6 +72,7 @@ Floyd := function(digraph)
                 if distances[u][k] < infinity and distances[k][v] < infinity then
                     if distances[u][k] + distances[k][v] < distances[u][v] then
                         distances[u][v] := distances[u][k] + distances[k][v];
+                        parents[u][v] := parents[u][k];
                     fi;
                 fi;
             od;
