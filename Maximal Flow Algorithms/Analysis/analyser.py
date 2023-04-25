@@ -19,7 +19,9 @@ class Plotter():
       "bmf": "Bellman Ford Algorithm",
       "flw": "Floyd Warshall Algorithm",
       "ek": "Edmond Karp Algorithm",
-      "dc": "Dinic's Algorithm"
+      "dc": "Dinic's Algorithm",
+      "kg": "Karger's Algorithm",
+      "kgs": "KargerSteiner Algorithm"
     }
   
 
@@ -45,7 +47,9 @@ class Plotter():
       graph = sns.relplot(data=self.df, x=self.headers[0], y=self.headers[2], hue=self.headers[1], kind="line")
       
     
-    graph.set(xlabel='Vertices', ylabel='Avg Time (ms)', title=title)
+    # graph.set(xlabel='Vertices', ylabel='Avg Time (ms)', title=title)
+    # graph.set(xlabel='Vertices', ylabel='Avg Time (ms)')
+    graph.set(xlabel='Vertices', ylabel='Avg Time (ms)', xlim=0, ylim=0)
     if save:
       plt.savefig(f"./Graphs/{title}.jpg", bbox_inches='tight')
     plt.show()

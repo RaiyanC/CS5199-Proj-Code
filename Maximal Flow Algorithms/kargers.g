@@ -97,17 +97,15 @@ Karger := function(digraph)
     nrVertices := Size(digraphVertices);
     nrEdges := Size(DigraphEdges(digraph));
     edgesCut := [];
-    total := 0;
 
-    upperBound := Int(nrVertices * Log(nrVertices, 2)/(nrVertices - 1));
-    # upperBound := nrVertices;
+    # upperBound := Int(nrVertices * Log(nrVertices, 2)/(nrVertices - 1));
+    upperBound := nrVertices;
 
     for i in [1.. upperBound] do
         cutInfo := minCut(digraph);
         if cutInfo.cuts <= nrEdges then
             nrEdges := cutInfo.cuts;
             edgesCut := cutInfo.edgesCut;
-            total := cutInfo.total;
         fi;
     od;
     return  rec(cuts:=nrEdges, edgesCut:=edgesCut);

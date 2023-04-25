@@ -51,7 +51,7 @@ class Plotter():
     
     # graph.set(xlabel='Vertices', ylabel='Avg Time (ms)', title=title)
     format = 'jpeg'
-    graph.set(xlabel='Vertices', ylabel='Avg Time (ms)')
+    graph.set(xlabel='Vertices', ylabel='Avg Time (ms)', xlim=0, ylim=0)
     if save:
       plt.savefig(f"./Graphs/{title}.{format}", bbox_inches='tight')
     plt.show()

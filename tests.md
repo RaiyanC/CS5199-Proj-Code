@@ -250,9 +250,9 @@ Read("../Minimum Spanning Tree Algorithms/Analysis/tester.g"); Runtests("kv2",10
 
 # testing kargers
 Read("../Maximal Flow Algorithms/mf_graph_creator.g");
-Read("../Maximal Flow Algorithms/Analysis/kg.g");
+Read("../Maximal Flow Algorithms/Analysis/kgs.g");
 Read("../Maximal Flow Algorithms/Analysis/tester.g");
-Runtests("kg", 1001, 0.01, 5, 10);
+Runtests("kgs", 502, 0.25, 5, 10);
 
 
 Runtests("kg", 1001, 1, 5, 10);
@@ -260,3 +260,8 @@ Runtests("kg", 1001, 0.5, 5, 10);
 Runtests("kg", 1001, 0.25, 5, 10);
 Runtests("kg", 1001, 0.125, 5, 10);
 Runtests("kg", 1001, 0.01, 5, 10);
+
+
+# analysing max flow algos
+
+python3 analyser.py -p "./1/ek.csv" "./0.5/ek.csv" "./0.25/ek.csv" "./0.125/ek.csv" "./0.01/ek.csv" "./1/dc.csv" "./0.5/dc.csv" "./0.25/dc.csv" "./0.125/dc.csv" "./0.01/dc.csv" -c -s

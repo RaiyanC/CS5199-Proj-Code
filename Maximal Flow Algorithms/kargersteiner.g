@@ -133,7 +133,7 @@ fastMinCut := function(digraph)
         return minCut(digraph);
     fi;
 
-    t := Floor(1 + nrVertices / Sqrt(2));
+    t := Int(1 + nrVertices / Sqrt(2));
     g1 := contract(digraph, rec(minV:=2));
     g2 := contract(digraph, rec(minV:=2));
 
@@ -154,8 +154,8 @@ KargerSteiner := function(digraph)
     edgesCut := [];
     total := 0;
 
-    upperBound := Int(nrVertices * Log(nrVertices, 2)/(nrVertices - 1));
-    # upperBound := nrVertices;
+    # upperBound := Int(nrVertices * Log(nrVertices, 2)/(nrVertices - 1));
+    upperBound := nrVertices;
 
     for i in [1.. upperBound] do
         cutInfo := fastMinCut(digraph);

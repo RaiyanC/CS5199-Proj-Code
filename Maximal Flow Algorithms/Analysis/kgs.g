@@ -132,8 +132,8 @@ fastMinCut := function(digraph)
     fi;
 
     t := Int(1 + nrVertices / Sqrt(2));
-    g1 := contract(digraph, rec(minV:=2));
-    g2 := contract(digraph, rec(minV:=2));
+    g1 := contract(digraph, rec(minV:=t));
+    g2 := contract(digraph, rec(minV:=t));
 
     # return Minimum(g1.cuts, g2.cuts);
     if g1.cuts <= g2.cuts then
