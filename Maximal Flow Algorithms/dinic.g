@@ -94,7 +94,6 @@ GetFlowInformation := function(flow_matrix, source)
         od;
     od;
 
-
     return [parents, flows, max_flow];
 end;
 
@@ -113,7 +112,6 @@ BFS := function(adj_matrix, flow_matrix, source, sink)
         levels[u] := 0;
     od;
     levels[source] := 1;
-
 
     while not IsEmpty(queue) do
         u := PlistDequePopFront(queue);

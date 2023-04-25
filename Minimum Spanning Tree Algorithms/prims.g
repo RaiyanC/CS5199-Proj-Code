@@ -1,21 +1,24 @@
 Prims := function(digraph)
     local weights, digraphVertices, outs, adj, u, outNeighbours, inNeighbours, idx, v,
-    w, mst, visited, queue, neighbour, total, edgesInMst, nrVertices, node, cost, nextVertex;
+    w, mst, visited, queue, neighbour, total, edgesInMst, nrVertices, node, cost,
+    nextVertex, mstWeights;
 
     weights := EdgeWeights(digraph);
 
     digraphVertices := DigraphVertices(digraph);
     outs := OutNeighbors(digraph);
-
+    mst := EmptyPlist(Size(digraphVertices));
+    mstWeights := EmptyPlist(Size(digraphVertices));
     # Create an adjacancy map for the edges with their associated weight
     adj := HashMap();
     for u in digraphVertices do
         outNeighbours := outs[u];
-
+        Add(mst, []);
+        Add(mstWeights, []);
         if not u in adj then 
             adj[u] := HashMap();
         fi;
-
+    
         for idx in [1..Size(outNeighbours)] do
             v := outNeighbours[idx]; # the out neighbour
             w := weights[u][idx]; # the weight of the edge to the out neighbour
@@ -42,7 +45,8 @@ Prims := function(digraph)
         od;
     od;
 
-    mst := HashMap();
+    
+    
     visited := BlistList(digraphVertices, [1]);
     queue := BinaryHeap({x, y} -> x[1] > y[1]);
 
@@ -62,17 +66,20 @@ Prims := function(digraph)
         cost := node[1];
         u := node[2];
         v := node[3];
+        
 
         if not visited[v] then
             visited[v] := true;
             
 
-            if not u in mst then
+            if not IsBound(mst[u]) then
                 mst[u] := [];
+                mstWeights[u] := [];
             fi;
 
 
             Add(mst[u], v);
+            Add(mstWeights[u], cost);
             total := total + cost;
             
             # optimisation to break out if MST reached when edges == v - 1
@@ -91,5 +98,5 @@ Prims := function(digraph)
         fi;
     od;
 
-    return rec(total:=total, mst:=mst);
+    return rec(total:=total, mst:=EdgeWeightedDigraph(mst, mstWeights));
 end;

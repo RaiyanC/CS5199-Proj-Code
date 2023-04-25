@@ -90,14 +90,20 @@ minCut := function(digraph)
     return rec(cuts:=cuts, edgesCut:=edgesCut, total:=total);
 end;
 
-Karger := function(digraph)
-    local digraphVertices, nrVertices, nrEdges, i, upperBound, edgesCut, cutInfo, total;
+Karger := function(digraph, probability)
+    local digraphVertices, nrVertices, nrEdges, i, upperBound, edgesCut, cutInfo, total,
+    analysisPath, headers,nrEdgesData, startTime, endTime, data;
 
     digraphVertices := DigraphVertices(digraph);
     nrVertices := Size(digraphVertices);
-    nrEdges := Size(DigraphEdges(digraph));
+    nrEdgesData := Size(DigraphEdges(digraph));
     edgesCut := [];
     total := 0;
+
+    # ANALYSIS: HERE START TIME
+    nrEdges := Size(DigraphEdges(digraph));
+    startTime := Runtimes().user_time;
+    nrVertices := Size(digraphVertices);
 
     upperBound := Int(nrVertices * Log(nrVertices, 2)/(nrVertices - 1));
     # upperBound := nrVertices;
@@ -110,5 +116,22 @@ Karger := function(digraph)
             total := cutInfo.total;
         fi;
     od;
+
+    # ANALYSIS: HERE STOP TIME
+    endTime := Runtimes().user_time;
+
+    analysisPath := Concatenation("../Maximal Flow Algorithms/Analysis/",
+                    Concatenation(String(probability), "/kg.csv"));
+
+
+    data := Concatenation(String(nrVertices), 
+    Concatenation(",", 
+    Concatenation(String(nrEdgesData), 
+    Concatenation(",",
+    Concatenation(String(startTime),
+    Concatenation(",",
+    Concatenation(String(endTime), "\n")))))));
+
+    AppendTo(analysisPath, data);
     return  rec(cuts:=nrEdges, edgesCut:=edgesCut);
 end;

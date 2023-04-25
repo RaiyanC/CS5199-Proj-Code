@@ -8,7 +8,7 @@ TestShortestPathsAlgorithms := function(n, p)
         j := DIGRAPHS_Edge_Weighted_Johnson(rd);;
         if flw <> j then
             Print("Output from Floyd Warshall\n", d);
-            Print("Output from Johnson\n", bmf);
+            Print("Output from Johnson\n", j);
             ErrorNoReturn("test with ", i, " vertices failed");
         fi;
         Print("passed!\n");

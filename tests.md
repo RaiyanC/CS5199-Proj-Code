@@ -248,4 +248,15 @@ Read("../Minimum Spanning Tree Algorithms/Analysis/tester.g"); Runtests("kv2",10
 Read("../Minimum Spanning Tree Algorithms/Analysis/tester.g"); Runtests("kv2",1001,0.01,5,10);
 
 
-# profiling prims again
+# testing kargers
+Read("../Maximal Flow Algorithms/mf_graph_creator.g");
+Read("../Maximal Flow Algorithms/Analysis/kg.g");
+Read("../Maximal Flow Algorithms/Analysis/tester.g");
+Runtests("kg", 1001, 0.01, 5, 10);
+
+
+Runtests("kg", 1001, 1, 5, 10);
+Runtests("kg", 1001, 0.5, 5, 10);
+Runtests("kg", 1001, 0.25, 5, 10);
+Runtests("kg", 1001, 0.125, 5, 10);
+Runtests("kg", 1001, 0.01, 5, 10);

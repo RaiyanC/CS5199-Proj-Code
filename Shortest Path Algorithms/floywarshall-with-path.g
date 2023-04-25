@@ -2,7 +2,7 @@ Floyd := function(digraph)
     local weights, adj_matrix, digraph_vertices, nr_vertices, e,u,v,edges, outs, ins, 
     edge_idx, idx, out_neighbours, in_neighbours, w, mst, 
     visited, i, j, k, queue, cost, node, neighbour, next_vertex, total, 
-    edges_in_mst, number_of_vertices, distances, parents;
+    edges_in_mst, number_of_vertices, distances, parents, path;
 
     weights := EdgeWeights(digraph);
     
@@ -50,7 +50,7 @@ Floyd := function(digraph)
             if u = v then
                 distances[u][v] := 0;
                 # if the same node, then the node has no parents
-                parents[u][v] := fail;
+                parents[u][v] := [fail];
                 edges[u][v] := fail;
             elif IsBound(adj_matrix[u][v]) then
                 w := adj_matrix[u][v][1];
@@ -59,7 +59,7 @@ Floyd := function(digraph)
                 distances[u][v] := w;
 
                 # parent of u -> v is u
-                parents[u][v] := [u, idx];
+                parents[u][v] := [v, idx];
                 edges[u][v] := idx;
             
             fi;
@@ -79,6 +79,24 @@ Floyd := function(digraph)
         od;
     od;
 
+    Print("parents ", parents, "\n\n\n");
+
+    u := 1;
+    v := 3;
+    # construct path between 1 and 3
+    if parents[u][v][1] = fail then
+        return [];
+    fi;
+
+    path := [u];
+    while u <> v do
+        
+        u := parents[u][v][1];
+        Add(path, u);
+    od;
+
+    Print("path ", path, "\n\n\n");
+
     # detect negative cycles
     for i in [1..nr_vertices] do
         if distances[i][i] < 0 then
@@ -88,10 +106,10 @@ Floyd := function(digraph)
 
     # replace infinity with fails
     for u in [1..nr_vertices] do
-            for v in [1..nr_vertices] do
-                if distances[u][v] = infinity then
-                    distances[u][v] := fail;
-                fi;
+        for v in [1..nr_vertices] do
+            if distances[u][v] = infinity then
+                distances[u][v] := fail;
+            fi;
         od;
     od;
 
