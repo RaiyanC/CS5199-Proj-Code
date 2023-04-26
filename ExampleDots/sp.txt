@@ -1,0 +1,164 @@
+\documentclass{article}
+\usepackage[x11names, svgnames, rgb]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+\usepackage{amsmath}
+%
+%
+
+%
+
+%
+
+\begin{document}
+\pagestyle{empty}
+%
+%
+%
+
+\enlargethispage{100cm}
+% Start of code
+% \begin{tikzpicture}[anchor=mid,>=latex',line join=bevel,]
+\begin{tikzpicture}[>=latex',line join=bevel,]
+  \pgfsetlinewidth{1bp}
+%%
+\pgfsetcolor{black}
+  % Edge: 1 -> 4
+  \draw [->] (214.83bp,450.44bp) .. controls (248.87bp,431.86bp) and (326.0bp,382.48bp)  .. (326.0bp,316.5bp) .. controls (326.0bp,316.5bp) and (326.0bp,316.5bp)  .. (326.0bp,242.5bp) .. controls (326.0bp,197.91bp) and (333.8bp,179.63bp)  .. (307.0bp,144.0bp) .. controls (288.21bp,119.03bp) and (254.33bp,104.91bp)  .. (220.44bp,94.838bp);
+  % Edge: 1 -> 5
+  \draw [->] (180.89bp,455.94bp) .. controls (151.21bp,450.95bp) and (91.652bp,437.46bp)  .. (53.0bp,405.5bp) .. controls (17.521bp,376.16bp) and (0.0bp,362.53bp)  .. (0.0bp,316.5bp) .. controls (0.0bp,316.5bp) and (0.0bp,316.5bp)  .. (0.0bp,165.75bp) .. controls (0.0bp,86.954bp) and (104.65bp,43.276bp)  .. (164.88bp,23.737bp);
+  % Edge: 1 -> 7
+  \draw [->] (215.63bp,452.28bp) .. controls (257.8bp,437.28bp) and (364.0bp,394.48bp)  .. (364.0bp,316.5bp) .. controls (364.0bp,316.5bp) and (364.0bp,316.5bp)  .. (364.0bp,165.75bp) .. controls (364.0bp,111.86bp) and (316.59bp,64.132bp)  .. (280.43bp,31.727bp);
+  % Edge: 1 -> 9
+  \draw [->] (188.8bp,444.33bp) .. controls (184.97bp,436.03bp) and (181.09bp,425.27bp)  .. (175.73bp,405.61bp);
+  % Edge: 2 -> 3
+  \draw [->] (267.06bp,154.16bp) .. controls (262.77bp,150.64bp) and (257.84bp,146.93bp)  .. (253.0bp,144.0bp) .. controls (236.13bp,133.8bp) and (187.52bp,113.64bp)  .. (147.4bp,97.488bp);
+  % Edge: 2 -> 7
+  \draw [->] (278.6bp,148.63bp) .. controls (276.54bp,123.44bp) and (272.67bp,76.163bp)  .. (269.39bp,36.012bp);
+  % Edge: 2 -> 9
+  \draw [->] (272.97bp,183.38bp) .. controls (259.64bp,212.88bp) and (229.66bp,278.72bp)  .. (203.0bp,333.5bp) .. controls (198.42bp,342.91bp) and (193.23bp,353.17bp)  .. (183.95bp,371.26bp);
+  % Edge: 3 -> 1
+  \draw [->] (117.68bp,102.45bp) .. controls (91.96bp,125.92bp) and (38.0bp,182.32bp)  .. (38.0bp,242.5bp) .. controls (38.0bp,316.5bp) and (38.0bp,316.5bp)  .. (38.0bp,316.5bp) .. controls (38.0bp,387.35bp) and (126.8bp,431.28bp)  .. (182.07bp,452.82bp);
+  % Edge: 3 -> 3
+  \draw [->] (145.04bp,101.76bp) .. controls (155.91bp,106.15bp) and (167.0bp,102.23bp)  .. (167.0bp,90.0bp) .. controls (167.0bp,81.589bp) and (161.76bp,77.108bp)  .. (145.04bp,78.244bp);
+  % Edge: 3 -> 5
+  \draw [->] (141.32bp,74.834bp) .. controls (148.3bp,65.252bp) and (157.67bp,52.392bp)  .. (171.69bp,33.144bp);
+  % Edge: 3 -> 6
+  \draw [->] (136.75bp,107.38bp) .. controls (143.92bp,127.21bp) and (156.95bp,161.44bp)  .. (171.0bp,189.5bp) .. controls (176.06bp,199.59bp) and (182.35bp,210.32bp)  .. (193.4bp,228.0bp);
+  % Edge: 3 -> 8
+  \draw [->] (133.17bp,108.16bp) .. controls (135.76bp,127.87bp) and (140.45bp,161.15bp)  .. (146.0bp,189.5bp) .. controls (152.72bp,223.8bp) and (162.44bp,262.92bp)  .. (171.57bp,298.01bp);
+  % Edge: 3 -> 9
+  \draw [->] (129.82bp,108.2bp) .. controls (127.58bp,148.53bp) and (124.88bp,251.92bp)  .. (149.0bp,333.5bp) .. controls (151.97bp,343.53bp) and (156.82bp,353.93bp)  .. (166.65bp,371.81bp);
+  % Edge: 4 -> 5
+  \draw [->] (193.2bp,74.834bp) .. controls (189.62bp,66.532bp) and (186.04bp,55.771bp)  .. (181.24bp,36.113bp);
+  % Edge: 4 -> 7
+  \draw [->] (211.43bp,73.811bp) .. controls (220.37bp,62.728bp) and (234.25bp,47.694bp)  .. (253.61bp,29.188bp);
+  % Edge: 5 -> 4
+  \draw [->] (191.85bp,33.279bp) .. controls (195.36bp,41.444bp) and (198.87bp,51.96bp)  .. (203.72bp,71.697bp);
+  % Edge: 6 -> 1
+  \draw [->] (203.43bp,261.9bp) .. controls (204.06bp,291.43bp) and (204.97bp,353.26bp)  .. (203.0bp,405.5bp) .. controls (202.69bp,413.83bp) and (202.09bp,422.89bp)  .. (200.62bp,441.33bp);
+  % Edge: 6 -> 2
+  \draw [->] (215.71bp,230.15bp) .. controls (227.82bp,218.4bp) and (246.23bp,200.53bp)  .. (267.52bp,179.86bp);
+  % Edge: 6 -> 10
+  \draw [->] (203.0bp,225.16bp) .. controls (203.0bp,217.62bp) and (203.0bp,208.53bp)  .. (203.0bp,189.54bp);
+  % Edge: 7 -> 1
+  \draw [->] (284.15bp,27.088bp) .. controls (315.98bp,47.141bp) and (382.0bp,102.15bp)  .. (382.0bp,165.75bp) .. controls (382.0bp,316.5bp) and (382.0bp,316.5bp)  .. (382.0bp,316.5bp) .. controls (382.0bp,393.83bp) and (277.56bp,436.57bp)  .. (216.54bp,454.68bp);
+  % Edge: 7 -> 4
+  \draw [->] (259.7bp,34.03bp) .. controls (250.81bp,45.074bp) and (236.94bp,60.105bp)  .. (217.55bp,78.671bp);
+  % Edge: 8 -> 6
+  \draw [->] (182.26bp,298.26bp) .. controls (185.5bp,289.87bp) and (189.53bp,279.43bp)  .. (196.77bp,260.64bp);
+  % Edge: 8 -> 9
+  \draw [->] (181.79bp,332.64bp) .. controls (182.71bp,340.76bp) and (182.97bp,350.8bp)  .. (181.8bp,370.26bp);
+  % Edge: 9 -> 1
+  \draw [->] (186.26bp,402.77bp) .. controls (190.05bp,411.03bp) and (193.89bp,421.68bp)  .. (199.23bp,441.19bp);
+  % Edge: 9 -> 8
+  \draw [->] (170.2bp,370.26bp) .. controls (169.29bp,362.13bp) and (169.03bp,352.09bp)  .. (170.21bp,332.64bp);
+  % Edge: 10 -> 3
+  \draw [->] (187.38bp,149.53bp) .. controls (176.52bp,138.26bp) and (161.98bp,123.16bp)  .. (143.25bp,103.72bp);
+  % Edge: 10 -> 4
+  \draw [->] (203.0bp,143.73bp) .. controls (203.0bp,135.73bp) and (203.0bp,126.6bp)  .. (203.0bp,108.13bp);
+  % Edge: 10 -> 7
+  \draw [->] (212.54bp,145.78bp) .. controls (217.78bp,134.69bp) and (224.35bp,120.63bp)  .. (230.0bp,108.0bp) .. controls (239.56bp,86.617bp) and (249.98bp,62.129bp)  .. (261.43bp,34.825bp);
+  % Edge: 10 -> 10
+  \draw [->] (221.86bp,180.11bp) .. controls (233.14bp,183.08bp) and (243.75bp,178.62bp)  .. (243.75bp,166.75bp) .. controls (243.75bp,158.58bp) and (238.73bp,153.93bp)  .. (221.86bp,153.39bp);
+  % Node: 1
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (199.0bp,459.5bp) ellipse (18.0bp and 18.0bp);
+  \draw (199.0bp,459.5bp) node {1};
+\end{scope}
+  % Node: 4
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (203.0bp,90.0bp) ellipse (18.0bp and 18.0bp);
+  \draw (203.0bp,90.0bp) node {4};
+\end{scope}
+  % Node: 5
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (182.0bp,18.0bp) ellipse (18.0bp and 18.0bp);
+  \draw (182.0bp,18.0bp) node {5};
+\end{scope}
+  % Node: 7
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (268.0bp,18.0bp) ellipse (18.0bp and 18.0bp);
+  \draw (268.0bp,18.0bp) node {7};
+\end{scope}
+  % Node: 9
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (176.0bp,387.5bp) ellipse (18.0bp and 18.0bp);
+  \draw (176.0bp,387.5bp) node {9};
+\end{scope}
+  % Node: 2
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (280.0bp,166.75bp) ellipse (18.0bp and 18.0bp);
+  \draw (280.0bp,166.75bp) node {2};
+\end{scope}
+  % Node: 3
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (131.0bp,90.0bp) ellipse (18.0bp and 18.0bp);
+  \draw (131.0bp,90.0bp) node {3};
+\end{scope}
+  % Node: 6
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (203.0bp,243.5bp) ellipse (18.0bp and 18.0bp);
+  \draw (203.0bp,243.5bp) node {6};
+\end{scope}
+  % Node: 8
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (176.0bp,315.5bp) ellipse (18.0bp and 18.0bp);
+  \draw (176.0bp,315.5bp) node {8};
+\end{scope}
+  % Node: 10
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (203.0bp,166.75bp) ellipse (23.0bp and 23.0bp);
+  \draw (203.0bp,166.75bp) node {10};
+\end{scope}
+%
+\end{tikzpicture}
+% End of code
+
+%
+\end{document}
+%
+
+
+

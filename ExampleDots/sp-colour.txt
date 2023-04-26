@@ -1,0 +1,320 @@
+\documentclass{article}
+\usepackage[x11names, svgnames, rgb]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+\usepackage{amsmath}
+%
+%
+
+%
+
+%
+
+\begin{document}
+\pagestyle{empty}
+%
+%
+%
+
+\enlargethispage{100cm}
+% Start of code
+% \begin{tikzpicture}[anchor=mid,>=latex',line join=bevel,]
+\begin{tikzpicture}[>=latex',line join=bevel,]
+  \pgfsetlinewidth{1bp}
+%%
+\pgfsetcolor{black}
+  % Edge: 1 -> 4
+  \pgfsetcolor{blue}
+  \draw [->] (322.27bp,539.67bp) .. controls (343.4bp,526.19bp) and (379.0bp,498.31bp)  .. (379.0bp,463.5bp) .. controls (379.0bp,463.5bp) and (379.0bp,463.5bp)  .. (379.0bp,195.75bp) .. controls (379.0bp,171.72bp) and (367.52bp,146.61bp)  .. (351.92bp,120.18bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (388.5bp,332.0bp) node {11};
+  % Edge: 1 -> 5
+  \pgfsetcolor{black}
+  \draw [->] (288.72bp,547.42bp) .. controls (222.62bp,543.03bp) and (0.0bp,523.78bp)  .. (0.0bp,463.5bp) .. controls (0.0bp,463.5bp) and (0.0bp,463.5bp)  .. (0.0bp,104.0bp) .. controls (0.0bp,38.436bp) and (99.554bp,23.398bp)  .. (159.95bp,19.402bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (9.5bp,288.5bp) node {27};
+  % Edge: 1 -> 7
+  \pgfsetcolor{black}
+  \draw [->] (324.41bp,544.57bp) .. controls (357.23bp,536.03bp) and (425.0bp,512.48bp)  .. (425.0bp,463.5bp) .. controls (425.0bp,463.5bp) and (425.0bp,463.5bp)  .. (425.0bp,104.0bp) .. controls (425.0bp,77.717bp) and (406.24bp,53.138bp)  .. (383.31bp,30.162bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (434.5bp,288.5bp) node {17};
+  % Edge: 1 -> 9
+  \pgfsetcolor{black}
+  \draw [->] (289.86bp,543.36bp) .. controls (276.09bp,538.23bp) and (257.67bp,528.86bp)  .. (249.0bp,513.5bp) .. controls (245.08bp,506.56bp) and (244.1bp,498.17bp)  .. (245.56bp,480.3bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (258.5bp,506.0bp) node {21};
+  % Edge: 2 -> 3
+  \pgfsetcolor{blue}
+  \draw [->] (220.98bp,181.97bp) .. controls (211.85bp,170.72bp) and (198.42bp,154.54bp)  .. (186.0bp,141.0bp) .. controls (181.16bp,135.72bp) and (175.77bp,130.17bp)  .. (163.58bp,118.06bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (205.0bp,148.5bp) node {6};
+  % Edge: 2 -> 7
+  \pgfsetcolor{blue}
+  \draw [->] (233.24bp,178.34bp) .. controls (236.37bp,148.17bp) and (247.29bp,86.302bp)  .. (285.0bp,54.0bp) .. controls (301.52bp,39.854bp) and (324.53bp,30.851bp)  .. (352.32bp,22.801bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (263.0bp,105.0bp) node {5};
+  % Edge: 2 -> 9
+  \pgfsetcolor{blue}
+  \draw [->] (245.44bp,209.06bp) .. controls (255.93bp,218.24bp) and (269.18bp,230.72bp)  .. (272.0bp,237.5bp) .. controls (300.01bp,304.82bp) and (275.49bp,393.02bp)  .. (256.57bp,445.53bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (293.5bp,332.0bp) node {13};
+  % Edge: 3 -> 1
+  \pgfsetcolor{black}
+  \draw [->] (133.83bp,111.78bp) .. controls (104.29bp,122.95bp) and (47.0bp,150.43bp)  .. (47.0bp,195.75bp) .. controls (47.0bp,463.5bp) and (47.0bp,463.5bp)  .. (47.0bp,463.5bp) .. controls (47.0bp,511.86bp) and (211.56bp,537.07bp)  .. (289.13bp,546.58bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (56.5bp,332.0bp) node {22};
+  % Edge: 3 -> 3
+  \pgfsetcolor{black}
+  \draw [->] (167.66bp,112.38bp) .. controls (177.62bp,114.02bp) and (187.0bp,111.56bp)  .. (187.0bp,105.0bp) .. controls (187.0bp,100.8bp) and (183.15bp,98.275bp)  .. (167.66bp,97.617bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (192.0bp,105.0bp) node {8};
+  % Edge: 3 -> 5
+  \pgfsetcolor{black}
+  \draw [->] (152.78bp,87.02bp) .. controls (154.13bp,77.193bp) and (156.38bp,64.693bp)  .. (160.0bp,54.0bp) .. controls (161.23bp,50.356bp) and (162.8bp,46.621bp)  .. (169.1bp,33.902bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (169.5bp,61.5bp) node {25};
+  % Edge: 3 -> 6
+  \pgfsetcolor{blue}
+  \draw [->] (155.89bp,122.61bp) .. controls (162.48bp,144.78bp) and (174.68bp,185.23bp)  .. (186.0bp,219.5bp) .. controls (190.65bp,233.57bp) and (196.13bp,249.16bp)  .. (204.09bp,271.35bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (195.5bp,196.75bp) node {20};
+  % Edge: 3 -> 8
+  \pgfsetcolor{blue}
+  \draw [->] (152.01bp,123.03bp) .. controls (154.45bp,158.1bp) and (162.11bp,240.64bp)  .. (183.0bp,306.5bp) .. controls (187.58bp,320.92bp) and (193.74bp,336.65bp)  .. (203.03bp,358.79bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (178.5bp,245.0bp) node {16};
+  % Edge: 3 -> 9
+  \pgfsetcolor{black}
+  \draw [->] (137.55bp,117.25bp) .. controls (120.41bp,132.92bp) and (93.0bp,163.1bp)  .. (93.0bp,195.75bp) .. controls (93.0bp,376.5bp) and (93.0bp,376.5bp)  .. (93.0bp,376.5bp) .. controls (93.0bp,434.46bp) and (176.78bp,453.1bp)  .. (231.99bp,460.1bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (102.5bp,288.5bp) node {19};
+  % Edge: 4 -> 5
+  \pgfsetcolor{blue}
+  \draw [->] (326.27bp,95.85bp) .. controls (297.7bp,81.037bp) and (237.03bp,49.596bp)  .. (193.92bp,27.25bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (274.0bp,61.5bp) node {1};
+  % Edge: 4 -> 7
+  \pgfsetcolor{black}
+  \draw [->] (343.19bp,86.959bp) .. controls (344.26bp,77.112bp) and (346.26bp,64.612bp)  .. (350.0bp,54.0bp) .. controls (351.37bp,50.102bp) and (353.18bp,46.139bp)  .. (360.19bp,33.421bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (359.5bp,61.5bp) node {30};
+  % Edge: 5 -> 4
+  \pgfsetcolor{black}
+  \draw [->] (195.57bp,22.686bp) .. controls (217.13bp,27.686bp) and (254.36bp,37.891bp)  .. (283.0bp,54.0bp) .. controls (297.5bp,62.157bp) and (311.79bp,74.133bp)  .. (329.95bp,91.34bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (309.0bp,61.5bp) node {4};
+  % Edge: 6 -> 1
+  \pgfsetcolor{black}
+  \draw [->] (227.97bp,290.12bp) .. controls (250.72bp,292.0bp) and (289.1bp,299.0bp)  .. (307.0bp,324.5bp) .. controls (349.2bp,384.58bp) and (329.15bp,477.87bp)  .. (312.74bp,532.27bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (341.5bp,419.0bp) node {18};
+  % Edge: 6 -> 2
+  \pgfsetcolor{black}
+  \draw [->] (208.41bp,270.57bp) .. controls (207.97bp,260.76bp) and (208.22bp,248.26bp)  .. (211.0bp,237.5bp) .. controls (212.44bp,231.92bp) and (214.79bp,226.26bp)  .. (222.28bp,212.17bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (220.5bp,245.0bp) node {14};
+  % Edge: 6 -> 10
+  \pgfsetcolor{blue}
+  \draw [->] (221.61bp,274.64bp) .. controls (233.94bp,260.98bp) and (253.72bp,239.05bp)  .. (276.11bp,214.24bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (261.5bp,245.0bp) node {26};
+  % Edge: 7 -> 1
+  \pgfsetcolor{blue}
+  \draw [->] (387.19bp,23.593bp) .. controls (418.12bp,33.018bp) and (480.0bp,57.662bp)  .. (480.0bp,104.0bp) .. controls (480.0bp,463.5bp) and (480.0bp,463.5bp)  .. (480.0bp,463.5bp) .. controls (480.0bp,527.25bp) and (384.18bp,543.19bp)  .. (325.19bp,547.87bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (485.0bp,288.5bp) node {2};
+  % Edge: 7 -> 4
+  \pgfsetcolor{black}
+  \draw [->] (372.27bp,36.138bp) .. controls (372.94bp,46.017bp) and (372.69bp,58.517bp)  .. (369.0bp,69.0bp) .. controls (367.17bp,74.205bp) and (364.23bp,79.248bp)  .. (354.46bp,91.9bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (381.5bp,61.5bp) node {23};
+  % Edge: 8 -> 6
+  \pgfsetcolor{black}
+  \draw [->] (210.0bp,357.29bp) .. controls (210.0bp,345.66bp) and (210.0bp,330.04bp)  .. (210.0bp,306.67bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (219.5bp,332.0bp) node {24};
+  % Edge: 8 -> 9
+  \pgfsetcolor{black}
+  \draw [->] (218.66bp,391.66bp) .. controls (222.03bp,397.75bp) and (225.83bp,404.89bp)  .. (229.0bp,411.5bp) .. controls (232.78bp,419.37bp) and (236.58bp,428.11bp)  .. (243.78bp,445.55bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (244.5bp,419.0bp) node {10};
+  % Edge: 9 -> 1
+  \pgfsetcolor{black}
+  \draw [->] (259.72bp,477.99bp) .. controls (268.49bp,491.07bp) and (281.56bp,510.55bp)  .. (297.33bp,534.08bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (290.5bp,506.0bp) node {15};
+  % Edge: 9 -> 8
+  \pgfsetcolor{black}
+  \draw [->] (233.86bp,453.52bp) .. controls (223.82bp,447.58bp) and (211.77bp,438.45bp)  .. (206.0bp,426.5bp) .. controls (202.53bp,419.3bp) and (202.06bp,410.83bp)  .. (204.58bp,393.04bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (215.5bp,419.0bp) node {12};
+  % Edge: 10 -> 3
+  \pgfsetcolor{black}
+  \draw [->] (273.34bp,182.34bp) .. controls (257.98bp,170.88bp) and (234.95bp,154.21bp)  .. (214.0bp,141.0bp) .. controls (201.64bp,133.21bp) and (187.45bp,125.24bp)  .. (166.81bp,114.16bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (240.0bp,148.5bp) node {9};
+  % Edge: 10 -> 4
+  \pgfsetcolor{black}
+  \draw [->] (301.82bp,176.71bp) .. controls (309.54bp,163.12bp) and (319.99bp,144.73bp)  .. (333.4bp,121.14bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (330.5bp,148.5bp) node {28};
+  % Edge: 10 -> 7
+  \pgfsetcolor{black}
+  \draw [->] (285.61bp,174.48bp) .. controls (279.39bp,144.83bp) and (272.86bp,90.601bp)  .. (297.0bp,54.0bp) .. controls (307.22bp,38.504bp) and (326.32bp,29.681bp)  .. (352.45bp,22.078bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (288.0bp,105.0bp) node {7};
+  % Edge: 10 -> 10
+  \pgfsetcolor{black}
+  \draw [->] (312.38bp,205.53bp) .. controls (322.67bp,206.61bp) and (331.75bp,203.69bp)  .. (331.75bp,196.75bp) .. controls (331.75bp,192.3bp) and (328.02bp,189.51bp)  .. (312.38bp,187.97bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (341.25bp,196.75bp) node {29};
+  % Node: 1
+\begin{scope}
+  \definecolor{strokecol}{rgb}{1.0,0.71,0.76};
+  \pgfsetstrokecolor{strokecol}
+  \definecolor{fillcol}{rgb}{1.0,0.71,0.76};
+  \pgfsetfillcolor{fillcol}
+  \filldraw [opacity=1] (307.0bp,549.5bp) ellipse (18.0bp and 18.0bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (307.0bp,549.5bp) node {1};
+\end{scope}
+  % Node: 4
+\begin{scope}
+  \definecolor{strokecol}{rgb}{1.0,0.71,0.76};
+  \pgfsetstrokecolor{strokecol}
+  \definecolor{fillcol}{rgb}{1.0,0.71,0.76};
+  \pgfsetfillcolor{fillcol}
+  \filldraw [opacity=1] (342.0bp,105.0bp) ellipse (18.0bp and 18.0bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (342.0bp,105.0bp) node {4};
+\end{scope}
+  % Node: 5
+\begin{scope}
+  \definecolor{strokecol}{rgb}{1.0,0.71,0.76};
+  \pgfsetstrokecolor{strokecol}
+  \definecolor{fillcol}{rgb}{1.0,0.71,0.76};
+  \pgfsetfillcolor{fillcol}
+  \filldraw [opacity=1] (178.0bp,18.0bp) ellipse (18.0bp and 18.0bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (178.0bp,18.0bp) node {5};
+\end{scope}
+  % Node: 7
+\begin{scope}
+  \definecolor{strokecol}{rgb}{1.0,0.71,0.76};
+  \pgfsetstrokecolor{strokecol}
+  \definecolor{fillcol}{rgb}{1.0,0.71,0.76};
+  \pgfsetfillcolor{fillcol}
+  \filldraw [opacity=1] (370.0bp,18.0bp) ellipse (18.0bp and 18.0bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (370.0bp,18.0bp) node {7};
+\end{scope}
+  % Node: 9
+\begin{scope}
+  \definecolor{strokecol}{rgb}{1.0,0.71,0.76};
+  \pgfsetstrokecolor{strokecol}
+  \definecolor{fillcol}{rgb}{1.0,0.71,0.76};
+  \pgfsetfillcolor{fillcol}
+  \filldraw [opacity=1] (250.0bp,462.5bp) ellipse (18.0bp and 18.0bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (250.0bp,462.5bp) node {9};
+\end{scope}
+  % Node: 2
+\begin{scope}
+  \definecolor{strokecol}{rgb}{1.0,0.71,0.76};
+  \pgfsetstrokecolor{strokecol}
+  \definecolor{fillcol}{rgb}{1.0,0.71,0.76};
+  \pgfsetfillcolor{fillcol}
+  \filldraw [opacity=1] (232.0bp,196.75bp) ellipse (18.0bp and 18.0bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (232.0bp,196.75bp) node {2};
+\end{scope}
+  % Node: 3
+\begin{scope}
+  \definecolor{strokecol}{rgb}{1.0,0.71,0.76};
+  \pgfsetstrokecolor{strokecol}
+  \definecolor{fillcol}{rgb}{1.0,0.71,0.76};
+  \pgfsetfillcolor{fillcol}
+  \filldraw [opacity=1] (151.0bp,105.0bp) ellipse (18.0bp and 18.0bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (151.0bp,105.0bp) node {3};
+\end{scope}
+  % Node: 6
+\begin{scope}
+  \definecolor{strokecol}{rgb}{1.0,0.71,0.76};
+  \pgfsetstrokecolor{strokecol}
+  \definecolor{fillcol}{rgb}{1.0,0.71,0.76};
+  \pgfsetfillcolor{fillcol}
+  \filldraw [opacity=1] (210.0bp,288.5bp) ellipse (18.0bp and 18.0bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (210.0bp,288.5bp) node {6};
+\end{scope}
+  % Node: 8
+\begin{scope}
+  \definecolor{strokecol}{rgb}{1.0,0.71,0.76};
+  \pgfsetstrokecolor{strokecol}
+  \definecolor{fillcol}{rgb}{1.0,0.71,0.76};
+  \pgfsetfillcolor{fillcol}
+  \filldraw [opacity=1] (210.0bp,375.5bp) ellipse (18.0bp and 18.0bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (210.0bp,375.5bp) node {8};
+\end{scope}
+  % Node: 10
+\begin{scope}
+  \definecolor{strokecol}{rgb}{1.0,0.71,0.76};
+  \pgfsetstrokecolor{strokecol}
+  \definecolor{fillcol}{rgb}{1.0,0.71,0.76};
+  \pgfsetfillcolor{fillcol}
+  \filldraw [opacity=1] (291.0bp,196.75bp) ellipse (23.0bp and 23.0bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (291.0bp,196.75bp) node {10};
+\end{scope}
+%
+\end{tikzpicture}
+% End of code
+
+%
+\end{document}
+%
+
+
+
