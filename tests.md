@@ -261,7 +261,19 @@ Runtests("kg", 1001, 0.25, 5, 10);
 Runtests("kg", 1001, 0.125, 5, 10);
 Runtests("kg", 1001, 0.01, 5, 10);
 
+# testing boruvka
+Read("../Minimum Spanning Tree Algorithms/Analysis/b.g");
+Read("../Minimum Spanning Tree Algorithms/Analysis/tester.g");
+Runtests("b", 1001, 1, 5, 10);
 
 # analysing max flow algos
 
 python3 analyser.py -p "./1/ek.csv" "./0.5/ek.csv" "./0.25/ek.csv" "./0.125/ek.csv" "./0.01/ek.csv" "./1/dc.csv" "./0.5/dc.csv" "./0.25/dc.csv" "./0.125/dc.csv" "./0.01/dc.csv" -c -s
+
+
+
+
+# push relabel algorithm? max flow
+https://github.com/Prashantpandey2398/Implementation-of-Advanced-Algorithms-Using-Python/blob/master/preflow.py
+
+

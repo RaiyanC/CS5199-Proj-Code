@@ -23,7 +23,8 @@ class Plotter():
       "dc": "Dinic's Algorithm",
       "mst-py": "Scipy's Minimum Spanning Tree Algorithm",
       "kv2": "Kruskal's Algorithm with Path Compression",
-      "pv3": "Prim's Algorithm (without HashMap Size)"
+      "pv3": "Prim's Algorithm (without HashMap Size)",
+      "b": "Borůvka's Algorithm"
     }
   
 

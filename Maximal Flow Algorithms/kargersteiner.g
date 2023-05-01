@@ -105,7 +105,7 @@ contract := function(digraph, options)
 end;
 
 minCut := function(digraph)
-    local nrEdges, nrVertices, g, m, upperBound, i, cutInfo;
+    local nrEdges, nrVertices, g, m, upperBound, i, cutInfo, edgesCut;
 
     nrEdges := Size(DigraphEdges(digraph));
     nrVertices := Size(DigraphVertices(digraph));
