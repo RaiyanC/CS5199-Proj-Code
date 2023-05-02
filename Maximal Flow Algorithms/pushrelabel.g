@@ -45,14 +45,18 @@ discharge := function(capacityMatrix, flowMatrix, excess, seen, height, queue, u
     od;
 end;    
 
-GetFlowInformation := function(flowMatrix, source)
-    local parents, flows, u, v, e, nrVertices, edges, max_flow, _, i;
+GetFlowInformation := function(digraph, flowMatrix, source)
+    local parents, flows, u, v, e, f, outs, outNeighbours, 
+    nrVertices, edges, maxFlow, _, i, idx, weights, w;
+
+    outs := OutNeighbors(digraph);
+    weights := EdgeWeights(digraph);
 
     nrVertices := Size(flowMatrix);
 
     parents := EmptyPlist(nrVertices);
     flows := EmptyPlist(nrVertices);
-    max_flow := 0;
+    maxFlow := 0;
 
     # create empty 2D list for output
     for _ in [1..nrVertices] do
@@ -63,23 +67,36 @@ GetFlowInformation := function(flowMatrix, source)
     # initialise source values
     parents[source] := [];
     flows[source] := [];
-    
+    # Print("flow matrix ", flowMatrix, "\n");
     for u in [1..nrVertices] do
         for v in [1..nrVertices] do
-            if Float(flowMatrix[u][v]) > Float(0) then
-                # add parents for each flow
-                Add(parents[v], u);
-                Add(flows[v], flowMatrix[u][v]);
+            f := flowMatrix[u][v];
+            if Float(f) > Float(0) then
+                outNeighbours := outs[u];
                 if u = source then
-                    max_flow := max_flow + flowMatrix[u][v];
+                    maxFlow := maxFlow + f;
                 fi;
-                break;
+
+                for idx in [1 .. Size(outNeighbours)] do
+                    w := weights[u][idx];
+                    if outNeighbours[idx] = v then
+                        if f >= w then
+                            Add(flows[v], w);
+                            f := f - w;
+                        elif f >= 0 then
+                            Add(flows[v], f);
+                            f := 0;
+                        fi;
+                        Add(parents[v], u);
+                    fi;
+                od;
+
             fi;
         od;
     od;
 
 
-    return [parents, flows, max_flow];
+    return [parents, flows, maxFlow];
 end;
 
 PushRelabel := function(digraph, source, sink)
@@ -128,13 +145,6 @@ PushRelabel := function(digraph, source, sink)
             w := weights[u][idx]; # the weight to the out neighbour
 
             capacityMatrix[u][v] := capacityMatrix[u][v] + w;
-            # if capacityMatrix[u][v][1] <> 0 then
-            #     Add(capacityMatrix[u][v], w); 
-            #     Add(flowMatrix[u][v], 0); 
-            #     Add(flowMatrix[v][u], 0);
-            # else 
-            #     capacityMatrix[u][v][1] := w;
-            # fi;
         od;
     od;
 
@@ -155,7 +165,7 @@ PushRelabel := function(digraph, source, sink)
     od;
 
 
-    flowInformation := GetFlowInformation(flowMatrix, source);
+    flowInformation := GetFlowInformation(digraph, flowMatrix, source);
     return rec(
         parents:=flowInformation[1], 
     flows:=flowInformation[2],
