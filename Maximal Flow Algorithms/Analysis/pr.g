@@ -128,15 +128,13 @@ PushRelabel := function(digraph, source, sink)
             w := weights[u][idx]; # the weight to the out neighbour
 
             capacityMatrix[u][v] := capacityMatrix[u][v] + w;
-            # if capacityMatrix[u][v][1] <> 0 then
-            #     Add(capacityMatrix[u][v], w); 
-            #     Add(flowMatrix[u][v], 0); 
-            #     Add(flowMatrix[v][u], 0);
-            # else 
-            #     capacityMatrix[u][v][1] := w;
-            # fi;
         od;
     od;
+
+    # ANALYSIS: HERE START TIME
+    nrEdges := Size(DigraphEdges(digraph));
+    startTime := Runtimes().user_time;
+    nrVertices := Size(digraphVertices);
 
     height[source] := nrVertices;
     excess[source] := infinity;
@@ -153,6 +151,23 @@ PushRelabel := function(digraph, source, sink)
             discharge(capacityMatrix, flowMatrix, excess, seen, height, queue, u);
         fi;
     od;
+
+    # ANALYSIS: HERE STOP TIME
+    endTime := Runtimes().user_time;
+
+    analysisPath := Concatenation("../Maximal Flow Algorithms/Analysis/",
+                    Concatenation(String(probability), "/pr.csv"));
+
+
+    data := Concatenation(String(nrVertices), 
+    Concatenation(",", 
+    Concatenation(String(nrEdges), 
+    Concatenation(",",
+    Concatenation(String(startTime),
+    Concatenation(",",
+    Concatenation(String(endTime), "\n")))))));
+
+    AppendTo(analysisPath, data);
 
 
     flowInformation := GetFlowInformation(flowMatrix, source);
