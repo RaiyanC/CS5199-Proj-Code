@@ -45,7 +45,7 @@ discharge := function(capacityMatrix, flowMatrix, excess, seen, height, queue, u
     od;
 end;    
 
-GetFlowInformation := function(digraph, flowMatrix, source)
+GetFlowsInformation := function(digraph, flowMatrix, source)
     local parents, flows, u, v, e, f, outs, outNeighbours, 
     nrVertices, edges, maxFlow, _, i, idx, weights, w;
 
@@ -165,7 +165,7 @@ PushRelabel := function(digraph, source, sink)
     od;
 
 
-    flowInformation := GetFlowInformation(digraph, flowMatrix, source);
+    flowInformation := GetFlowsInformation(digraph, flowMatrix, source);
     return rec(
         parents:=flowInformation[1], 
     flows:=flowInformation[2],
