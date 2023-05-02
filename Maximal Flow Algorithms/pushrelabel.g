@@ -1,9 +1,9 @@
-push := function(capacityMatrix, flowMatrix, excess, queue, u, v)
+push := function(capacityMatrix, flowMatrix, excess, queue, u, v, edgeIdx)
     local d;
     
-    d := Minimum(excess[u], capacityMatrix[u][v] - flowMatrix[u][v]);
-    flowMatrix[u][v] := flowMatrix[u][v] + d;
-    flowMatrix[v][u] := flowMatrix[v][u] - d;
+    d := Minimum(excess[u], capacityMatrix[u][v][edgeIdx] - flowMatrix[u][v][edgeIdx]);
+    flowMatrix[u][v][edgeIdx] := flowMatrix[u][v][edgeIdx] + d;
+    flowMatrix[v][u][edgeIdx] := flowMatrix[v][u][edgeIdx] - d;
     excess[u] := excess[u] - d;
     excess[v] := excess[v] + d;
 
@@ -13,13 +13,17 @@ push := function(capacityMatrix, flowMatrix, excess, queue, u, v)
 end;
 
 relabel := function(capacityMatrix, flowMatrix, height, u)
-    local d, v;
+    local d, v, e, f, edgeIdx;
 
     d := infinity;
     for v in [1..Size(capacityMatrix)] do
-        if capacityMatrix[u][v] - flowMatrix[u][v] > 0 then
-            d := Minimum(d, height[v]);
-        fi;
+        for edgeIdx in [1..Size(capacityMatrix[u][v])] do 
+            e := capacityMatrix[u][v][edgeIdx];
+            f := flowMatrix[u][v][edgeIdx];
+            if Float(e) - Float(f) > Float(0) then
+                d := Minimum(d, height[v]);
+            fi;
+        od;
     od;
     if d < infinity then
         height[u] := d + 1;
@@ -28,16 +32,20 @@ relabel := function(capacityMatrix, flowMatrix, height, u)
 end;
 
 discharge := function(capacityMatrix, flowMatrix, excess, seen, height, queue, u)
-    local v;
+    local v, edgeIdx, e, f;
     
     while excess[u] > 0 do
         if seen[u] <= Size(capacityMatrix) then
             v := seen[u];
-            if capacityMatrix[u][v] - flowMatrix[u][v] > 0 and height[u] > height[v] then
-                push(capacityMatrix, flowMatrix, excess, queue, u, v);
-            else
-                seen[u] := seen[u] + 1;
-            fi;
+            for edgeIdx in [1..Size(capacityMatrix[u][v])] do
+                e := capacityMatrix[u][v][edgeIdx];
+                f := flowMatrix[u][v][edgeIdx];
+                if Float(e) - Float(f) > Float(0) and height[u] > height[v] then
+                    push(capacityMatrix, flowMatrix, excess, queue, u, v, edgeIdx);
+                else
+                    seen[u] := seen[u] + 1;
+                fi;
+            od;
         else
             relabel(capacityMatrix, flowMatrix, height, u);
             seen[u] := 1;
@@ -121,8 +129,8 @@ PushRelabel := function(digraph, source, sink)
         fi;
 
         for v in digraphVertices do
-            capacityMatrix[u][v] := 0;
-            flowMatrix[u][v] := 0;
+            capacityMatrix[u][v] := [0];
+            flowMatrix[u][v] := [0];
         od;
     od;
 
@@ -132,7 +140,14 @@ PushRelabel := function(digraph, source, sink)
             v := outNeighbours[idx]; # the out neighbour
             w := weights[u][idx]; # the weight to the out neighbour
 
-            capacityMatrix[u][v] := w;
+            # if edge already exists
+            if capacityMatrix[u][v][1] <> 0 then
+                Add(capacityMatrix[u][v], w); 
+                Add(flowMatrix[u][v], 0); 
+                Add(flowMatrix[v][u], 0);
+            else 
+                capacityMatrix[u][v][1] := w;
+            fi;
         od;
     od;
 
@@ -141,7 +156,9 @@ PushRelabel := function(digraph, source, sink)
 
     for v in [1 .. nrVertices] do
         if v <> source then
-            push(capacityMatrix, flowMatrix,excess, queue, source, v);
+            for edgeIdx in [1..Size(capacityMatrix[source][v])] do
+                push(capacityMatrix, flowMatrix,excess, queue, source, v, edgeIdx);
+            od;
         fi;
     od;
 
