@@ -21,7 +21,8 @@ class Plotter():
       "ek": "Edmond Karp Algorithm",
       "dc": "Dinic's Algorithm",
       "kg": "Karger's Algorithm",
-      "kgs": "KargerSteiner Algorithm"
+      "kgs": "KargerSteiner Algorithm",
+      "pr": "Push-Relabel Algorithm"
     }
   
 

@@ -21,9 +21,11 @@ Runtests := function(alg, nodes, probability, nrIterations, step)
   while nrNode <= nodes do
     for i in [1..nrIterations] do
       # create random graphs and save them
-      random_graph := CreateRandomMFGraph(nrNode, probability);
+      # random_graph := CreateRandomMFGraph(nrNode, probability);
       # Karger(random_graph.random_graph, probability);
-      PushRelabel(random_graph.random_graph, probability);
+
+      random_graph := RandomUniqueEdgeWeightedDigraph(IsConnectedDigraph,nrNode, probability);
+      PushRelabel(random_graph, 1, nrNode, probability);
     od;
     nrNode := nrNode + step;
   od;

@@ -276,4 +276,12 @@ python3 analyser.py -p "./1/ek.csv" "./0.5/ek.csv" "./0.25/ek.csv" "./0.125/ek.c
 # push relabel algorithm? max flow
 https://github.com/Prashantpandey2398/Implementation-of-Advanced-Algorithms-Using-Python/blob/master/preflow.py
 
+Read("../Maximal Flow Algorithms/Analysis/pr.g");
+Read("../Maximal Flow Algorithms/Analysis/tester.g"); Runtests("pr", 1002, 0.01, 5, 10);
 
+
+
+DigraphsMakeDoc();
+
+
+file:///tmp/gaptempdirQa5gNT/_home_mrc7_.gap_pkg_digraphs-1.6.2_gap_weights.gi.html
