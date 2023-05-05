@@ -1,24 +1,24 @@
 Floyd := function(digraph)
-    local weights, adj_matrix, digraph_vertices, nr_vertices, e,u,v,edges, outs, ins, 
+    local weights, adj_matrix, digraph_vertices, nrVertices, e,u,v,edges, outs, ins,
     edge_idx, idx, out_neighbours, in_neighbours, w, mst, 
     visited, i, j, k, queue, cost, node, neighbour, next_vertex, total, 
-    edges_in_mst, number_of_vertices, distances, parents;
+    edges_in_mst, number_of_vertices, distances, parents, path, pathParents;
 
     weights := EdgeWeights(digraph);
     
     digraph_vertices := DigraphVertices(digraph);
-    nr_vertices := Size(digraph_vertices);
+    nrVertices := Size(digraph_vertices);
     outs := OutNeighbors(digraph);
     ins := InNeighbors(digraph);
 
     # Create adjacancy matrix
-    adj_matrix := EmptyPlist(nr_vertices);
-    parents := EmptyPlist(nr_vertices);
-    edges := EmptyPlist(nr_vertices);
+    adj_matrix := EmptyPlist(nrVertices);
+    parents := EmptyPlist(nrVertices);
+    edges := EmptyPlist(nrVertices);
 
 
     for u in digraph_vertices do
-        adj_matrix[u] := EmptyPlist(nr_vertices);
+        adj_matrix[u] := EmptyPlist(nrVertices);
         out_neighbours := outs[u];
         for idx in [1..Size(out_neighbours)] do
             v := out_neighbours[idx]; # the out neighbour
@@ -36,15 +36,13 @@ Floyd := function(digraph)
     od;
 
     # Create distances adj matrix
-    distances := EmptyPlist(nr_vertices);
+    distances := EmptyPlist(nrVertices);
     for u in digraph_vertices do
-        distances[u] := EmptyPlist(nr_vertices);
-        parents[u] := EmptyPlist(nr_vertices);
-        edges[u] := EmptyPlist(nr_vertices);
+        distances[u] := EmptyPlist(nrVertices);
+        parents[u] := EmptyPlist(nrVertices);
+        edges[u] := EmptyPlist(nrVertices);
 
         for v in digraph_vertices do
-            
-
             distances[u][v] := infinity;
 
             if u = v then
@@ -59,19 +57,21 @@ Floyd := function(digraph)
                 distances[u][v] := w;
 
                 # parent of u -> v is u
-                parents[u][v] := u;
+                parents[u][v] := v;
                 edges[u][v] := idx;
             
             fi;
         od;
     od;
 
-    for k in [1..nr_vertices] do
-        for u in [1..nr_vertices] do
-            for v in [1..nr_vertices] do
+    for k in [1..nrVertices] do
+        for u in [1..nrVertices] do
+            for v in [1..nrVertices] do
                 if distances[u][k] < infinity and distances[k][v] < infinity then
                     if distances[u][k] + distances[k][v] < distances[u][v] then
                         distances[u][v] := distances[u][k] + distances[k][v];
+                        parents[u][v] := parents[u][k];
+                        edges[u][v] := edges[k][v];
                     fi;
                 fi;
             od;
@@ -79,21 +79,29 @@ Floyd := function(digraph)
     od;
 
     # detect negative cycles
-    for i in [1..nr_vertices] do
+    for i in [1..nrVertices] do
         if distances[i][i] < 0 then
             ErrorNoReturn("negative cycle exists,");
         fi;
     od;
 
     # replace infinity with fails
-    for u in [1..nr_vertices] do
-            for v in [1..nr_vertices] do
-                if distances[u][v] = infinity then
-                    distances[u][v] := fail;
-                fi;
+    for u in [1..nrVertices] do
+        for v in [1..nrVertices] do
+            if distances[u][v] = infinity then
+                distances[u][v] := fail;
+            fi;
         od;
     od;
 
-    
-    return distances;
+    pathParents := EmptyPlist(nrVertices);
+
+    for u in [1..nrVertices] do
+        pathParents[u] := EmptyPlist(nrVertices);
+        for v in [1..nrVertices] do
+            pathParents[u][v] := parents[v][u];
+        od;
+    od;
+
+    return rec(distances:=distances, parents:=pathParents, edges:=edges);
 end;
