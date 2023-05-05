@@ -1,4 +1,4 @@
-Floyd := function(digraph)
+FloydWithPath := function(digraph)
     local weights, adj_matrix, digraph_vertices, nr_vertices, e,u,v,edges, outs, ins, 
     edge_idx, idx, out_neighbours, in_neighbours, w, mst, 
     visited, i, j, k, queue, cost, node, neighbour, next_vertex, total, 
@@ -43,14 +43,12 @@ Floyd := function(digraph)
         edges[u] := EmptyPlist(nr_vertices);
 
         for v in digraph_vertices do
-            
-
             distances[u][v] := infinity;
 
             if u = v then
                 distances[u][v] := 0;
                 # if the same node, then the node has no parents
-                parents[u][v] := [fail];
+                parents[u][v] := fail;
                 edges[u][v] := fail;
             elif IsBound(adj_matrix[u][v]) then
                 w := adj_matrix[u][v][1];
@@ -59,7 +57,7 @@ Floyd := function(digraph)
                 distances[u][v] := w;
 
                 # parent of u -> v is u
-                parents[u][v] := [v, idx];
+                parents[u][v] := v;
                 edges[u][v] := idx;
             
             fi;
@@ -73,29 +71,32 @@ Floyd := function(digraph)
                     if distances[u][k] + distances[k][v] < distances[u][v] then
                         distances[u][v] := distances[u][k] + distances[k][v];
                         parents[u][v] := parents[u][k];
+                        edges[u][v] := edges[k][v];
                     fi;
                 fi;
             od;
         od;
     od;
 
-    Print("parents ", parents, "\n\n\n");
+    Print("parents \n", parents, "\n\n\n");
+    Print("edges \n", edges, "\n\n\n");
+
 
     u := 1;
-    v := 3;
+    v := 5;
     # construct path between 1 and 3
-    if parents[u][v][1] = fail then
-        return [];
-    fi;
+    # if parents[u][v][1] = fail then
+    #     return [];
+    # fi;
 
-    path := [u];
-    while u <> v do
+    # path := [u];
+    # while u <> v do
         
-        u := parents[u][v][1];
-        Add(path, u);
-    od;
+    #     u := parents[u][v][1];
+    #     Add(path, u);
+    # od;
 
-    Print("path ", path, "\n\n\n");
+    # Print("path ", path, "\n\n\n");
 
     # detect negative cycles
     for i in [1..nr_vertices] do
