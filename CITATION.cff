@@ -1,0 +1,8 @@
+@misc{proj,
+  author = {Raiyan Chowdhury},
+  title = {Algorithms for Directed Graphs},
+  year = {2023},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/RaiyanC/CS5199-Proj-Code}},
+}
