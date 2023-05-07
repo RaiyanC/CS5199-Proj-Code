@@ -55,8 +55,6 @@ Floyd := function(digraph)
                 idx := adj_matrix[u][v][2];
 
                 distances[u][v] := w;
-
-                # parent of u -> v is u
                 parents[u][v] := v;
                 edges[u][v] := idx;
             
