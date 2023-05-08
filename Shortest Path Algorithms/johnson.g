@@ -179,7 +179,8 @@ end;
 Johnson := function(digraph)
     local adjMatrix, digraphVertices, nrVertices, e,u,v,edges, outs,
     idx, outNeighbours, w, i, j, k, distances,
-    mutableWeights, mutableOuts, bellmanDistances, distance;
+    mutableWeights, mutableOuts, bellman, bellmanDistances, distance,
+    dijkstra, parents;
 
     mutableWeights := EdgeWeightsMutableCopy(digraph);
     
@@ -205,7 +206,8 @@ Johnson := function(digraph)
     od;
     
     digraph := EdgeWeightedDigraph(mutableOuts, mutableWeights);
-    bellmanDistances := Bellman(digraph, 1).distances;
+    bellman := Bellman(digraph, 1);
+    bellmanDistances := bellman.distances;
     
     mutableWeights := EdgeWeightsMutableCopy(digraph);
     digraphVertices := DigraphVertices(digraph);
@@ -236,10 +238,16 @@ Johnson := function(digraph)
     digraphVertices := DigraphVertices(digraph);
 
     distance := EmptyPlist(nrVertices);
+    parents := EmptyPlist(nrVertices);
+    edges := EmptyPlist(nrVertices);
+
 
     # # run dijkstra
     for u in digraphVertices do
-        distance[u] := Dijkstra(digraph, u).distances;
+        dijkstra := Dijkstra(digraph, u);
+        distance[u] := dijkstra.distances;
+        parents[u] := dijkstra.parents;
+        edges[u] := dijkstra.edges;
     od;
 
     # correct distances
@@ -263,5 +271,5 @@ Johnson := function(digraph)
     #     od;
     # od;
 
-    return distance;
+    return rec(distances:=distance, parents:=parents, edges:=edges);
 end;

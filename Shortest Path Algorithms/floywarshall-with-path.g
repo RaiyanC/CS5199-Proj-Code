@@ -44,6 +44,8 @@ FloydWithPath := function(digraph)
 
         for v in digraph_vertices do
             distances[u][v] := infinity;
+            parents[u][v] := fail;
+            edges[u][v] := fail;
 
             if u = v then
                 distances[u][v] := 0;
@@ -57,7 +59,7 @@ FloydWithPath := function(digraph)
                 distances[u][v] := w;
 
                 # parent of u -> v is u
-                parents[u][v] := v;
+                parents[u][v] := u;
                 edges[u][v] := idx;
             
             fi;
@@ -99,7 +101,7 @@ FloydWithPath := function(digraph)
     for u in [1..nrVertices] do
         pathParents[u] := EmptyPlist(nrVertices);
         for v in [1..nrVertices] do
-            pathParents[u][v] := parents[v][u];
+            pathParents[u][v] := parents[u][v];
         od;
     od;
 

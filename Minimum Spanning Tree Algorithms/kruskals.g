@@ -1,3 +1,28 @@
+find := function(parent, i)
+    if parent[i] = i then
+        return i;
+    fi;
+
+    return find(parent, parent[i]);
+end;
+
+
+union := function(parent, rank, x, y)
+    local xroot, yroot;
+
+    xroot := find(parent, x);
+    yroot := find(parent, y);
+
+    if rank[xroot] < rank[yroot] then
+        parent[xroot] := yroot;
+    elif rank[xroot] > rank[yroot] then
+        parent[yroot] := xroot;
+    else
+        parent[yroot] := xroot;
+        rank[xroot] := rank[xroot] + 1;
+    fi;
+end;
+
 # https://www.programiz.com/dsa/kruskal-algorithm
 Kruskals := function(digraph)
     local weights, numberOfVertices, edgeList, u, 
@@ -66,30 +91,3 @@ od;
 
 return rec(total:=total, mst:=EdgeWeightedDigraph(mst, mstWeights));
 end;
-
-
-find := function(parent, i)
-    if parent[i] = i then
-        return i;
-    fi;
-
-    return find(parent, parent[i]);
-end;
-
-
-union := function(parent, rank, x, y)
-    local xroot, yroot;
-
-    xroot := find(parent, x);
-    yroot := find(parent, y);
-
-    if rank[xroot] < rank[yroot] then
-        parent[xroot] := yroot;
-    elif rank[xroot] > rank[yroot] then
-        parent[yroot] := xroot;
-    else
-        parent[yroot] := xroot;
-        rank[xroot] := rank[xroot] + 1;
-    fi;
-end;
-

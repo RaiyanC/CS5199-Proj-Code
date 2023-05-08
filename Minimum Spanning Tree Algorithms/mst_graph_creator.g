@@ -11,7 +11,6 @@ CreateRandomMSTGraph := function(filt, n, p)
     weights := [];
     randWeightIdx := 1;
 
-
     # Create random weights for each edge. weights are unique [1..number of edges + 1]
     for u in digraphVertices do
         outNeighbours := OutNeighbors(randomDigraph)[u];

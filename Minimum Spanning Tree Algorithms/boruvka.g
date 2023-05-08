@@ -26,7 +26,7 @@ end;
 
 Boruvka := function(digraph)
     local parent, rank, cheapest, nrTrees, nrVertices, total, u, v, mst, mstWeights, weights,
-    edgeList, e, x, y;
+    edgeList, e, x, y, outNeigbours, idx, w;
 
     weights := EdgeWeights(digraph);
 
