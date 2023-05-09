@@ -1,5 +1,5 @@
 # Important
-All the edge weighted algorithms are implemented in Digraphs/GAP/weights.gi file so you only need to clone https://github.com/RaiyanC/Digraphs or the Digraphs folder in my submission into where GAP is installed. See the user manual in the report on how to use these functions. You may need to ```LoadPackage("digraphs");``` after this.
+All the edge weighted algorithms are implemented in Digraphs/GAP/weights.gi file so you only need to clone https://github.com/RaiyanC/Digraphs or the Digraphs folder in my submission into where GAP is installed. See the user manual in the report on how to use these functions. You may need to ```LoadPackage("digraphs");``` after cloning.
 
 This README shows how to run the files in this project.
 
