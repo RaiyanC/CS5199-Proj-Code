@@ -1,4 +1,7 @@
-This README shows how to run the files in each directory.
+# Important
+All the edge weighted algorithms are implemented in Digraphs/GAP/weights.gi file so you only need to 
+
+This README shows how to run the files in this project.
 
 Clone https://github.com/RaiyanC/Digraphs to be able to use all the algorithms implemented.
 
@@ -13,7 +16,18 @@ InstallPackage("profiling");
 ```
 
 # File Structure
+- Digraphs/: this is the digraphs package that I have been working with.
+- ExampleDots/: These are the dot files created for the report to demonstrate visualisation.
+- MaximalFlowAlgorithms/: This contains the files used for prototyping and analysing the maximal flow algorithms.
+- MinimumSpanningTreeAlgorithms/: This contains the files used for prototyping and analysing the minimum spanning tree algorithms.
+- PDFS/: This just contains the Ethics Assessment form.
+- Profiles/: This contains all the code profiles that I did.
+- ShortestPathAlgorithms/: This contains the files used for prototyping and analysing the shortest path algorithms.
 
+
+- CITATION.cff: This is for citing the github repository.
+- setup.sh: This was used to automatically move the changed files from Digraphs/ to the GAP installation
+- UNIT-TESTS-EWD: This was where I was started writing the unit test for Edge Weighted Digraphs.
 
 # Minimum Spanning Trees
 Enter into the GAP terminal and to run each algorithm, run the following:
