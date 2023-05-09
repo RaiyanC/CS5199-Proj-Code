@@ -2,6 +2,19 @@ This README shows how to run the files in each directory.
 
 Clone https://github.com/RaiyanC/Digraphs to be able to use all the algorithms implemented.
 
+You will need GAP and these packages PackageManger, Digraphs, Profiling
+- GAP: https://www.gap-system.org/Download/
+
+In the GAP terminal load the PackageManager (https://gap-packages.github.io/PackageManager/doc/chap1_mj.html) and then install the following.
+
+```
+InstallPackage("digraphs");
+InstallPackage("profiling");
+```
+
+# File Structure
+
+
 # Minimum Spanning Trees
 Enter into the GAP terminal and to run each algorithm, run the following:
 
@@ -231,14 +244,14 @@ KargerSteiner(<digraph>);
 ```
 
 ## Testing
-- shortestpath.g
+- testmf.g
 
 First read in the required algorithms as above and then run
 ```
 Read("../Shortest Path Algorithms/Testing/testmf.g");
 TestMFAlgorithms(<n>, <p>); #Example:TestMFAlgorithms(200, 0.01);
 ```
-
+- testmincut.g
 ```
 Read("../Shortest Path Algorithms/Testing/testmincut.g");
 TestTestMinCutAlgorithmsMFAlgorithms(<n>, <p>); #Example:TestMinCutAlgorithms(200, 0.01);
