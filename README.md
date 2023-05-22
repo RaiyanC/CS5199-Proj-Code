@@ -1,6 +1,3 @@
-# Important
-All the edge weighted algorithms are implemented in Digraphs/GAP/weights.gi file so you only need to clone https://github.com/RaiyanC/Digraphs or the Digraphs folder in my submission into where GAP is installed. See the user manual in the report on how to use these functions. You may need to ```LoadPackage("digraphs");``` after cloning.
-
 This README shows how to run the files in this project.
 
 Clone https://github.com/RaiyanC/Digraphs to be able to use all the algorithms implemented.
@@ -14,6 +11,21 @@ In the GAP terminal load the PackageManager (https://gap-packages.github.io/Pack
 InstallPackage("digraphs");
 InstallPackage("profiling");
 ```
+
+# Important
+All the edge weighted algorithms are implemented in Digraphs/GAP/weights.gi file so you only need to clone https://github.com/RaiyanC/Digraphs or the Digraphs folder in my submission into GAP/pkg/. See the user manual in the report on how to use these functions. You may need to ```LoadPackage("digraphs");``` and ```CompilePackage("digraphs");```  after cloning / copying my Digraphs folder into GAP/pkg/.
+
+Within the Digraphs package, the majority of this package is not my code except for these changes:
+- doc/z-chap5.xml: I added the section under Edge Weights which contains the header for the documentation I wrote.
+- gap/doc.g: Adding weights.xml to the list of DIGRAPHS_DocXMLFiles.
+- init.g: Adding weights.gd to the packages to be read in.
+- Read.g: Adding weights.gi to the packages to be read in.
+- tst/testinstall.tst: Added a very basic test to test creation of EdgeWeightedDigraph and some other functions.
+- doc/weights.xml: This file is entirely written by me and contains documentation for the all the functions.
+- gap/weights.gd: Added headers for functions implemented in weights.gi. Also written entirely by myself.
+- gap/weights.gi: Implemented EdgeWeightedDigraph as well as all the implementations for edge weighted digraph functions. Also implemented by me.
+- tst/standard/weights.tst: Added tests for all the functions implemented in weights.gi.
+
 
 # File Structure
 - Digraphs/: this is the digraphs package that I have been working with.

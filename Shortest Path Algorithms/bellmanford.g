@@ -9,7 +9,7 @@ Bellman := function(digraph, source)
 
     digraphVertices := DigraphVertices(digraph);
     edge_list := [];
-    flag = true;
+    flag := true;
     
     for u in DigraphVertices(digraph) do
         outNeighbours := OutNeighbors(digraph)[u];
@@ -52,7 +52,7 @@ Bellman := function(digraph, source)
                 
                 parents[v] := u;
                 edges[v] := idx;
-                flag = false;
+                flag := false;
             fi;
         od;
         if flag = true then

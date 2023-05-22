@@ -285,3 +285,18 @@ DigraphsMakeDoc();
 
 
 file:///tmp/gaptempdirQa5gNT/_home_mrc7_.gap_pkg_digraphs-1.6.2_gap_weights.gi.html
+
+
+
+# min cut tests
+gap> rd := RandomUniqueEdgeWeightedDigraph(3, 1);
+<immutable digraph with 3 vertices, 9 edges>
+gap> DigraphMinimumCuts(rd);
+rec( cuts := 4, edgesCut := [ [ 1, 2 ], [ 2, 1 ], [ 2, 3 ], [ 3, 2 ] ] )
+
+# min cuts bigger
+gap> rd := RandomUniqueEdgeWeightedDigraph(7, 1);
+<immutable digraph with 7 vertices, 49 edges>
+gap> DigraphMinimumCuts(rd);
+rec( cuts := 12, edgesCut := [ [ 1, 2 ], [ 2, 1 ], [ 2, 3 ], [ 2, 4 ], [ 2, 5 ], [ 2, 6 ], [ 2, 7 ], [ 3, 2 ], 
+      [ 4, 2 ], [ 5, 2 ], [ 6, 2 ], [ 7, 2 ] ] )
